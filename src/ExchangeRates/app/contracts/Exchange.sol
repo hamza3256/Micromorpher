@@ -2,9 +2,9 @@ pragma solidity ^0.4.2;
 
 contract Exchange {
 
-  function placeOrder(address _creator, string offerCurrency, uint256 offerAmount, string wantCurrency, uint256 wantValue) {}
-  function completeOrder(int256 _orderId, string _offerCurrency, address _completor, string _wantCurrency, uint256 _wantAmount) {}
-  function deleteOrder(int256 orderId) {}
+	function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) {}
+  function completeOrder(uint256 _epochTime, address _creator) {}
+  function deleteOrder(uint256 _epochTime, address _creator) {}
 
   function withdraw(address addr, string code, uint256 value) {}
   function getDepositedAmount(address addr, string code) constant returns (uint256) {}

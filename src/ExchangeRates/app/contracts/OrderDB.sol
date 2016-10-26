@@ -5,137 +5,112 @@ import "Owned.sol";
 
 contract OrderDB is Order, Owned {
 
-  enum OrderStatus { UNINITIALISED, OPEN, DELETED, COMPLETED }
+  enum OrderStatus { OPEN, DELETED, COMPLETED }
 
-  struct NewOrder {    
+  struct Order {    
     address creator;
     string offerCurrency;
     uint256 offerAmount;
     uint256 etherAmount;
-	OrderStatus status;	
+		OrderStatus status;	
   }
 
-  event OrderPlaced(uint256 orderId);
-  event OrderNotPlaced();
-  event OrderCompleted(uint256 orderId);
-  event OrderIncomplete(uint256 orderId);
-  event OrderDeleted(uint256 orderId);
-  event OrderNotDeleted(uint256 orderId);
+  event OrderPlaced(uint256 _epochTime, address _creator);
+  event OrderCompleted(uint256 _epochTime, address _creator);
+  event OrderDeleted(uint256 _epochTime, address _creator);
 
-	mapping(uint256 => NewOrder) private orders;
-	uint256 private orderId;
+	mapping(bytes32 => Order) private orders;
 
-  function OrderDB() {
-	orderId = 0;
-    orders[orderId].status = OrderStatus.UNINITIALISED;
+	function OrderDB() {  
+	}
+
+  // hint - use js now() to generate the epochTime and make it unique
+  function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public {
+    var key = sha3(_epochTime,_creator); 
+    orders[key] = Order(_creator,_offerCurrency,_offerAmount,_etherValue,OrderStatus.OPEN);
+    OrderPlaced(_epochTime, _creator);
   }
 
-  function getOrderId() public onlyOwner returns (uint256) {
-    var thisOrderId = orderId;    
-    orders[thisOrderId].status = OrderStatus.UNINITIALISED;
-    orderId += 1;
-    return thisOrderId;
+  function completeOrder(uint256 _epochTime, address _creator) public {
+  	var key = sha3(_epochTime,_creator); 
+    Order thisOrder = orders[key];
+    thisOrder.status = OrderStatus.COMPLETED;
+    OrderCompleted(_epochTime,_creator);
   }
 
-  function placeOrder(uint256 _orderId, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner returns (bool) {
-    if (orders[_orderId].status == OrderStatus.UNINITIALISED ) {
-      orders[_orderId].creator = _creator;
-      orders[_orderId].offerCurrency = _offerCurrency;
-      orders[_orderId].etherAmount = _etherValue;
-      orders[_orderId].status = OrderStatus.OPEN;
-      OrderPlaced(_orderId);
-      return true;
-    } else {
-      OrderNotPlaced();
-      return false;
-    }
+  function deleteOrder(uint256 _epochTime, address _creator) public {
+  	var key = sha3(_epochTime,_creator); 
+    Order thisOrder = orders[key];
+    thisOrder.status = OrderStatus.DELETED;
+    OrderDeleted(_epochTime,_creator);
   }
 
-  function completeOrder(uint256 _orderId, address _creator) public onlyOwner returns (bool) {
-    if (orders[_orderId].status != OrderStatus.OPEN && orders[_orderId].creator != _creator ) {
-      OrderIncomplete(_orderId);
-      return false;
-    } else {
-      orders[_orderId].status = OrderStatus.COMPLETED;
-      OrderCompleted(_orderId);
-      return true;
-    }
-  }
-
-  function deleteOrder(uint256 _orderId) public onlyOwner returns (bool) {
-  	if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) {
-			orders[_orderId].status = OrderStatus.DELETED;
-      OrderDeleted(_orderId);
-    	return true;
-  	}
-    OrderNotDeleted(_orderId);
-  	return false;
-  }
-
-  function getOrder(uint256 _orderId) public constant returns (address,string,uint256,uint256,int256) {
-  	return (orders[_orderId].creator,
-  					orders[_orderId].offerCurrency,
-  					orders[_orderId].offerAmount,
-  					orders[_orderId].etherAmount,
-  					int256(orders[_orderId].status));
+  function getOrder(uint256 _epochTime, address _creator) public constant returns (address,string,uint256,uint256,int256) {
+  	var key = sha3(_epochTime,_creator); 
+    Order thisOrder = orders[key];
+  	return (thisOrder.creator,
+  					thisOrder.offerCurrency,
+  					thisOrder.offerAmount,
+  					thisOrder.etherAmount,
+  					int256(thisOrder.status));
   }
 
 
-  function getOrderStatus(uint256 _orderId) public constant returns (int) {
-  	return int(orders[_orderId].status);
+  function getOrderStatus(uint256 _epochTime, address _creator) public constant returns (int) {
+  	var key = sha3(_epochTime,_creator); 
+    Order thisOrder = orders[key];
+  	return int(thisOrder.status);
   }
 
-  function getOrderCreator(uint256 _orderId) public constant returns (address) {
-      return orders[_orderId].creator;
+  function getOrderCreator(uint256 _epochTime, address _creator) public constant returns (address) {
+      var key = sha3(_epochTime,_creator); 
+    	Order thisOrder = orders[key];
+      return thisOrder.creator;
   } 
 
-  function getOrderOfferCurrency(uint256 _orderId) public constant returns (string) {
-      if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) { 
-          return orders[_orderId].offerCurrency;
-      }
-      return "";
+  function getOrderOfferCurrency(uint256 _epochTime, address _creator) public constant returns (string) {
+      var key = sha3(_epochTime,_creator); 
+    	Order thisOrder = orders[key];
+      return thisOrder.offerCurrency;
   }
 
-  function getOrderOfferAmount(uint256 _orderId) public constant returns (uint256) {
-      if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) { 
-          return orders[_orderId].offerAmount;
-      }
-      return 0x0;
+  function getOrderOfferAmount(uint256 _epochTime, address _creator) public constant returns (uint256) {
+      var key = sha3(_epochTime,_creator); 
+    	Order thisOrder = orders[key];
+      return thisOrder.offerAmount;
   }
 
-  function getOrderEtherAmount(uint256 _orderId) public constant returns (uint256) {
-      if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) { 
-          return orders[_orderId].etherAmount;
-      }
-      return 0x0;
+  function getOrderEtherAmount(uint256 _epochTime, address _creator) public constant returns (uint256) {
+      var key = sha3(_epochTime,_creator); 
+    	Order thisOrder = orders[key];
+      return thisOrder.etherAmount;
   }
 
-  function isUninitialised(uint256 _orderId) public constant returns (bool) {
-  	if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) { 
-		return orders[_orderId].status == OrderStatus.UNINITIALISED;
+  function isOpen(uint256 _epochTime, address _creator) public constant returns (bool) {
+  	var key = sha3(_epochTime,_creator); 
+    Order thisOrder = orders[key];
+  	if ( thisOrder.status == OrderStatus.OPEN ) { 
+			return true;
   	}
   	return false;
   }
 
-  function isOpen(uint256 _orderId) public constant returns (bool) {
-  	if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) { 
-		return orders[_orderId].status == OrderStatus.OPEN;
+  function isCompleted(uint256 _epochTime, address _creator) public constant returns (bool) {
+  	var key = sha3(_epochTime,_creator); 
+    Order thisOrder = orders[key];
+  	if ( thisOrder.status == OrderStatus.COMPLETED ) { 
+			return true;
   	}
   	return false;
   }
 
-  function isCompleted(uint256 _orderId) public constant returns (bool) {
-  	if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) { 
-		return orders[_orderId].status == OrderStatus.COMPLETED;
+  function isDeleted(uint256 _epochTime, address _creator) public constant returns (bool) {
+     var key = sha3(_epochTime,_creator); 
+    Order thisOrder = orders[key];
+  	if ( thisOrder.status == OrderStatus.DELETED ) { 
+			return true;
   	}
   	return false;
-  }
-
-  function isDeleted(uint256 _orderId) public constant returns (bool) {
-      if ( orders[_orderId].status != OrderStatus.UNINITIALISED ) { 
-          return orders[_orderId].status == OrderStatus.DELETED;
-      }
-      return false;
   }
 
 }

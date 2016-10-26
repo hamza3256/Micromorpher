@@ -32,14 +32,11 @@ contract Exchanger is Exchange, Mortal {
     Funded(msg.sender, msg.value);
   }
 
-  function placeOrder(address _creator, string _offerCurrency, uint256 _offerAmount, string _wantCurrency, uint256 _wantValue) public {
-		var deposited = depositDB.deposit(_offerCurrency, _offerAmount);
-		if ( deposited ) {
-			orderDB.placeOrder(_creator,_offerCurrency,_offerAmount,_wantCurrency,_wantValue);
-  	}
+  function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
+  	orderDB.placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
   }
 
-  function completeOrder(int256 _orderId, string _offerCurrency, address _completor, string _wantCurrency, uint256 _wantAmount) public {
+  function completeOrder(uint256 _epochTime, address _creator) public onlyOwner {
 		/*var creator = orderDB.getOrderCreator(_orderId);
 	  // Passing in _offerCurrency is a Hack 
 		// because you can't presently return strings to internal functions in Solidity
@@ -64,20 +61,18 @@ contract Exchanger is Exchange, Mortal {
 			depositDB.deposit(creator,_offerCurrency,offeredAmount);
 		}*/
   }
-
-  function deleteOrder(int256 orderId) public {
-		orderDB.deleteOrder(orderId); 
+ 	
+  function deleteOrder(uint256 _epochTime, address _creator) public onlyOwner {
+		orderDB.deleteOrder(_epochTime,_creator); 
   }
 
-  function withdraw(address addr, string code, uint256 value) public {
-  	depositDB.withdraw(addr,code,value);
+  function withdraw(string code, uint256 value) public onlyOwner {
+  	// Need to do something with the return result here
+  	depositDB.withdraw(code,value);
   }
 
-  function getDepositedAmount(address addr, string code) public constant returns (uint256) {
-  	if ( addr != 0x0 ) {
-  		return depositDB.getDepositedAmount(addr,code);
-  	}
-  	return 0;
+  function getDepositedAmount(string code) public constant returns (uint256) {
+  	return depositDB.getDepositedAmount(code);
   }
   
   function setRate(string _code, uint256 _rate) public {
@@ -96,6 +91,6 @@ contract Exchanger is Exchange, Mortal {
 
   function getEtherAmount(string _code, uint256 _amount) public constant returns (uint256) {
     return forexDB.getEtherAmount(_code,_amount);
-  }*/
+  }
 
 }
