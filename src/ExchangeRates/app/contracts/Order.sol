@@ -6,7 +6,8 @@ contract Order {
   function completeOrder(uint256 _epochTime, address _creator) {}
   function deleteOrder(uint256 _epochTime, address _creator) {}
 
-  function getOrder(uint256 _epochTime, address _creator) public constant returns (address,string,uint256,uint256,int256) {}
+  function getOrderId(uint256 _epochTime, address _creator) constant returns (bytes32) {}
+  function getOrder(uint256 _epochTime, address _creator) constant returns (address,string,uint256,uint256,int256) {}
   function getOrderStatus(uint256 _epochTime, address _creator) constant returns (int) {}
   function getOrderCreator(uint256 _epochTime, address _creator) constant returns (address) {} 
   function getOrderOfferCurrency(uint256 _epochTime, address _creator) constant returns (string) {}  

@@ -34,7 +34,7 @@ contract ForexDB is Forex {
 
 	function setRate(string _code, uint256 _rate) public {
 		var key = sha3(_code);
-		//rateStorage[_code] = _rate;
+		//rateStorage[key] = _rate;
 		Storage(storageContract).setUInt256Value(key,_rate);
 		RateSet(key,_code,_rate);
 	}
@@ -42,15 +42,19 @@ contract ForexDB is Forex {
 	function getRate(string _code) public constant returns (uint256) {
 		var key = sha3(_code);			
 		RateGot(key,_code);	
-		//return rateStorage[_code];	
+		//return rateStorage[key];	
 		return Storage(storageContract).getUInt256Value(key);
 
 	}
 
 	function getEtherAmount(string _code, uint256 _amount) public constant returns (uint256) {
-		var rate = getRate(_code);
-		var eth = rate * _amount;
-		return eth;
+		var key = sha3(_code);
+		var rate = Storage(storageContract).getUInt256Value(key);
+		uint256 thisWei = 0;
+		if ( rate > 0) {
+			thisWei = _amount / rate;
+		}		
+		return thisWei;
 	}
 
 }

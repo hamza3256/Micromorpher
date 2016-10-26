@@ -11,10 +11,7 @@
         ]
       },
       "OrderDB": {
-        "args": [
-          "$ExternalStorage"
-        ],
-        "gas": 1500000
+        "gas": 1000000
       },
       "DepositDB": {
         "args": [

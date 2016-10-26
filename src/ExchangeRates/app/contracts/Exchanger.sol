@@ -61,6 +61,10 @@ contract Exchanger is Exchange, Mortal {
 			depositDB.deposit(creator,_offerCurrency,offeredAmount);
 		}*/
   }
+
+  function getOrderId(uint256 _epochTime, address _creator) public onlyOwner constant returns (bytes32) {
+    return orderDB.getOrderId(_epochTime,_creator);
+  }
  	
   function deleteOrder(uint256 _epochTime, address _creator) public onlyOwner {
 		orderDB.deleteOrder(_epochTime,_creator); 
@@ -71,25 +75,25 @@ contract Exchanger is Exchange, Mortal {
   	depositDB.withdraw(code,value);
   }
 
-  function getDepositedAmount(string code) public constant returns (uint256) {
+  function getDepositedAmount(string code) public onlyOwner constant returns (uint256) {
   	return depositDB.getDepositedAmount(code);
   }
   
-  function setRate(string _code, uint256 _rate) public {
+  function setRate(string _code, uint256 _rate) public onlyOwner {
   	forexDB.setRate(_code,_rate);
     //var key = sha3(_code);
     //rateStorage[key] = _rate;
     //rateStorage[_code] = _rate;
   }
 
-  function getRate(string _code) public constant returns (uint256) {
+  function getRate(string _code) public onlyOwner constant returns (uint256) {
   	return forexDB.getRate(_code);
     //var key = sha3(_code);
     //return rateStorage[key];
     //return rateStorage[_code];
   }
 
-  function getEtherAmount(string _code, uint256 _amount) public constant returns (uint256) {
+  function getEtherAmount(string _code, uint256 _amount) public onlyOwner constant returns (uint256) {
     return forexDB.getEtherAmount(_code,_amount);
   }
 
