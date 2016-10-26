@@ -1,3 +1,4 @@
 src/ExchangeRates/.embark
+src/ExchangeRates/chains.json
 src/react-do-exchange/build
 src/react-exchange-rates/build
