@@ -45,7 +45,7 @@ contract OrderDB is Order, Owned {
 
   function getOrder(uint256 _epochTime, address _creator) public constant returns (address,string,uint256,uint256,int256) {
   	var key = getOrderId(_epochTime,_creator); 
-    Order thisOrder = orders[key];
+    var thisOrder = orders[key];
   	return (thisOrder.creator,
   					thisOrder.offerCurrency,
   					thisOrder.offerAmount,

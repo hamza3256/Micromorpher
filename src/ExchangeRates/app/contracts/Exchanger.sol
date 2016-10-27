@@ -40,30 +40,17 @@ contract Exchanger is Exchange, Mortal {
   }
 
   function completeOrder(uint256 _epochTime, address _creator) public onlyOwner {
-		/*var creator = orderDB.getOrderCreator(_orderId);
-	  // Passing in _offerCurrency is a Hack 
-		// because you can't presently return strings to internal functions in Solidity
-		// So this wont work
-	  //var offeredCurrency = orderContract.getOrderOfferCurrency(_orderId);				
-		var offeredAmount = orderDB.getOrderOfferAmount(_orderId);  
-		var withdrawn = depositDB.withdraw(creator,_offerCurrency,offeredAmount);
-		if ( withdrawn > 0 && withdrawn == offeredAmount ) {
-			// Put that in the order _completor's account
-			var deposited = depositDB.deposit(_completor,_offerCurrency,withdrawn);
-      if ( deposited ) {
-        // Put the wanted currency in the order creator's account
-        deposited = depositDB.deposit(creator,_wantCurrency,_wantAmount);
-        if ( deposited ) {
-          orderDB.completeOrder(_orderId,_completor,_wantCurrency,_wantAmount);
-        } else {
-          depositDB.withdraw(creator,_wantCurrency,_wantAmount);
-          depositDB.deposit(creator,_offerCurrency,offeredAmount);
-        }
-      }
-		} else {
-			depositDB.deposit(creator,_offerCurrency,offeredAmount);
-		}*/
-    OrderCompleted(_epochTime,_creator);
+		if ( orderDB.isOpen(_epochTime,_creator) ) {
+			var (orderCreator, offerCurrency, offerAmount, etherAmount, status) = orderDB.getOrder(_epochTime, _creator);
+			if ( orderCreator == _creator ) {				
+				orderDB.completeOrder(_epochTime,_creator);
+				if (!_creator.send(etherAmount)) {
+					String thisCurrency = String(offerCurrency);
+					orderDB.placeOrder(_epochTime,_creator,thisCurrency,offerAmount,etherAmount);
+				}
+	    	OrderCompleted(_epochTime,_creator);
+			}
+		}
   }
  	
   function deleteOrder(uint256 _epochTime, address _creator) public onlyOwner {

@@ -43,8 +43,7 @@ contract ForexDB is Forex {
 	}
 
 	function getEtherAmount(string _code, uint256 _amount) public constant returns (uint256) {
-		var key = sha3(_code);
-		var rate = Storage(storageContract).getUInt256Value(key);
+		var rate = getRate(_code);
 		uint256 thisWei = 0;
 		if ( rate > 0) {
 			thisWei = _amount / rate;

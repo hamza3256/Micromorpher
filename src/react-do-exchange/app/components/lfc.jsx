@@ -48,6 +48,31 @@ LFCAccounts.defaultProps = {
   searchable: true
 }
 
+class AccountFunds extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div className="section">
+        <h2 className="section-heading">{this.props.label}</h2>
+        <p>{this.props.funds}</p>
+      </div>
+    )
+  }
+}
+
+AccountFunds.propTypes = {
+  funds: React.PropTypes.string,
+  label: React.PropTypes.string
+}
+
+AccountFunds.defaultProps = {
+  label: 'Account Funds (Ether):'
+}
+
 class LFCCurrency extends React.Component {
   constructor(props) {
     super(props)
@@ -88,7 +113,7 @@ LFCCurrency.propTypes = {
 }
 
 LFCCurrency.defaultProps = {
-  label: 'Currency:',
+  label: 'Exchange Currency:',
   searchable: true,
 }
 
@@ -149,7 +174,7 @@ LFCAmount.propTypes = {
 }
 
 LFCAmount.defaultProps = {
-  label: 'Selected Currency Amount:'
+  label: 'Amount of Selected Currency to Exchange (e.g 10.99 for £10.99):'
 }
 
 class LFCEther extends React.Component {
@@ -177,6 +202,30 @@ LFCEther.defaultProps = {
   label: 'Amount of Ether to Which the Currency Converts:'
 }
 
+class LFCPlaceOrder extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  handlePress() {
+    this.props.parentFunc()
+  }
+
+  render() {
+    return (
+      <div className="section">
+        <h2 className="section-heading">{this.props.label}</h2>
+        <button onClick={this.handlePress.bind(this)}>Place Order!</button>
+      </div>
+    )
+  }
+}
+
+LFCPlaceOrder.defaultProps = {
+  label: 'Place Order:'
+}
+
 class LFCSubmit extends React.Component {
 
   constructor(props) {
@@ -191,19 +240,40 @@ class LFCSubmit extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <button onClick={this.handlePress.bind(this)}>Do Exchange!</button>
+        <button onClick={this.handlePress.bind(this)}>Confirm!</button>
       </div>
     )
   }
 }
 
-LFCAmount.propTypes = {
-  parentFunc: React.PropTypes.func,
-  label: React.PropTypes.string,
-}
-
 LFCSubmit.defaultProps = {
-  label: 'Exchange:'
+  label: 'Confirm Order:'
 }
 
-export {LFCCurrency, LFCAccounts, LFCRate, LFCAmount, LFCEther, LFCSubmit}
+class LFCOrderState extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div className="section">
+        <h2 className="section-heading">{this.props.label}</h2>
+        <p>{this.props.orderState}</p>
+      </div>
+    )
+  }
+}
+
+LFCOrderState.propTypes = {
+  orderState: React.PropTypes.string,
+  label: React.PropTypes.string
+}
+
+LFCOrderState.defaultProps = {
+  orderState: " ",
+  label: 'Order State:'
+}
+
+export {LFCCurrency, AccountFunds, LFCAccounts, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit, LFCOrderState}

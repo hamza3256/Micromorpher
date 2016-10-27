@@ -117,7 +117,8 @@ class Ethereum extends React.Component {
   _handleSet() {    
     const exchanger = this.state.exchanger
     const currency = this.state.currency
-    const rate = this.state.rate 
+    const rate = this.state.rate
+    const thisRate = web3.toWei(amount,"ether")
     console.log("Setting exchange rate for " + currency + " at rate " + rate)
     exchanger.setRate(currency, rate)
     console.log("Set exchange rate for " + currency + " at rate " + rate)
@@ -137,6 +138,11 @@ class Ethereum extends React.Component {
             <ExchangeSubmit parentFunc={this._handleSet.bind(this)}/>
         </div>
     )
+  }
+
+  componentWillUnmount() {
+    const filter = this.state.latest
+    filter.stopWatching
   }
 }
 
