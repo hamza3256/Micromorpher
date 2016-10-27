@@ -15,11 +15,7 @@ contract OrderDB is Order, Owned {
 		OrderStatus status;	
   }
 
-  event OrderPlaced(uint256 _epochTime, address _creator);
-  event OrderCompleted(uint256 _epochTime, address _creator);
-  event OrderDeleted(uint256 _epochTime, address _creator);
-
-	mapping(bytes32 => Order) private orders;
+  mapping(bytes32 => Order) private orders;
 
   function OrderDB() {
     
@@ -33,21 +29,18 @@ contract OrderDB is Order, Owned {
   function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public {
     var key = getOrderId(_epochTime,_creator); 
     orders[key] = Order(_creator,_offerCurrency,_offerAmount,_etherValue,OrderStatus.OPEN);
-    OrderPlaced(_epochTime, _creator);
   }
 
   function completeOrder(uint256 _epochTime, address _creator) public {
   	var key = getOrderId(_epochTime,_creator); 
     Order thisOrder = orders[key];
     thisOrder.status = OrderStatus.COMPLETED;
-    OrderCompleted(_epochTime,_creator);
   }
 
   function deleteOrder(uint256 _epochTime, address _creator) public {
   	var key = getOrderId(_epochTime,_creator); 
     Order thisOrder = orders[key];
     thisOrder.status = OrderStatus.DELETED;
-    OrderDeleted(_epochTime,_creator);
   }
 
   function getOrder(uint256 _epochTime, address _creator) public constant returns (address,string,uint256,uint256,int256) {

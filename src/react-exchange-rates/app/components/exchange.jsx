@@ -92,7 +92,7 @@ class FundContract extends React.Component {
         <h2 className="section-heading">{this.props.label}</h2>
         <input
           type="text"
-          placeholder="Exchange Rate"
+          placeholder="Ether Amount"
           value={this.props.ether}
           onChange={this._handleFundContract.bind(this)}
         />

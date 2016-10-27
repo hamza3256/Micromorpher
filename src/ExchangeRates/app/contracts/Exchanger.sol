@@ -18,9 +18,11 @@ contract Exchanger is Exchange, Mortal {
   Order private orderDB;
   Depositor private depositDB;
 
-  mapping(address => uint256) private funds;
-
   event Funded(address sender, uint rate);
+  event OrderPlaced(uint256 _epochTime, address _creator);
+  event OrderCompleted(uint256 _epochTime, address _creator);
+  event OrderDeleted(uint256 _epochTime, address _creator);
+  event RateSet(string code, uint256 rate);
 
   function Exchanger(address _forexDB, address _orderDB, address _depositDB) {  
 		forexDB = Forex(_forexDB);
@@ -34,6 +36,7 @@ contract Exchanger is Exchange, Mortal {
 
   function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
   	orderDB.placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
+  	OrderPlaced(_epochTime, _creator);
   }
 
   function completeOrder(uint256 _epochTime, address _creator) public onlyOwner {
@@ -60,14 +63,16 @@ contract Exchanger is Exchange, Mortal {
 		} else {
 			depositDB.deposit(creator,_offerCurrency,offeredAmount);
 		}*/
+    OrderCompleted(_epochTime,_creator);
+  }
+ 	
+  function deleteOrder(uint256 _epochTime, address _creator) public onlyOwner {
+		orderDB.deleteOrder(_epochTime,_creator);		
+    OrderDeleted(_epochTime,_creator);
   }
 
   function getOrderId(uint256 _epochTime, address _creator) public onlyOwner constant returns (bytes32) {
     return orderDB.getOrderId(_epochTime,_creator);
-  }
- 	
-  function deleteOrder(uint256 _epochTime, address _creator) public onlyOwner {
-		orderDB.deleteOrder(_epochTime,_creator); 
   }
 
   function withdraw(string code, uint256 value) public onlyOwner {
@@ -80,7 +85,8 @@ contract Exchanger is Exchange, Mortal {
   }
   
   function setRate(string _code, uint256 _rate) public onlyOwner {
-  	forexDB.setRate(_code,_rate);
+  	forexDB.setRate(_code,_rate);  	
+		RateSet(_code,_rate);
     //var key = sha3(_code);
     //rateStorage[key] = _rate;
     //rateStorage[_code] = _rate;

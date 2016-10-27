@@ -13,9 +13,6 @@ contract ForexDB is Forex {
 	//mapping(bytes32 => uint256) private rateStorage;
 	//mapping(string => uint256) private rateStorage;
 
-	event RateSet(bytes32 key, string code, uint256 rate);
-	event RateGot(bytes32 key, string code);
-	
 	function ForexDB(address _storageContract) {
 		storageContract = Storage(_storageContract);
 	}
@@ -36,12 +33,10 @@ contract ForexDB is Forex {
 		var key = sha3(_code);
 		//rateStorage[key] = _rate;
 		Storage(storageContract).setUInt256Value(key,_rate);
-		RateSet(key,_code,_rate);
 	}
 
 	function getRate(string _code) public constant returns (uint256) {
-		var key = sha3(_code);			
-		RateGot(key,_code);	
+		var key = sha3(_code);
 		//return rateStorage[key];	
 		return Storage(storageContract).getUInt256Value(key);
 
