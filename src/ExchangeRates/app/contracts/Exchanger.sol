@@ -39,14 +39,13 @@ contract Exchanger is Exchange, Mortal {
   	OrderPlaced(_epochTime, _creator);
   }
 
-  function completeOrder(uint256 _epochTime, address _creator) public onlyOwner {
+  function completeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
 		if ( orderDB.isOpen(_epochTime,_creator) ) {
 			var (orderCreator, offerCurrency, offerAmount, etherAmount, status) = orderDB.getOrder(_epochTime, _creator);
-			if ( orderCreator == _creator ) {				
+			if ( orderCreator == _creator && offerAmount == _offerAmount && etherAmount == _etherValue ) {				
 				orderDB.completeOrder(_epochTime,_creator);
 				if (!_creator.send(etherAmount)) {
-					String thisCurrency = String(offerCurrency);
-					orderDB.placeOrder(_epochTime,_creator,thisCurrency,offerAmount,etherAmount);
+					orderDB.placeOrder(_epochTime,_creator,_offerCurrency,offerAmount,etherAmount);
 				}
 	    	OrderCompleted(_epochTime,_creator);
 			}
