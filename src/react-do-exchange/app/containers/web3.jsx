@@ -52,9 +52,7 @@ class Ethereum extends React.Component {
   _latestBlock() {
     const thisJs = this
     const filter = this.state.latest
-    const web3 = this.state.web3
-    const exchanger = this.state.exchanger  
-    const account = this.state.exchangeAccount 
+    const web3 = this.state.web3 
 
     filter.watch(function (error, result) {
       if (error) {
@@ -68,12 +66,14 @@ class Ethereum extends React.Component {
         {
           console.log("block transaction " + transactions[i].hash)
           if( thisTx == transactions[i].hash ){
-            console.log("Got match!")
+            console.log("Got match!") 
             if (thisJs.state.orderPlaced) {
-              thisJs.setState({orderState: "Order Placed! (OrderId:" + thisTx + ")"})
+              thisJs.setState({orderState: "Order Placed! (OrderId: " + thisTx + ")"})
               thisJs.setState({orderPlaced: false})
-            } else {
-              thisJs.setState({orderState: "Order Confirmed! (OrderId:" + thisTx + ")"})
+            } else {                         
+              const account = thisJs.state.exchangeAccount            
+              console.log("Account is " + account)
+              thisJs.setState({orderState: "Order Confirmed! (OrderId: " + thisTx + ")"})
               const funds = web3.fromWei(web3.eth.getBalance(account),"ether").toString() 
               thisJs.setState({funds: funds})
             }
@@ -134,7 +134,7 @@ class Ethereum extends React.Component {
     const thisAmount = web3.toWei(amount,"ether")
     const ether = this.state.ether    
     const tx = exchanger.placeOrder(epochTime, account, currency, thisAmount, ether)
-    console.log("Transaction is " + tx)
+    console.log("Place Transaction is " + tx)
     this.setState({txHash: tx})
     this.setState({orderTime: epochTime})
     this.setState({orderPlaced: true})
@@ -150,6 +150,8 @@ class Ethereum extends React.Component {
     const thisAmount = web3.toWei(amount,"ether")
     const ether = this.state.ether       
     const tx = exchanger.completeOrder(epochTime, account, currency, thisAmount, ether)
+    console.log("Complete Transaction is " + tx + "for account " + account)
+    this.setState({txHash: tx})
   }
 
   render() {
