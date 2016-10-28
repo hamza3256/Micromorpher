@@ -13,7 +13,7 @@ class Ethereum extends React.Component {
 
     const exchangerAbi = [{"constant":false,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"},{"name":"_offerCurrency","type":"string"},{"name":"_offerAmount","type":"uint256"},{"name":"_etherValue","type":"uint256"}],"name":"completeOrder","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"}],"name":"getOrderId","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"},{"name":"code","type":"string"},{"name":"value","type":"uint256"}],"name":"withdraw","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"code","type":"string"},{"name":"value","type":"uint256"}],"name":"withdraw","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"addr","type":"address"},{"name":"code","type":"string"}],"name":"getDepositedAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_code","type":"string"}],"name":"getRate","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"code","type":"string"}],"name":"getDepositedAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"}],"name":"deleteOrder","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_code","type":"string"},{"name":"_amount","type":"uint256"}],"name":"getEtherAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_code","type":"string"},{"name":"_rate","type":"uint256"}],"name":"setRate","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"},{"name":"_offerCurrency","type":"string"},{"name":"_offerAmount","type":"uint256"},{"name":"_etherValue","type":"uint256"}],"name":"placeOrder","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"_forexDB","type":"address"},{"name":"_orderDB","type":"address"},{"name":"_depositDB","type":"address"}],"type":"constructor"},{"payable":true,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"sender","type":"address"},{"indexed":false,"name":"rate","type":"uint256"}],"name":"Funded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_epochTime","type":"uint256"},{"indexed":false,"name":"_creator","type":"address"}],"name":"OrderPlaced","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_epochTime","type":"uint256"},{"indexed":false,"name":"_creator","type":"address"}],"name":"OrderCompleted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_epochTime","type":"uint256"},{"indexed":false,"name":"_creator","type":"address"}],"name":"OrderDeleted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"code","type":"string"},{"indexed":false,"name":"rate","type":"uint256"}],"name":"RateSet","type":"event"}]
     const exchangerContract = web3.eth.contract(exchangerAbi)
-    const contractAddress = '0x1bdc98f5e44563eac72ee997569d1f3349590065'
+    const contractAddress = '0xe09462767a59408c83f4304062d56fcf4b50f75c'
     const exchanger = exchangerContract.at(contractAddress)
     
     const exchangeAcc = this.props.account
@@ -27,6 +27,7 @@ class Ethereum extends React.Component {
     const latestFilter = web3.eth.filter('latest')
     const txHash = this.props.txHash
     const orderPlaced = this.props.orderPlaced
+    const confirmPlaced = this.props.confirmPlaced
     const orderTime = this.props.orderTime
     
     this.state = {
@@ -43,6 +44,7 @@ class Ethereum extends React.Component {
         ether: eth,
         orderTime: orderTime,
         orderPlaced: orderPlaced,
+        confirmPlaced: confirmPlaced,
         orderState: orderState
     }  
 
@@ -70,12 +72,13 @@ class Ethereum extends React.Component {
             if (thisJs.state.orderPlaced) {
               thisJs.setState({orderState: "Order Placed! (OrderId: " + thisTx + ")"})
               thisJs.setState({orderPlaced: false})
-            } else {                         
+            } else if (thisJs.state.confirmPlaced) {                         
               const account = thisJs.state.exchangeAccount            
               console.log("Account is " + account)
               thisJs.setState({orderState: "Order Confirmed! (OrderId: " + thisTx + ")"})
               const funds = web3.fromWei(web3.eth.getBalance(account),"ether").toString() 
-              thisJs.setState({funds: funds})
+              thisJs.setState({funds: funds})              
+              thisJs.setState({confirmPlaced: false})
             }
             break
           }
@@ -137,8 +140,10 @@ class Ethereum extends React.Component {
     const currency = this.state.currency
     const amount = this.state.amount
     const thisAmount = web3.toWei(amount,"ether")
-    const ether = this.state.ether    
-    const tx = exchanger.placeOrder(epochTime, account, currency, thisAmount, ether)
+    const ether = this.state.ether     
+    const wei = web3.toWei(ether,"ether")    
+    const tx = exchanger.placeOrder(epochTime, account, currency, thisAmount, wei)
+    console.log("Placed order: Time: " + epochTime + " Account: " + account + " Currency: " + currency + " Amount: " + thisAmount + " Wei: " + wei)
     console.log("Place Transaction is " + tx)
     this.setState({txHash: tx})
     this.setState({orderTime: epochTime})
@@ -153,10 +158,13 @@ class Ethereum extends React.Component {
     const currency = this.state.currency
     const amount = this.state.amount
     const thisAmount = web3.toWei(amount,"ether")
-    const ether = this.state.ether       
-    const tx = exchanger.completeOrder(epochTime, account, currency, thisAmount, ether)
+    const ether = this.state.ether
+    const wei = web3.toWei(ether,"ether")     
+    const tx = exchanger.completeOrder(epochTime, account, currency, thisAmount, wei)
+    console.log("Placed order: Time: " + epochTime + " Account: " + account + " Currency: " + currency + " Amount: " + thisAmount + " Wei: " + wei)
     console.log("Complete Transaction is " + tx + "for account " + account)
-    this.setState({txHash: tx})
+    this.setState({txHash: tx})                 
+    this.setState({confirmPlaced: true})
   }
 
   render() {
@@ -204,7 +212,8 @@ Ethereum.defaultProps = {
   amount: 0,
   ether: 0,
   orderTime: 0,
-  orderPlace: false,
+  orderPlace: false,  
+  confirmPlace: false,
   orderState: " "
 }
 
