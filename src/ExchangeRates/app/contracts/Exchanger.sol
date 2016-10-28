@@ -21,7 +21,9 @@ contract Exchanger is Exchange, Mortal {
   event Funded(address sender, uint rate);
   event OrderPlaced(uint256 _epochTime, address _creator);
   event OrderCompleted(uint256 _epochTime, address _creator);
-  event OrderDeleted(uint256 _epochTime, address _creator);
+  event OrderDeleted(uint256 _epochTime, address _creator);  
+  event Deposited(string _offerCurrency, uint256 _offerAmount);
+  event Withdrawn(string code, uint256 value);
   event RateSet(string code, uint256 rate);
 
   function Exchanger(address _forexDB, address _orderDB, address _depositDB) {  
@@ -43,10 +45,15 @@ contract Exchanger is Exchange, Mortal {
 		//var sent = _creator.send(_etherValue);
 		if ( orderDB.isOpen(_epochTime,_creator) ) {
 			orderDB.completeOrder(_epochTime,_creator);
-			if (!_creator.send(_etherValue)) {
-				orderDB.placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
+			if( depositDB.deposit(_offerCurrency,_offerAmount) ) {
+				Deposited(_offerCurrency,_offerAmount);	
+				if (_creator.send(_etherValue)) {												
+	    		OrderCompleted(_epochTime,_creator);
+				} else {		    		
+					placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
+					withdraw(_offerCurrency,_offerAmount);
+				}
 			}
-	    OrderCompleted(_epochTime,_creator);
 		}
   }
  	
@@ -62,6 +69,7 @@ contract Exchanger is Exchange, Mortal {
   function withdraw(string code, uint256 value) public onlyOwner {
   	// Need to do something with the return result here
   	depositDB.withdraw(code,value);
+  	Withdrawn(code,value);
   }
 
   function getDepositedAmount(string code) public onlyOwner constant returns (uint256) {
