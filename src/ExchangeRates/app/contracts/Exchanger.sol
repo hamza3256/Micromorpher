@@ -40,17 +40,14 @@ contract Exchanger is Exchange, Mortal {
   }
 
   function completeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
-		var sent = _creator.send(_etherValue);
-		/*if ( orderDB.isOpen(_epochTime,_creator) ) {
-			var (orderCreator, offerCurrency, offerAmount, etherAmount, status) = orderDB.getOrder(_epochTime, _creator);
-			if ( orderCreator == _creator && offerAmount == _offerAmount && etherAmount == _etherValue ) {				
-				orderDB.completeOrder(_epochTime,_creator);
-				if (!_creator.send(etherAmount)) {
-					orderDB.placeOrder(_epochTime,_creator,_offerCurrency,offerAmount,etherAmount);
-				}
-	    	OrderCompleted(_epochTime,_creator);
+		//var sent = _creator.send(_etherValue);
+		if ( orderDB.isOpen(_epochTime,_creator) ) {
+			orderDB.completeOrder(_epochTime,_creator);
+			if (!_creator.send(_etherValue)) {
+				orderDB.placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
 			}
-		}*/
+	    OrderCompleted(_epochTime,_creator);
+		}
   }
  	
   function deleteOrder(uint256 _epochTime, address _creator) public onlyOwner {
