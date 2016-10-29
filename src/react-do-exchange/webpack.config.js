@@ -6,7 +6,7 @@ var APP_DIR = path.resolve(__dirname, 'app');
 
 var config = {
   entry: [
-	APP_DIR + '/app.jsx'
+	APP_DIR + '/index.jsx'
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],

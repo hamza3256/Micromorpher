@@ -1,12 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, hashHistory } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router'
 import App from './app'     
 import Admin from './containers/admin'  
 import Exchanger from './containers/exchange'
-
-//<Admin web3={this.state.web3} contractAddress={this.state.contractAddress}/>
-//<Exchanger web3={this.state.web3} contractAddress={this.state.contractAddress}/>
 
 class Index extends React.Component {
 
@@ -22,14 +19,15 @@ class Index extends React.Component {
 	        web3: web3,
 	        contractAddress: contractAddress
 	    }
-	  }
+	}
 
 	render () {	
 		return (
-		    <Router history={hashHistory}>
-			    <Route path="/" component={App}/>    
-			    <Route path="/admin" web3={this.state.web3} contractAddress={this.state.contractAddress} component={Admin}/>
-			    <Route path="/rates" web3={this.state.web3} contractAddress={this.state.contractAddress} component={Exchanger}/>
+		    <Router history={browserHistory}>
+		    	<Route path="/" component={App}>   
+				    <Route path="/admin" web3={this.state.web3} contractAddress={this.state.contractAddress} component={Admin}/>
+				    <Route path="/rates" web3={this.state.web3} contractAddress={this.state.contractAddress} component={Exchanger}/>
+				</Route>
 		  	</Router>
 		)  		
   	}

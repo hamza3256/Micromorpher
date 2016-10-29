@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "./node_modules/.bin/webpack -d --watch",
     "build": "./node_modules/.bin/webpack -p",
-    "copy": "cp ./app/index.html build/client/public/ && cp ./node_modules/react-select/dist/react-select.min.css build/client/public/",
+    "copy": "cp ./app/index.html build/client/public/ && cp ./app/index.css build/client/public/ && cp ./node_modules/react-select/dist/react-select.min.css build/client/public/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server -p 8081 build/client/public/"
   },
