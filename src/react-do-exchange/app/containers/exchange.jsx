@@ -14,18 +14,6 @@ class Exchange extends React.Component {
     const latestFilter = web3.eth.filter('latest')    
     const currs = this.props.currencies    
     
-    /*const exchangeAcc = ""
-    const accountFunds = "0" 
-    const curr = ""    
-    const rt = 0
-    const amnt = 0
-    const eth = 0
-    const orderState = " " 
-    const txHash = ""
-    const orderPlaced = false
-    const confirmPlaced = false
-    const orderTime = 0*/
-    
     this.state = {
         web3: web3,
         exchanger: exchanger,
