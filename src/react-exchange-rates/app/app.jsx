@@ -1,20 +1,21 @@
-import React from 'react';
-import {render} from 'react-dom';
-import Ethereum from './containers/web3';
+import Web3 from 'web3'
+import React from 'react'
+import {render} from 'react-dom'
+import { Link } from 'react-router' 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
+  
   render () {
     return (
       <div>
-        <h1>Leftover Foreign Currency</h1>        
-        <Ethereum/>
+        <h1>Exchange Currency Admin</h1>
+        <ul role="nav">
+          <li><Link to="/admin">Admin' Account</Link></li>
+          <li><Link to="/rates">Set Exchange Rates</Link></li>
+        </ul>
       </div>
     )
   }
 }
 
-render(<App/>, document.getElementById('app'));
+export default App

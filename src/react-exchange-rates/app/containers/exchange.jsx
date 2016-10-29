@@ -1,13 +1,13 @@
-import React from 'react';     
-import {ExchangeCurrency, ExchangeRate, ExchangeSubmit} from '../components/exchange';
+import React from 'react'    
+import {ExchangeCurrency, ExchangeRate, ExchangeSubmit} from '../components/exchange'
 
 class Exchanger extends React.Component {
 
   constructor(props) {
     super(props)
 
-    const web3 = this.props.web3 
-    const contractAddress = this.props.contractAddress 
+    const web3 = this.props.route.web3 
+    const contractAddress = this.props.route.contractAddress 
 
     //console.log("Address " + contractAddress)
 

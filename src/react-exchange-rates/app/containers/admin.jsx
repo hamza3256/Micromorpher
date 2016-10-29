@@ -1,13 +1,13 @@
-import React from 'react';     
-import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit} from '../components/admin';
+import React from 'react'     
+import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit} from '../components/admin'
 
 class Admin extends React.Component {
 
   constructor(props) {
     super(props)
 
-    const web3 = this.props.web3    
-    const contractAddress = this.props.contractAddress
+    const web3 = this.props.route.web3    
+    const contractAddress = this.props.route.contractAddress
     const latestFilter = web3.eth.filter('latest')
     const acc = web3.eth.accounts[0]  
     const adminFunds = web3.fromWei(web3.eth.getBalance(acc),"ether").toString()   
@@ -97,9 +97,6 @@ class Admin extends React.Component {
 Admin.propTypes = {
   web3: React.PropTypes.object,
   contractAddress: React.PropTypes.string
-}
-
-Admin.defaultProps = {
 }
 
 export default Admin
