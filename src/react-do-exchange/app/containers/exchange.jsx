@@ -8,8 +8,10 @@ class Exchange extends React.Component {
   constructor(props) {
     super(props)
 
-    const web3 = this.props.route.web3       
-    const exchanger = this.props.route.exchanger  
+    //const web3 = this.props.route.web3       
+    //const exchanger = this.props.route.exchanger 
+    const web3 = this.props.web3       
+    const exchanger = this.props.exchanger  
 
     const latestFilter = web3.eth.filter('latest')    
     const currs = this.props.currencies    

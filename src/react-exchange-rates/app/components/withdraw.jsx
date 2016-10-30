@@ -87,7 +87,7 @@ class WithdrawAmount extends React.Component {
         <h2 className="section-heading">{this.props.label}</h2>
         <input
           type="text"
-          placeholder="Currrency Amount"
+          placeholder="Withdraw Amount"
           value={this.props.withdrawAmount}
           onChange={this.handleAmountChange.bind(this)}
         />

@@ -52,11 +52,11 @@ class WithdrawCurrency extends React.Component {
     const web3 = this.state.web3
     const exchanger = this.state.exchanger    
     console.log("Getting deposited amount for currency " + value)
-    const amount = exchanger.getDepositedAmount(value)   
+    const amount = exchanger.getDepositedAmount(value).toNumber()   
     console.log("Got amount: " + amount)
     const theAmount = web3.fromWei(amount,"ether")    
     console.log("Got amount: " + theAmount)    
-    thisJs.setState({currency: value})
+    this.setState({currency: value})
     this.setState({amount: theAmount})
   }
 
