@@ -170,7 +170,7 @@ class Exchange extends React.Component {
 
   componentWillUnmount() {
     const filter = this.state.latest
-    filter.stopWatching
+    filter.stopWatching()
   }
 }
 

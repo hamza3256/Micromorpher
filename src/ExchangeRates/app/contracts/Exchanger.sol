@@ -46,9 +46,9 @@ contract Exchanger is Exchange, Mortal {
 		if ( orderDB.isOpen(_epochTime,_creator) ) {
 			orderDB.completeOrder(_epochTime,_creator);
 			if( depositDB.deposit(_offerCurrency,_offerAmount) ) {
-				Deposited(_offerCurrency,_offerAmount);	
 				if (_creator.send(_etherValue)) {												
-	    		OrderCompleted(_epochTime,_creator);
+	    		OrderCompleted(_epochTime,_creator);          
+          Deposited(_offerCurrency,_offerAmount); 
 				} else {		    		
 					placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
 					withdraw(_offerCurrency,_offerAmount);
@@ -68,8 +68,9 @@ contract Exchanger is Exchange, Mortal {
 
   function withdraw(string code, uint256 value) public onlyOwner {
   	// Need to do something with the return result here
-  	depositDB.withdraw(code,value);
-  	Withdrawn(code,value);
+  	if ( depositDB.withdraw(code,value) ) {
+  	 Withdrawn(code,value);
+    }
   }
 
   function getDepositedAmount(string code) public onlyOwner constant returns (uint256) {

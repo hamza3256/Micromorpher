@@ -1,6 +1,6 @@
 import React from 'react'
 import {render} from 'react-dom'
-import { Link } from 'react-router' 
+import { Link, IndexLink } from 'react-router' 
 
 class App extends React.Component {
   
@@ -9,6 +9,7 @@ class App extends React.Component {
       <div>
         <h1>Exchange Currency</h1>
         <ul role="nav">
+          <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
           <li><Link to="/exchange" activeClassName="active">Exchange Currency</Link></li>
         </ul>
 

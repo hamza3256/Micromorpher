@@ -1,31 +1,45 @@
 import React from 'react'    
-import {ExchangeCurrency, ExchangeRate, ExchangeSubmit} from '../components/exchange'
+import {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted} from '../components/exchange'
 
 class Exchanger extends React.Component {
 
   constructor(props) {
     super(props)
 
-    const web3 = this.props.route.web3 
-    const contractAddress = this.props.route.contractAddress 
-
-    //console.log("Address " + contractAddress)
-
-    const exchangerAbi = [{"constant":false,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"},{"name":"_offerCurrency","type":"string"},{"name":"_offerAmount","type":"uint256"},{"name":"_etherValue","type":"uint256"}],"name":"completeOrder","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"}],"name":"getOrderId","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"},{"name":"code","type":"string"},{"name":"value","type":"uint256"}],"name":"withdraw","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"code","type":"string"},{"name":"value","type":"uint256"}],"name":"withdraw","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"addr","type":"address"},{"name":"code","type":"string"}],"name":"getDepositedAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_code","type":"string"}],"name":"getRate","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"code","type":"string"}],"name":"getDepositedAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"}],"name":"deleteOrder","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_code","type":"string"},{"name":"_amount","type":"uint256"}],"name":"getEtherAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_code","type":"string"},{"name":"_rate","type":"uint256"}],"name":"setRate","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_epochTime","type":"uint256"},{"name":"_creator","type":"address"},{"name":"_offerCurrency","type":"string"},{"name":"_offerAmount","type":"uint256"},{"name":"_etherValue","type":"uint256"}],"name":"placeOrder","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"_forexDB","type":"address"},{"name":"_orderDB","type":"address"},{"name":"_depositDB","type":"address"}],"type":"constructor"},{"payable":true,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"sender","type":"address"},{"indexed":false,"name":"rate","type":"uint256"}],"name":"Funded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_epochTime","type":"uint256"},{"indexed":false,"name":"_creator","type":"address"}],"name":"OrderPlaced","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_epochTime","type":"uint256"},{"indexed":false,"name":"_creator","type":"address"}],"name":"OrderCompleted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_epochTime","type":"uint256"},{"indexed":false,"name":"_creator","type":"address"}],"name":"OrderDeleted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_offerCurrency","type":"string"},{"indexed":false,"name":"_offerAmount","type":"uint256"}],"name":"Deposited","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"code","type":"string"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Withdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"code","type":"string"},{"indexed":false,"name":"rate","type":"uint256"}],"name":"RateSet","type":"event"}]
-    const exchangerContract = web3.eth.contract(exchangerAbi)
-    const exchanger = exchangerContract.at(contractAddress)
+    //const web3 = this.props.route.web3    
+    //const exchanger = this.props.route.exchanger  
+    const web3 = this.props.web3    
+    const exchanger = this.props.exchanger  
     const currs = this.props.currencies
-    const curr = ""
-    const rt = ""
     
     this.state = {
         web3: web3,
         exchanger: exchanger,
         currencies: currs,
-        currency: curr,
-        rate: rt
+        currency: "",
+        rate: "",
+        result: "" 
     }
 
+    this._setExchangeRatesEvent()
+
+  }
+
+  _setExchangeRatesEvent() {
+    const exchanger = this.state.exchanger
+    const thisJs = this
+    const web3 = this.state.web3
+    var rateSet = exchanger.RateSet(function(error, result) {
+      if (!error) {
+        const code = result.args.code
+        const rate = web3.fromWei(result.args.rate.toNumber())
+        const thisResult = code + " Rate Set to " + rate
+        thisJs.setState({result: thisResult})
+        console.log(result)
+      } else {
+        console.error(result)
+      }
+    })
   }
 
   _handleCurrency(value) {
@@ -57,6 +71,7 @@ class Exchanger extends React.Component {
             <ExchangeCurrency currencies={this.state.currencies} currency={this.state.currency} parentFunc={this._handleCurrency.bind(this)}/>
             <ExchangeRate parentFunc={this._handleRate.bind(this)}/>
             <ExchangeSubmit parentFunc={this._handleRateSet.bind(this)}/>
+            <RateSubmitted result={this.state.result}/>
         </div>
     )
   }
@@ -65,7 +80,7 @@ class Exchanger extends React.Component {
 
 Exchanger.propTypes = {
   web3: React.PropTypes.object,
-  contractAddress: React.PropTypes.string,
+  exchanger: React.PropTypes.object,
   currencies: React.PropTypes.array
 }
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-class ExchangeCurrency extends React.Component {
-
+class Currency extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -33,7 +32,7 @@ class ExchangeCurrency extends React.Component {
   }
 }
 
-ExchangeCurrency.propTypes = {
+Currency.propTypes = {
   parentFunc: React.PropTypes.func,
   currencies: React.PropTypes.array,
   currency: React.PropTypes.string,
@@ -41,18 +40,44 @@ ExchangeCurrency.propTypes = {
   label: React.PropTypes.string
 }
 
-ExchangeCurrency.defaultProps = {
-  label: 'Currency:',
+Currency.defaultProps = {
+  label: 'Deposited Currency:',
   searchable: true,
 }
 
-class ExchangeRate extends React.Component {
+
+class Amount extends React.Component {
 
   constructor(props) {
     super(props)
   }
 
-  _handleRateChange(e) {
+  render() {
+    return (
+      <div className="section">
+        <h2 className="section-heading">{this.props.label}</h2>
+        <p>{this.props.amount}</p>
+      </div>
+    )
+  }
+}
+
+Amount.propTypes = {
+  rate: React.PropTypes.number,
+  label: React.PropTypes.string
+}
+
+Amount.defaultProps = {
+  label: 'Deposited Amount:'
+}          
+
+class WithdrawAmount extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  handleAmountChange(e) {
     this.props.parentFunc(e.target.value)
   }
 
@@ -62,26 +87,26 @@ class ExchangeRate extends React.Component {
         <h2 className="section-heading">{this.props.label}</h2>
         <input
           type="text"
-          placeholder="Exchange Rate"
-          value={this.props.rate}
-          onChange={this._handleRateChange.bind(this)}
+          placeholder="Currrency Amount"
+          value={this.props.withdrawAmount}
+          onChange={this.handleAmountChange.bind(this)}
         />
       </div>
-    );
+    )
   }
 }
 
-ExchangeRate.propTypes = {
+WithdrawAmount.propTypes = {
   parentFunc: React.PropTypes.func,
-  rate: React.PropTypes.number,
+  withdrawAmount: React.PropTypes.number,
   label: React.PropTypes.string
 }
 
-ExchangeRate.defaultProps = {
-  label: 'Exchange Rate (Amount of Selected Currency to Ether):'
+WithdrawAmount.defaultProps = {
+  label: 'Amount of Selected Currency to Withdraw (e.g 10.99 for £10.99):'
 }
 
-class ExchangeSubmit extends React.Component {
+class Withdraw extends React.Component {
 
   constructor(props) {
     super(props);
@@ -95,44 +120,14 @@ class ExchangeSubmit extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <button onClick={this._handlePress.bind(this)}>Set Rate!</button>
-      </div>
-    );
-  }
-}
-
-ExchangeSubmit.propTypes = {
-  parentFunc: React.PropTypes.func,
-  label: React.PropTypes.string
-}
-
-ExchangeSubmit.defaultProps = {
-  label: 'Set Exchange Rate:'
-}
-
-class RateSubmitted extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.result}</p>
+        <button onClick={this._handlePress.bind(this)}>Confirm!</button>
       </div>
     )
   }
 }
 
-RateSubmitted.propTypes = {
-  result: React.PropTypes.string,
-  label: React.PropTypes.string
+Withdraw.defaultProps = {
+  label: 'Confirm Withdraw:'
 }
 
-RateSubmitted.defaultProps = {
-  label: 'Exchange Rate Result:'
-}
-
-export {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted}
+export {Currency, Amount, WithdrawAmount, Withdraw}
