@@ -81,7 +81,7 @@ class WithdrawCurrency extends React.Component {
       <div>
           <Currency currencies={this.state.currencies} currency={this.state.currency} parentFunc={this._handleCurrency.bind(this)}/>
           <Amount amount={this.state.amount}/>
-          <WithdrawAmount withdrawAmount={this.state.amount} parentFunc={this._handleWithdrawAmount.bind(this)}/>
+          <WithdrawAmount withdrawAmount={this.state.withdrawAmount} parentFunc={this._handleWithdrawAmount.bind(this)}/>
           <Withdraw parentFunc={this._handleWithdraw.bind(this)}/>
       </div>
     )

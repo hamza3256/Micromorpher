@@ -77,7 +77,7 @@ class WithdrawAmount extends React.Component {
     super(props)
   }
 
-  handleAmountChange(e) {
+  _handleAmountChange(e) {
     this.props.parentFunc(e.target.value)
   }
 
@@ -89,7 +89,7 @@ class WithdrawAmount extends React.Component {
           type="text"
           placeholder="Withdraw Amount"
           value={this.props.withdrawAmount}
-          onChange={this.handleAmountChange.bind(this)}
+          onChange={this._handleAmountChange.bind(this)}
         />
       </div>
     )

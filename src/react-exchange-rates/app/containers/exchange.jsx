@@ -29,6 +29,7 @@ class Exchanger extends React.Component {
     const exchanger = this.state.exchanger
     const thisJs = this
     const web3 = this.state.web3
+    console.log("Rate set event!")
     var rateSet = exchanger.RateSet(function(error, result) {
       if (!error) {
         const code = result.args.code
