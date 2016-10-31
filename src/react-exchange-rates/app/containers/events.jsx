@@ -6,10 +6,10 @@ class EventViewer extends React.Component {
   constructor(props) {
     super(props)
 
-    //const web3 = this.props.route.web3    
-    //const exchanger = this.props.route.exchanger 
-    const web3 = this.props.web3    
-    const exchanger = this.props.exchanger 
+    const web3 = this.props.route.web3    
+    const exchanger = this.props.route.exchanger 
+    //const web3 = this.props.web3    
+    //const exchanger = this.props.exchanger 
 
     const funded = exchanger.Funded()
     const orderPlaced = exchanger.OrderPlaced()

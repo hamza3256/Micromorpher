@@ -6,10 +6,10 @@ class Admin extends React.Component {
   constructor(props) {
     super(props)
 
-    //const web3 = this.props.route.web3    
-    //const contractAddress = this.props.route.contractAddress
-    const web3 = this.props.web3    
-    const contractAddress = this.props.contractAddress
+    const web3 = this.props.route.web3    
+    const contractAddress = this.props.route.contractAddress
+    //const web3 = this.props.web3    
+    //const contractAddress = this.props.contractAddress
     const latestFilter = web3.eth.filter('latest')
     const acc = web3.eth.accounts[0]  
     const adminFunds = web3.fromWei(web3.eth.getBalance(acc),"ether").toString()   

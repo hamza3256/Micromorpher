@@ -32,20 +32,21 @@ class Index extends React.Component {
 
 	render () {	
 		return (
-		    /*<Router history={browserHistory}>
+		    <Router history={browserHistory}>
 		    	<Route path="/" component={App}> 
 		    		<IndexRoute component={Home}/>  
 				    <Route path="/admin" web3={this.state.web3} contractAddress={this.state.contractAddress} component={Admin}/>
-				    <Route path="/rates" web3={this.state.web3} exchanger={this.state.exchanger} component={Exchanger}/>
+				    <Route path="/rates" web3={this.state.web3} exchanger={this.state.exchanger} component={Exchanger}/>				    
+			  		<Route path="/withdraw" web3={this.state.web3} exchanger={this.state.exchanger} component={WithdrawCurrency}/>
 				    <Route path="/events" web3={this.state.web3} exchanger={this.state.exchanger} component={EventViewer}/>
-				</Route>
-		  	</Router>*/
-        	<div>
+					</Route>
+		  	</Router>
+        /*<div>
 			  	<Admin web3={this.state.web3} contractAddress={this.state.contractAddress}/>
 			  	<Exchanger web3={this.state.web3} exchanger={this.state.exchanger}/>
 			  	<WithdrawCurrency web3={this.state.web3} exchanger={this.state.exchanger}/>
 			  	<EventViewer web3={this.state.web3} exchanger={this.state.exchanger}/>
-			</div>
+				</div>*/
 		)  		
   	}
 }

@@ -11,7 +11,8 @@ class App extends React.Component {
         <ul role="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
           <li><Link to="/admin" activeClassName="active">Administrator Account</Link></li>
-          <li><Link to="/rates" activeClassName="active">Set Exchange Rates</Link></li>
+          <li><Link to="/rates" activeClassName="active">Set Exchange Rates</Link></li>          
+          <li><Link to="/withdraw" activeClassName="active">Withdraw Deposits</Link></li>
           <li><Link to="/events" activeClassName="active">Events</Link></li>
         </ul>
 
