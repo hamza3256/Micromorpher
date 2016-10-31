@@ -37,13 +37,21 @@ class WithdrawCurrency extends React.Component {
     const withdrawn = this.state.withdrawn
 
     withdrawn.watch(function(error, result) {
-      if (!error) {        
-        const currency = result.args.code         
-        const amount = web3.fromWei(result.args.value.toNumber())       
-        console.log("New amount for currency " + currency + " is " + amount)
-        thisJs.setState({amount: amount})
+      if (!error) {      
+
+        const stateCurrency = thisJs.state.currency  
+        const thisCurrency = result.args.code  
+        console.log("This Currency is " + thisCurrency + " State currency is " + stateCurrency)
+        if (stateCurrency == thisCurrency ) {
+          const currentAmount = thisJs.state.amount
+          const amountWithdrawn = web3.fromWei(result.args.value.toNumber())       
+          console.log("Amount withdrawn for currency " + stateCurrency + " is " + amountWithdrawn)
+          const newAmount = currentAmount - amountWithdrawn
+          thisJs.setState({amount: newAmount})
+          thisJs.setState({withdrawAmount: 0})
+        }
       } else {
-        console.error(result)
+         console.error(result)
       }
     })
   }
