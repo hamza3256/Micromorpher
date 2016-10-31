@@ -7,13 +7,15 @@ import "Owned.sol";
 contract DepositDB is Depositor, Owned {
 
   Storage private storageContract;
+  uint private timeStamp;
 
-	function DepositDB(address _storageContract) {
+  function DepositDB(address _storageContract) {
 		storageContract = Storage(_storageContract);
+		timeStamp = now;
 	}
 
 	function deposit(string _code, uint256 _value) public returns (bool) {
-		var key = sha3(_code);
+		var key = sha3(_code, timeStamp);
 		if ( _value > 0 ) {
 			storageContract.setUInt256Value(key, _value);
 			return true;
@@ -22,7 +24,7 @@ contract DepositDB is Depositor, Owned {
 	}
 
 	function withdraw(string _code, uint256 _value) public returns (bool) {
-		var key = sha3(_code);
+		var key = sha3(_code, timeStamp);
 		if ( _value > 0 ) {
 			uint256 depositedAmount = Storage(storageContract).getUInt256Value(key);
 			if ( depositedAmount >= _value ) {
@@ -35,7 +37,7 @@ contract DepositDB is Depositor, Owned {
 	}
 
 	function getDepositedAmount(string _code) public constant returns (uint256) {
-		var key = sha3(_code);
+		var key = sha3(_code, timeStamp);
 		return storageContract.getUInt256Value(key);
 	}
 
