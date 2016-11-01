@@ -7,11 +7,11 @@ import "Owned.sol";
 
 contract ExternalStorage is Storage, Owned {
 
-    mapping(bytes32 => uint) private uIntStorage;
+    /*mapping(bytes32 => uint) private uIntStorage;
     mapping(bytes32 => uint16) private uInt16Storage;    
-    mapping(bytes32 => uint32) private uInt32Storage;    
+    mapping(bytes32 => uint32) private uInt32Storage; */   
     mapping(bytes32 => uint256) private uInt256Storage;
-    mapping(bytes32 => string) private stringStorage;
+    /*mapping(bytes32 => string) private stringStorage;
     mapping(bytes32 => address) private addressStorage;
     mapping(bytes32 => bytes) private bytesStorage;    
     mapping(bytes32 => bytes3) private bytes3Storage;   
@@ -55,7 +55,7 @@ contract ExternalStorage is Storage, Owned {
 
     function deleteUInt32Value(bytes32 record) public {
         delete uInt32Storage[record];
-    }
+    }*/
 
     function getUInt256Value(bytes32 record) public constant returns (uint256) {
         return uInt256Storage[record];
@@ -69,7 +69,7 @@ contract ExternalStorage is Storage, Owned {
         delete uInt256Storage[record];
     }
 
-    function getStringValue(bytes32 record) public constant returns (string) {
+    /*function getStringValue(bytes32 record) public constant returns (string) {
         return stringStorage[record];
     }
 
@@ -175,5 +175,5 @@ contract ExternalStorage is Storage, Owned {
 
     function deleteInt256Value(bytes32 record) public {
         delete int256Storage[record];
-    }
+    }*/
 }

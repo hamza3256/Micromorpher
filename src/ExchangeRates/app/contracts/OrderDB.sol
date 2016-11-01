@@ -17,10 +17,6 @@ contract OrderDB is Order, Owned {
 
   mapping(bytes32 => Order) private orders;
 
-  function OrderDB() {
-    
-  }
-
   function getOrderId(uint256 _epochTime, address _creator) public constant returns (bytes32) {
     return sha3(_epochTime,_creator);
   }

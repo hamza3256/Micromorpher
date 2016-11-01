@@ -4,9 +4,9 @@ pragma solidity ^0.4.2;
 // Steve Huckle
 
 import "Exchange.sol";
-import "Depositor.sol";
-import "Forex.sol";
-import "Order.sol";
+import "DepositDB.sol";
+import "ForexDB.sol";
+import "OrderDB.sol";
 import "Mortal.sol";
 
 contract Exchanger is Exchange, Mortal {
@@ -14,9 +14,9 @@ contract Exchanger is Exchange, Mortal {
   //mapping(string => uint256) private rateStorage;
   //mapping(bytes32 => uint256) private rateStorage;
 
-  Forex private forexDB;
-  Order private orderDB;
-  Depositor private depositDB;
+  ForexDB private forexDB;
+  OrderDB private orderDB;
+  DepositDB private depositDB;
 
   event Funded(address sender, uint rate);
   event OrderPlaced(uint256 _epochTime, address _creator);
@@ -26,10 +26,10 @@ contract Exchanger is Exchange, Mortal {
   event Withdrawn(string code, uint256 value);
   event RateSet(string code, uint256 rate);
 
-  function Exchanger(address _forexDB, address _orderDB, address _depositDB) {  
-		forexDB = Forex(_forexDB);
-	  orderDB = Order(_orderDB);
-		depositDB = Depositor(_depositDB);
+  function Exchanger() {  
+		forexDB = new ForexDB();
+	  orderDB = new OrderDB();
+		depositDB = new DepositDB();
   }
 
   function() payable onlyOwner {

@@ -1,16 +1,16 @@
 pragma solidity ^0.4.2;
 
 import "Depositor.sol";
-import "Storage.sol";
+import "ExternalStorage.sol";
 import "Owned.sol";
 
 contract DepositDB is Depositor, Owned {
 
-  Storage private storageContract;
+  ExternalStorage private storageContract;
   uint private timeStamp;
 
-  function DepositDB(address _storageContract) {
-		storageContract = Storage(_storageContract);
+  function DepositDB() {
+		storageContract = new ExternalStorage();
 		timeStamp = now;
 	}
 
@@ -26,7 +26,7 @@ contract DepositDB is Depositor, Owned {
 	function withdraw(string _code, uint256 _value) public returns (bool) {
 		var key = sha3(_code, timeStamp);
 		if ( _value > 0 ) {
-			uint256 depositedAmount = Storage(storageContract).getUInt256Value(key);
+			uint256 depositedAmount = storageContract.getUInt256Value(key);
 			if ( depositedAmount >= _value ) {
 				uint256 newAmount = depositedAmount - _value;
 				storageContract.setUInt256Value(key, newAmount);

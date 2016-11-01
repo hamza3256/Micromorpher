@@ -2,29 +2,8 @@
   "development": {
     "gas": "auto",
     "contracts": {
-      "ExternalStorage": {
-        "gas": 1500000
-      },
-      "ForexDB": {
-        "args": [
-          "$ExternalStorage"
-        ]
-      },
-      "OrderDB": {
-        "gas": 1000000
-      },
-      "DepositDB": {
-        "args": [
-          "$ExternalStorage"
-        ]
-      },
       "Exchanger": {
-        "args": [
-          "$ForexDB",
-          "$OrderDB",
-          "$DepositDB"
-        ],
-        "gas": 1500000
+        "gas": 3000000
       }
     }
   }

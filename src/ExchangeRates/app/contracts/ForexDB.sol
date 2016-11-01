@@ -3,19 +3,19 @@ pragma solidity ^0.4.2;
 // ForEx exchange rates relative to Ether
 // Steve Huckle
 
-import "Storage.sol";
+import "ExternalStorage.sol";
 import "Forex.sol";
 
 contract ForexDB is Forex {
 
-	Storage private storageContract;
+	ExternalStorage private storageContract;
 	uint private timeStamp;
 
 	//mapping(bytes32 => uint256) private rateStorage;
 	//mapping(string => uint256) private rateStorage;
 
-	function ForexDB(address _storageContract) {
-		storageContract = Storage(_storageContract);
+	function ForexDB() {
+		storageContract = new ExternalStorage();
 		timeStamp = now;
 	}
 
@@ -34,13 +34,13 @@ contract ForexDB is Forex {
 	function setRate(string _code, uint256 _rate) public {
 		var key = sha3(_code, timeStamp);
 		//rateStorage[key] = _rate;
-		Storage(storageContract).setUInt256Value(key,_rate);
+		storageContract.setUInt256Value(key,_rate);
 	}
 
 	function getRate(string _code) public constant returns (uint256) {
 		var key = sha3(_code, timeStamp);
 		//return rateStorage[key];	
-		return Storage(storageContract).getUInt256Value(key);
+		return storageContract.getUInt256Value(key);
 
 	}
 

@@ -8,7 +8,7 @@ contract Storage {
     function setUInt256Value(bytes32 record, uint256 value) {}
     function deleteUInt256Value(bytes32 record) {}
 
-    function getStringValue(bytes32 record) constant returns (string) {}
+    /*function getStringValue(bytes32 record) constant returns (string) {}
     function setStringValue(bytes32 record, string value) {}
     function deleteStringValue(bytes32 record) {}
 
@@ -42,6 +42,6 @@ contract Storage {
 
     function getInt256Value(bytes32 record) constant returns (int256) {}
     function setInt256Value(bytes32 record, int256 value) {}
-    function deleteInt256Value(bytes32 record) {}        
+    function deleteInt256Value(bytes32 record) {}  */      
     
 }

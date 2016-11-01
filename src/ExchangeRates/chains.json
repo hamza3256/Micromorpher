@@ -2,53 +2,53 @@
   "0xb6cfeab83614da04c03db0fb8a6787a45d0be8d576fcc6f8f457a5a816d22ab3": {
     "name": "development",
     "contracts": {
-      "20c0a507fd6bec49caf90ac6cc0e3875d708fa8a23a103428308d303761669e3": {
-        "address": "0x56b98c26db9d9b7adf0908ec011d43a3dba82e18",
-        "name":    "Order"
-      },
-      "55e425d947667872f534462b18a64f22100fcf77986dee232ea54d99077e1fcc": {
-        "address": "0x49fc8a2adb883126c38054584201f699c77613e4",
-        "name":    "Storage"
-      },
-      "6c45a1926722000e5ba3fccff64f8f7a4f2a3a168d29e1299d1f666c1321f868": {
-        "address": "0xe06cc1b06ee7b03bf85a75fa09311b040f64d996",
-        "name":    "Exchange"
-      },
-      "8f7295c766eb02fd2369a1cf28e95be42bba4cef8bef7953b2d78ce1af90580e": {
-        "address": "0xbec8cc2dbaa799a60bba740e72b575f171772812",
+      "1b7aad93e60ff128ae19f28b720b1246e5e6ee0e4ff76329f6c69600ab272e44": {
+        "address": "0x5966ef74bb77670f113a2ff604bc27434146be8e",
         "name":    "OrderDB"
       },
-      "a5030d4b57d0ee7593a00f5304d13573bffb30aebcf74215a13a347d2c5391ec": {
-        "address": "0x00b60f0905c412e0d16a9ef7e677ee496ed2452b",
-        "name":    "Depositor"
+      "20c0a507fd6bec49caf90ac6cc0e3875d708fa8a23a103428308d303761669e3": {
+        "address": "0x48f62e1c861f33cdcc56a9c7a45e432f9932fa56",
+        "name":    "Order"
       },
-      "acba373b4e50a7255b9c615287ba4544395c1f7f6424d05585c8b0429cd46330": {
-        "address": "0xc3414326603f4705ab3c76f57ee092ee3f1abb39",
-        "name":    "Mortal"
+      "732d447564858a638bc583f2d3cdf6a7fbb6b8707f9246b5354a3db73848c3e2": {
+        "address": "0xf348821c4ba241bc267ddbfd075d46ac46ebb171",
+        "name":    "Exchanger"
       },
-      "aea65f0a64ba029f7351fe6da73dcf66ef2c1e5445f25150f0a6c17c2603356f": {
-        "address": "0x99f2307cd3c26421f32875fb06a03f631262b3bd",
+      "91e16b6e2be986c8c0fe5d857e392eb09c38622ca108cb1f495dff053c4410da": {
+        "address": "0x293832add3c37e48a9a8f4909a29449300228e6d",
         "name":    "DepositDB"
       },
+      "9b4996ea67317e836118b6b863a4880749bbfc7fd93ce612ba5b2e2dc9d4f248": {
+        "address": "0x4e4989d68492e4166723cc43d5beaf99fb8a2f4b",
+        "name":    "ExternalStorage"
+      },
+      "a5030d4b57d0ee7593a00f5304d13573bffb30aebcf74215a13a347d2c5391ec": {
+        "address": "0xa90e3559e166d7c1abea4d2131a2dc2cbe1c01e4",
+        "name":    "Depositor"
+      },
+      "a92489e294c5bc1533705e7d5013a5b7aa540349e244b55be56c47faeebcab38": {
+        "address": "0x5dc2e067ef9503746673d87f0a00c6b7e562200f",
+        "name":    "ForexDB"
+      },
+      "acba373b4e50a7255b9c615287ba4544395c1f7f6424d05585c8b0429cd46330": {
+        "address": "0x3935081bb97e387c431510c638db9e72f913b760",
+        "name":    "Mortal"
+      },
+      "ade1dcc39019425f5983b0bf8497f414ac73afb77ca77f9e0088bae6ba34ce80": {
+        "address": "0x86dd854a3d97b7b36109471a913e84a6cc1d3b44",
+        "name":    "Exchange"
+      },
       "aed4934704e0600ec32a66dc8ac98ec97aba8333b352c42ebe35457a537cd9b0": {
-        "address": "0x4d4a99f3add9680cf33a2150a85223818e0baed6",
+        "address": "0x63cc0b50f2a3dc070824fb5662cecb85d2dd2a60",
         "name":    "Forex"
       },
       "aedf94ff4149a96a13c089c9776f46d7a5759fc5854770ecd446dc3b53864306": {
-        "address": "0x2898a02a20520c62ffb8ab95580c90ff5f5d98e9",
+        "address": "0x03b9827f91c47e222447c229603025cc99c0fbf4",
         "name":    "Owned"
       },
-      "bae90fdcea7410a604332b8af7121a6fcf4d85395da14b1eea95c8820a2ea82c": {
-        "address": "0x6a99ed758d36827c94c3daaf0f5a787bb7d47bc9",
-        "name":    "ForexDB"
-      },
-      "bd13e50beacefe72d99bfd7c7522096be8fb905f506d8c4e8f5cbcf017156b95": {
-        "address": "0xdb7f1f412f4e25cd4405ab7da319b246aa43cf84",
-        "name":    "ExternalStorage"
-      },
-      "e7074efe9178f97ebe4b09f3674871a6b8a64943cc8b3c337587aa4964d6883d": {
-        "address": "0xdb79fb9db4cdfd14e9e760bee855cbe5764cd086",
-        "name":    "Exchanger"
+      "c998b16ccd2240f8eb706da3e6aa2ed26592b17fc90c7aca7d4b8f5906e8d607": {
+        "address": "0x8d333af448afc4bdf1849819a5b478d3607c49a6",
+        "name":    "Storage"
       }
     }
   }
