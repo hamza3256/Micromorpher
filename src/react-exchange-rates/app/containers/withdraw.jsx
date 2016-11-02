@@ -81,7 +81,6 @@ class WithdrawCurrency extends React.Component {
     const withdrawAmount = this.state.withdrawAmount
     const thisAmount = web3.toWei(withdrawAmount,"ether")    
     exchanger.withdraw(currency,thisAmount)
-    this.setState({withdrawAmount: 0})
   }
 
   render() {
