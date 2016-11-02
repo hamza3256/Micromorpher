@@ -1,17 +1,16 @@
 import Web3 from 'web3';
 import React from 'react';     
 import {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit, LFCOrderState} from '../components/exchange';
-import {LFCAccounts, AccountFunds} from '../components/accounts';
 
 class Exchange extends React.Component {
 
   constructor(props) {
     super(props)
 
-    //const web3 = this.props.route.web3       
-    //const exchanger = this.props.route.exchanger 
-    const web3 = this.props.web3       
-    const exchanger = this.props.exchanger  
+    const web3 = this.props.route.web3       
+    const exchanger = this.props.route.exchanger 
+    //const web3 = this.props.web3       
+    //const exchanger = this.props.exchanger  
 
     const latestFilter = web3.eth.filter('latest')    
     const currs = this.props.currencies    
@@ -22,8 +21,6 @@ class Exchange extends React.Component {
         latest: latestFilter,
         currencies: currs,
         txHash: "",
-        exchangeAccount: "",
-        funds: "0",
         currency: "",
         rate: 0,
         amount: 0,
@@ -41,6 +38,9 @@ class Exchange extends React.Component {
     const thisJs = this
     const filter = this.state.latest
     const web3 = this.state.web3 
+    const exchanger = this.state.exchanger
+
+    //Display the amount of ether you'll get
 
     filter.watch(function (error, result) {
       if (error) {
@@ -56,14 +56,19 @@ class Exchange extends React.Component {
           if( thisTx == transactions[i].hash ){
             console.log("Got match!") 
             if (thisJs.state.orderPlaced) {
+              const currency = thisJs.state.currency
+              const amount = thisJs.state.amount              
+              console.log("Amount is " + amount)
+              const amountToWei = web3.toWei(amount,"ether")  
+              console.log("Amount in Wei is " + amountToWei) 
+              const eth = exchanger.getEtherAmount(currency,amountToWei)   
+              console.log("Got Amount in Eth: " + eth)
+              const thisEth = eth.toNumber() 
+              thisJs.setState({ether: thisEth})
               thisJs.setState({orderState: "Order Placed! (OrderId: " + thisTx + ")"})
               thisJs.setState({orderPlaced: false})
-            } else if (thisJs.state.confirmPlaced) {                         
-              const account = thisJs.state.exchangeAccount            
-              console.log("Account is " + account)
+            } else if (thisJs.state.confirmPlaced) { 
               thisJs.setState({orderState: "Order Confirmed! (OrderId: " + thisTx + ")"})
-              const funds = web3.fromWei(web3.eth.getBalance(account),"ether").toString() 
-              thisJs.setState({funds: funds})              
               thisJs.setState({confirmPlaced: false})
             }
             break
@@ -71,24 +76,6 @@ class Exchange extends React.Component {
         }
       }
     })
-  }
-
-  _getAccounts() {
-    const accs = this.state.web3.eth.accounts;
-
-    if (accs.length === 0) {
-      console.error("Couldn't get any Ethereum accounts!")        
-      return
-    }
-    return accs  
-  }
-
-  _handleAccount(value) {
-    const web3 = this.state.web3
-    const funds = web3.fromWei(web3.eth.getBalance(value),"ether").toString() 
-    this.setState({funds: funds})    
-    this.setState({exchangeAccount: value})
-    //console.log("Account is " + value)
   }
 
   _handleCurrency(value) {
@@ -107,22 +94,13 @@ class Exchange extends React.Component {
     const web3 = this.state.web3
     this.setState({amount: value})
     console.log("Amount is " + value)
-    //Display the amount of ether you'd get
-    const exchanger = this.state.exchanger
-    const currency = this.state.currency
-    const valueToWei = web3.toWei(value,"ether")  
-    console.log("Amount in Wei is " + valueToWei) 
-    const eth = exchanger.getEtherAmount(currency,valueToWei)   
-    console.log("Got Amount in Eth: " + eth)
-    const thisEth = eth.toNumber() 
-    this.setState({ether: thisEth})
   }
 
   _handlePlaceOrder() {    
     const web3 = this.state.web3
     const exchanger = this.state.exchanger  
     const epochTime = (new Date).getTime()
-    const account = this.state.exchangeAccount
+    const account = web3.eth.defaultAccount
     const currency = this.state.currency
     const amount = this.state.amount
     const thisAmount = web3.toWei(amount,"ether")
@@ -140,7 +118,7 @@ class Exchange extends React.Component {
     const web3 = this.state.web3
     const exchanger = this.state.exchanger  
     const epochTime = this.state.orderTime
-    const account = this.state.exchangeAccount
+    const account = web3.eth.defaultAccount
     const currency = this.state.currency
     const amount = this.state.amount
     const thisAmount = web3.toWei(amount,"ether")
@@ -154,16 +132,13 @@ class Exchange extends React.Component {
   }
 
   render() {
-    let accs = this._getAccounts()
     return (
         <div>
-            <LFCAccounts accounts={accs} account={this.state.exchangeAccount} parentFunc={this._handleAccount.bind(this)}/>
-            <AccountFunds funds={this.state.funds}/>
             <LFCCurrency currencies={this.state.currencies} currency={this.state.currency} parentFunc={this._handleCurrency.bind(this)}/>
             <LFCRate rate={this.state.rate}/>
             <LFCAmount amount={this.state.amount} parentFunc={this._handleAmount.bind(this)}/>
-            <LFCEther ether={this.state.ether}/>
             <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)}/>
+            <LFCEther ether={this.state.ether}/>
             <LFCSubmit parentFunc={this._handleExchange.bind(this)}/>
             <LFCOrderState orderState={this.state.orderState}/>
         </div>
@@ -179,6 +154,7 @@ class Exchange extends React.Component {
 Exchange.propTypes = {  
   web3: React.PropTypes.object,
   exchanger: React.PropTypes.object,
+  account: React.PropTypes.string,
   currencies: React.PropTypes.array
 }
 

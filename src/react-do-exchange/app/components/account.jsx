@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-class LFCAccounts extends React.Component {
+class Account extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,7 +13,12 @@ class LFCAccounts extends React.Component {
 
   render() {
 
-    const accs = this.props.accounts.map(function(values) {
+    const accounts = this.props.web3.eth.accounts;
+    if (accounts.length === 0) {
+      console.error("Couldn't get any Ethereum accounts!")        
+      return
+    }
+    const accs = accounts.map(function(values) {
       return { value: values, label: values}
     })
 
@@ -35,15 +40,15 @@ class LFCAccounts extends React.Component {
   }
 }
 
-LFCAccounts.propTypes = {
+Account.propTypes = {
+  web3: React.PropTypes.object,
   parentFunc: React.PropTypes.func,
-  accounts: React.PropTypes.array,
   account: React.PropTypes.string, 
   searchable: React.PropTypes.bool,
   label: React.PropTypes.string
 }
 
-LFCAccounts.defaultProps = {
+Account.defaultProps = {
   label: 'Accounts:',
   searchable: true
 }
@@ -73,5 +78,5 @@ AccountFunds.defaultProps = {
   label: 'Account Funds (Ether):'
 }
 
-export {LFCAccounts, AccountFunds}
+export {Account, AccountFunds}
 

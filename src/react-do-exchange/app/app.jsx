@@ -10,6 +10,7 @@ class App extends React.Component {
         <h1>Exchange Currency</h1>
         <ul role="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+          <li><Link to="/account" activeClassName="active">Account</Link></li>
           <li><Link to="/exchange" activeClassName="active">Exchange Currency</Link></li>
         </ul>
 
