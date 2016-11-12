@@ -1,0 +1,27 @@
+=============== Nov 12, 2016 (GMT) ===============
+19:14:32.290649 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:14:32.291199 db@open opening
+19:14:32.291815 version@stat F·[] S·0B[] Sc·[]
+19:14:32.292094 db@janitor F·2 G·0
+19:14:32.292187 db@open done T·960.664µs
+=============== Nov 12, 2016 (GMT) ===============
+19:14:33.725996 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:14:33.726201 version@stat F·[] S·0B[] Sc·[]
+19:14:33.726221 db@open opening
+19:14:33.726279 journal@recovery F·1
+19:14:33.727307 journal@recovery recovering @1
+19:14:33.728291 memdb@flush created L0@2 N·9 S·605B "Las..ock,v9":"\xc5\xd2F..\x85\xa4p,v1"
+19:14:33.729528 version@stat F·[1] S·605B[605B] Sc·[0.25]
+19:14:33.730663 db@janitor F·3 G·0
+19:14:33.730710 db@open done T·4.472123ms
+19:14:33.731090 db@close closing
+19:14:33.731362 db@close done T·266.987µs
+=============== Nov 12, 2016 (GMT) ===============
+19:14:33.732519 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:14:33.732641 version@stat F·[1] S·605B[605B] Sc·[0.25]
+19:14:33.732654 db@open opening
+19:14:33.732705 journal@recovery F·1
+19:14:33.746794 journal@recovery recovering @3
+19:14:33.762506 version@stat F·[1] S·605B[605B] Sc·[0.25]
+19:14:33.763542 db@janitor F·3 G·0
+19:14:33.763565 db@open done T·30.902834ms
