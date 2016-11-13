@@ -1,14 +1,6 @@
 # Currency Exchange Demonstration
 
-Below are the instructions for running this demonstration:
-
-1. Select the command **Import Appliance** from the VirtualBox _File_ menu. Select the file _AmEXTutorial.ova_ from the USB drive supplied. **Start** the Guest OS.
-2. Once the Guest OS has booted, open a browser, and load the following URIs:
-
-  - The Currency Exchange Administrator
-    - http://192.168.56.100:8080
-  - The Currency Exchanger
-    - http://192.168.56.100:8081
+There are many ways to run the demo'. Below is just one suggestion.
 
 ## Using the Currency Exchange Administrator
 
