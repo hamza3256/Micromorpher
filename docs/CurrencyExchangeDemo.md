@@ -1,6 +1,6 @@
 # Currency Exchange Demonstration
 
-There are many ways to run the demo'. Below is just one suggestion.
+Below are the instructions for using the Currency Exchange application. Please note that the application is at the early stages of development, so there are many ways it can be improved. Indeed, as you use the application, note ways in which you would improve the product if you were part of the development team.
 
 ## Using the Currency Exchange Administrator
 

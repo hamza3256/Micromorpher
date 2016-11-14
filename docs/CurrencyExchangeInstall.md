@@ -1,6 +1,6 @@
 # Currency Exchange Demonstration
 
-Below are the instructions for running the Currency Exchange demonstration.
+Below are the instructions for running the Currency Exchange demonstration. They have been tested and run on Ubuntu 16.04 and MAC OS X. These instructions are separate from the Virtual Box setup; if you have been supplied a `Tutorial.ova` file, then please refer to `VBoxInstall.md` instead.
 
 ## Overview
 
@@ -37,9 +37,9 @@ Similar to above, you need to ensure that the constructor variables `exchangerAb
 As long as everything above has worked correctly, when open a browser at the following URIs, you should see interfaces allowing you to run the demonstration applications:
 
 - The Currency Exchange Administrator
-  - http://192.168.56.100:8081
+  - http://localhost:8081
 - The Currency Exchanger
-  - http://192.168.56.100:8080
+  - http://localhost:8080
 
 ## 5. Run the Demo's
 
