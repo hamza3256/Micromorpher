@@ -23,4 +23,4 @@ Hence, either change to the directory `src/ExchangeRates`, or to the directory `
 
 ## Running the Examples
 
-For the _Currency Exchange_ application, follow the instructions in _CurrencyExchangeDemo.md_. For _The Answer_, follow the instructions in _TheAnswer.md_.
+For the _Currency Exchange_ application, follow the instructions in _CurrencyExchangeDemo.md_. For _The Answer_, follow the instructions in _TheAnswerDemo.md_.
