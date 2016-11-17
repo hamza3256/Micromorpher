@@ -14,7 +14,7 @@ class Index extends React.Component {
 
 				const answerAbi = [{"constant":false,"inputs":[{"name":"_question","type":"string"}],"name":"setQuestion","outputs":[],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"question","type":"string"},{"indexed":false,"name":"answer","type":"uint256"}],"name":"Question","type":"event"}]
         const answerContract = web3.eth.contract(answerAbi)
-        const contractAddress = '0xa7dd60aef6506dfbbabd0ed0f3a85d652817c00d'
+        const contractAddress = '0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720'
         const theAnswer = answerContract.at(contractAddress)
 
         this.state = {
