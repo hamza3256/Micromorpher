@@ -6,9 +6,11 @@ These instructions assume you have access to the file `tutorials.ova`. if you do
 
 ## Dependencies
 
-You will need a text editor for _The Answer_. Fyi, these instructions and the code herein were written using [Atom](https://atom.io/ "Atom"), with various linters and markdown packages installed.
+Download and install [VirtualBox](https://www.virtualbox.org).
 
-You will also need a browser for the demonstrations. You may need to clear its cache, so you might wish to consider using a different browser to the one you use for normal browsing. Fyi, the development tools in [Opera](http://www.opera.com/) are really nice.
+You will need a text editor for _The Answer_. Fyi, these instructions and the code herein were written using [Atom](https://atom.io/ "Atom"), with various linters and markdown community packages installed (see [Atom packages](https://atom.io/packages)).
+
+You will also need a browser for the demonstrations. You may need to clear its cache, so you might wish to consider using a different browser to the one you use for normal browsing. Fyi, the development tools in [Opera](http://www.opera.com/) work well.
 
 ## 1. Import the VirtualBox Appliance
 
