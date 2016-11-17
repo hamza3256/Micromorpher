@@ -16,7 +16,7 @@ class Question extends React.Component {
         <h2 className="section-heading">{this.props.label}</h2>
         <input
           type="text"
-          placeholder="Who Shot Roger Rabbit?"
+          placeholder="Is Donald Trump nuts and are we in for 'interesting times'?"
           value={this.props.question}
           onChange={this._handleQuestionChange.bind(this)}
         />

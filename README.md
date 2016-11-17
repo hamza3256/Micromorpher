@@ -7,18 +7,4 @@ This repository contains two separate blockchain-based demonstration application
 
 ## Install
 
-Follow the Install instruction in `docs/install.md`.
-
-## Demos
-
-- For the Currency Exchanger, follow the instructions in `docs/CurrencyExchangeInstall.md`
-- For _The Answer_, follow the instructions in `docs/TheAnswerInstall.md`
-
-## VirtualBox
-
-These demos also run under VirtualBox:
-
-- For the Currency Exchanger, follow the instructions in `docs/VBoxCurrencyExchangeInstall.md`
-- For _The Answer_, follow the instructions in `docs/VBoxTheAnswerInstall.md`
-
-However, you will also need the associated `.ova` VirtualBox appliance. To obtain that, please email s.huckle@sussex.ac.uk.
+If you have been supplied with the file `tutorials.ova`, follow the install instructions in `docs/VBoxInstall.md`. Otherwise, follow the install instruction in `docs/Install.md`.

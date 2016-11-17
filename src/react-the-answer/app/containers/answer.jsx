@@ -44,7 +44,7 @@ class TheAnswer extends React.Component {
       const question = this.state.question
       console.log('The Question to Ask Is ' + question)
       console.log('Address is ' + JSON.stringify(theAnswer))
-      this.setState({answer: 0})
+      this.setState({answer: "processing...."})
       theAnswer.setQuestion(question)
     }
 

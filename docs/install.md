@@ -21,6 +21,6 @@ This repository uses the [embark](https://github.com/iurimatias/embark-framework
 
 Hence, either change to the directory `src/ExchangeRates`, or to the directory `src/TheAnswer`, then run the blockchain via `embark blockchain`.
 
-## Running the Examples
+## Installing the Examples
 
-For the _Currency Exchange_ application, follow the instructions in _CurrencyExchangeDemo.md_. For _The Answer_, follow the instructions in _TheAnswerDemo.md_.
+For the _Currency Exchange_ application, follow the instructions in `CurrencyExchangeInstall.md`. For _The Answer_, follow the instructions in `TheAnswerInstall.md`.
