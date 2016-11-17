@@ -4,6 +4,12 @@ These are the installation instructions for running the _Currency Exchange_ and 
 
 These instructions assume you have access to the file `tutorials.ova`. if you do not, please email s.huckle@sussex.ac.uk.
 
+## Dependencies
+
+You will need a text editor for _The Answer_. Fyi, these instructions and the code herein were written using [Atom](https://atom.io/ "Atom"), with various linters and markdown packages installed.
+
+You will also need a browser for the demonstrations. You may need to clear its cache, so you might wish to consider using a different browser to the one you use for normal browsing. Fyi, the development tools in [Opera](http://www.opera.com/) are really nice.
+
 ## 1. Import the VirtualBox Appliance
 
 Select the command **Import Appliance** from the VirtualBox _File_ menu. Select the file `tutorials.ova` from the USB drive supplied.

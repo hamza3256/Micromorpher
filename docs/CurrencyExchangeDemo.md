@@ -6,21 +6,12 @@ These instructions assume you have already followed the instructions detailed in
 
 Please note that the application is at the early stages of development, so there are many ways it can be improved. Indeed, as you use the application, imagine you are part of the development team and note ways in which you would improve the product.
 
-## 1. Load the URIs
-
-Open a browser at the following URIs, you should see interfaces allowing you to run the demonstration applications:
-
-- The Currency Exchange Administrator
-  - http://localhost:8081
-- The Currency Exchanger
-  - http://localhost:8080
-
-## 2. Using the Currency Exchange Administrator
+## Using the Currency Exchange Administrator
 
 1. Fund the contract from the Administrator account. Why didn't the funding happen instantly?
 2. Note the Administrator's amount of Ether on the _account_ page. Set some Exchange Rates. Go back to the _account_ page. What's changed? Why?
 
-## 3. Using the Currency Exchanger
+## Using the Currency Exchanger
 
 1. Choose an Exchange Rate for a currency we set above and exchange some of that currency. Note what happens to the account's Ether funds. Can you explain why that account has more Ether than you may have expected?
 2. If you successfully exchanged the currency, go back to the Currency Exchange Administrator and withdraw some of the currency just deposited.

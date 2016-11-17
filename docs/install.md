@@ -15,6 +15,10 @@ You must ensure you have the following dependencies installed.
 + [node](https://nodejs.org/en/)
 + [npm](https://www.npmjs.com/)
 
+You will need a text editor. Fyi, these instructions and the code herein was written using [Atom](https://atom.io/ "Atom"), with linters and markdown packages installed.
+
+You will also need a browser for the demonstrations. You may need to clear its cache, so you might wish to consider using a different browser to the one you use for normal browsing. Fyi, the development tools in [Opera](http://www.opera.com/) are really nice.
+
 ## Run the Blockchain
 
 This repository uses the [embark](https://github.com/iurimatias/embark-framework) framework for smart contract deployment. Because it contains two separate examples of blockchain based applications (_Currency Exchanger_ and _The Answer_), you can run the blockchain from two separate places - it doesn't matter which because both places will create a blockchain that will be accessible from http://localhost:8545.
