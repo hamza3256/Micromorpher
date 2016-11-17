@@ -1,6 +1,9 @@
 src/ExchangeRates/.embark
+src/ExchangeRates/dist
 src/ExchangeRates/chains.json
 src/react-do-exchange/build
 src/react-exchange-rates/build
-src/TheAnswer/.embark
 src/react-the-answer/build
+src/TheAnswer/.embark
+src/TheAnswer/dist
+src/TheAnswer/chains.json
