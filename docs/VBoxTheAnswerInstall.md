@@ -27,7 +27,7 @@ Open the file `app/contracts/TheAnswer.sol` and edit it so it looks like this:
 
     pragma solidity ^0.4.2;
 
-    // The Answer
+    // The answer to any question.
 
     contract TheAnswer {
 

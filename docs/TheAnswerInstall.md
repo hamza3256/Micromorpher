@@ -23,8 +23,7 @@ Open the file `app/contracts/TheAnswer.sol` and edit it so it looks like this:
 
     pragma solidity ^0.4.2;
 
-    // The Answer
-    // Steve Huckle
+    // The answer to any question.
 
     contract TheAnswer {
 
@@ -47,7 +46,7 @@ Save the file.
 
 ## 2. Deploy the Smart Contract
 
-To deploy the smart contracts, use `embark run`. 
+To deploy the smart contracts, use `embark run`.
 
 ## 3. Install the Front End
 
