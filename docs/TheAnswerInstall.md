@@ -46,7 +46,7 @@ Save the file.
 
 ## 2. Deploy the Smart Contract
 
-To deploy the smart contracts, use `embark run`.
+To deploy the smart contract, use `embark run`.
 
 ## 3. Install the Front End
 
