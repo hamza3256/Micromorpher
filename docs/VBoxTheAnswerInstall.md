@@ -8,7 +8,7 @@ It is assumed you have already followed the instructions in [VBoxInstall.md](VBo
 
 **Start** the Guest OS `bitnami-nodejs`.
 
-![Start the Guest OS](../images/2016/11/vboxStart.png)
+![Start the Guest OS](../images/vboxStart.png)
 
 ## 2. Mount the Shared Drive
 
