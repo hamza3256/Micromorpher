@@ -21,6 +21,8 @@ The process is similar on Ubuntu 16.04, except, instead of `Finder`, use the `Na
 
 ![Connect to Server](../images/connectToServer.png)
 
+The `Username` and `Password` are as above, the `Domain` is `WORKGROUP`.
+
 Once you have the share from VirtualBox mounted on your local machine, you can use your favourite editor to make the necessary changes below.
 
 ## 3. Write the Smart Contract
