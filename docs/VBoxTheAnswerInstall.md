@@ -8,6 +8,8 @@ It is assumed you have already followed the instructions in [VBoxInstall.md](VBo
 
 **Start** the Guest OS `bitnami-nodejs`.
 
+![Start the Guest OS](../images/2016/11/vboxStart.png)
+
 ## 2. Mount the Shared Drive
 
 Once the Guest OS has booted (you will see a login prompt), mount its shared drive to your local machine. To do so, on MAC OSX, open `Finder`, then select `Go` and `Connect to Server` and enter the value `smb://192.168.56.100/share`. Hit 'Connect' and when prompted, select `Connect as Registered User`. Enter the following values:
