@@ -7,4 +7,4 @@ This repository contains two separate blockchain-based demonstration application
 
 ## Install
 
-If you have been supplied with the file `tutorials.ova`, follow the install instructions in `docs/VBoxInstall.md`. Otherwise, follow the install instruction in `docs/Install.md`.
+If you have been supplied with the file `tutorials.ova`, follow the install instructions in [docs/VBoxInstall.md](docs/VBoxInstall.md). Otherwise, follow the install instruction in [docs/Install.md](docs/Install.md).
