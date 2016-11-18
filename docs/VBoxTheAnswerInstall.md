@@ -2,7 +2,7 @@
 
 Below are the instructions for running _The Answer_ from within VirtualBox.
 
-It is assumed you have already followed the instructions in [VBoxInstall.md]([VBoxInstall.md).
+It is assumed you have already followed the instructions in [VBoxInstall.md](VBoxInstall.md).
 
 ## 1. Start the Guest OS
 
@@ -17,7 +17,7 @@ Once the Guest OS has booted (you will see a login prompt), mount its shared dri
 
 The process is similar on Ubuntu 16.04, except, instead of `Finder`, use the `Nautilus` file browser, then under the `File` menu, choose `Connect to Server...` and enter `smb://192.168.56.100/share`.
 
-![Connect to Server](images/connectToServer.png)
+![Connect to Server](../images/connectToServer.png)
 
 Once you have the share from VirtualBox mounted on your local machine, you can use your favourite editor to make the necessary changes below.
 
