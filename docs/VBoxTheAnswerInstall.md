@@ -12,7 +12,11 @@ It is assumed you have already followed the instructions in [VBoxInstall.md](VBo
 
 ## 2. Mount the Shared Drive
 
-Once the Guest OS has booted (you will see a login prompt), mount its shared drive to your local machine. To do so, on MAC OSX, open `Finder`, then select `Go` and `Connect to Server` and enter the value `smb://192.168.56.100/share`. Hit 'Connect' and when prompted, select `Connect as Registered User`. Enter the following values:
+Once the Guest OS has booted (you will see a login prompt), mount its shared drive to your local machine. To do so, on MAC OSX, open `Finder`, then select `Go` and `Connect to Server` and enter the value `smb://192.168.56.100/share`.
+
+![Connect to Server](../images/macConnectToServer.png)
+
+Hit 'Connect' and when prompted, select `Connect as Registered User`. Enter the following values:
 
 - Name: bitnami
 - Password: h3ll0w0rld

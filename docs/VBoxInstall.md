@@ -12,9 +12,23 @@ You will need a text editor for _The Answer_. Fyi, these instructions and the co
 
 You will also need a browser for the demonstrations. You may need to clear its cache, so you might wish to consider using a different browser to the one you use for normal browsing. Fyi, the development tools in [Opera](http://www.opera.com/) work well.
 
+## Important Note
+
+If your mouse disappears while you are using VirtualBox, press the defined Host key - on a MAC this will probably be the command key, directly to the left of the spacebar. On Linux, it should be the Alt key, again, to the left of the spacebar.
+
 ## 1. Import the VirtualBox Appliance
 
 Select the command **Import Appliance** from the VirtualBox _File_ menu. Select the file `tutorials.ova` from the USB drive supplied.
+
+## 2. Create the Network
+
+Create a `Host-only Network`. On MAC OS X, Go to `VirtualBox VM` on the main menu bar, select `Preferences`, `Network`, `Host-only Networks`.
+
+![vboxnet0](../images/vboxnet0.png)
+
+Edit the default vboxnet0, and turn off the DHCP Server.
+
+![DHCP Server](dhcpServer.png)
 
 ## 2. Installing the Demo's
 
