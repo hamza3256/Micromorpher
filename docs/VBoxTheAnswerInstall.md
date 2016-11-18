@@ -2,7 +2,7 @@
 
 Below are the instructions for running _The Answer_ from within VirtualBox.
 
-It is assumed you have already followed the instructions in `VBoxInstall.md`.
+It is assumed you have already followed the instructions in [VBoxInstall.md]([VBoxInstall.md).
 
 ## 1. Start the Guest OS
 
@@ -15,7 +15,9 @@ Once the Guest OS has booted (you will see a login prompt), mount its shared dri
 - Name: bitnami
 - Password: h3ll0w0rld
 
-The process is similar on Ubuntu 16.04, except, instead of `Finder`, use the `Nautilus` file browser.
+The process is similar on Ubuntu 16.04, except, instead of `Finder`, use the `Nautilus` file browser, then under the `File` menu, choose `Connect to Server...` and enter `smb://192.168.56.100/share`.
+
+![Connect to Server](images/connectToServer.png)
 
 Once you have the share from VirtualBox mounted on your local machine, you can use your favourite editor to make the necessary changes below.
 
@@ -55,7 +57,7 @@ Login to the VirtualBox Guest OS `bitnami-nodejs`:
 - Login: bitnami
 - Password: h3ll0w0rld
 
-Change to the directory `/share/ExchangeCurrency/src/TheAnswer` (`cd /share/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the running blockchain.
+Change to the directory `share/ExchangeCurrency/src/TheAnswer` (`cd /share/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the running blockchain.
 
 ## 5. Install the Front End
 
@@ -73,4 +75,4 @@ On your local machine, open a browser at the following URI:
 
 ## 7. Run the Demo
 
-Follow the instructions in `TheAnswerDemo.md`.
+Follow the instructions in [TheAnswerDemo.md](TheAnswerDemo.md).
