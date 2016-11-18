@@ -13,7 +13,7 @@ _The Answer_ contains two separate components:
 
 ## Dependency
 
-Make sure the blockchain is running - see `Install.md` for instructions.
+Make sure the blockchain is running - see [Install.md](Install.md) for instructions.
 
 ## 1. Write the Smart Contract
 
