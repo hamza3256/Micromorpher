@@ -28,7 +28,7 @@ Create a `Host-only Network`. On MAC OS X, Go to `VirtualBox VM` on the main men
 
 Edit the default vboxnet0, and turn off the DHCP Server.
 
-![DHCP Server](dhcpServer.png)
+![DHCP Server](../images/dhcpServer.png)
 
 ## 2. Installing the Demo's
 
