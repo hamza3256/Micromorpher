@@ -2,7 +2,7 @@
 
 Below are the instructions for installing _The Answer_ demonstration. They have been tested and run on Ubuntu 16.04 and MAC OS X.
 
-These instructions are separate from the Virtual Box setup; if you have been supplied a `tutorial.ova` file, then please refer to `VBoxTheAnswerInstall.md` instead.
+These instructions are separate from the Virtual Box setup; if you have been supplied a `tutorial.ova` file, then please refer to [VBoxTheAnswerInstall.md](VBoxTheAnswerInstall.md) instead.
 
 ## Overview
 
@@ -64,4 +64,4 @@ Open a browser at the following URI:
 
 ## 5. Run the Demo
 
-Follow the instructions in `TheAnswerDemo.md`.
+Follow the instructions in [TheAnswerDemo.md](TheAnswerDemo.md).

@@ -2,7 +2,7 @@
 
 Below are the instructions for using _The Answer_.
 
-These instructions assume you have already followed the instructions detailed in `Install.md` and either `VBoxTheAnswerInstall.md` if you are using the Virtual Box implementation, or `TheAnswerInstall.md` if you aren't. If you have not followed those instructions, do so now.
+These instructions assume you have already followed the instructions detailed in [Install.md](Install.md) and either [VBoxTheAnswerInstall.md](VBoxTheAnswerInstall.md) if you are using the Virtual Box implementation, or [TheAnswerInstall.md](TheAnswerInstall.md) if you aren't. If you have not followed those instructions, do so now.
 
 ## Use _The Answer_
 

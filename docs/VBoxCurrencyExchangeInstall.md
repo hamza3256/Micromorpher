@@ -2,7 +2,7 @@
 
 Below are the instructions for running the Currency Exchange demonstration from within VirtualBox.
 
-It is assumed you have already followed the instructions in `VBoxInstall.md`.
+It is assumed you have already followed the instructions in [VBoxInstall.md](VBoxInstall.md).
 
 ## 1. Start the Guest OS
 
@@ -19,4 +19,4 @@ Once the Guest OS has booted (you will see a login prompt), open a browser, and 
 
 ## 3. Run the Demo's
 
-Follow the instructions in `CurrencyExchangeDemo.md`.
+Follow the instructions in [CurrencyExchangeDemo.md](CurrencyExchangeDemo.md).

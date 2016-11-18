@@ -2,7 +2,7 @@
 
 Below are the instructions for using the Currency Exchange application.
 
-These instructions assume you have already followed the instructions detailed in `install.md` and either `VBoxCurrencyExchangeInstall.md` if you are using the Virtual Box implementation, or `CurrencyExchangeInstall.md` if you aren't. If you have not followed those instructions, do so now.
+These instructions assume you have already followed the instructions detailed in [install.md](install.md) and either [VBoxCurrencyExchangeInstall.md](VBoxCurrencyExchangeInstall.md) if you are using the Virtual Box implementation, or [CurrencyExchangeInstall.md](CurrencyExchangeInstall.md) if you aren't. If you have not followed those instructions, do so now.
 
 Please note that the application is at the early stages of development, so there are many ways it can be improved. Indeed, as you use the application, imagine you are part of the development team and note ways in which you would improve the product.
 

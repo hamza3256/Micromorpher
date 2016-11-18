@@ -27,4 +27,4 @@ Hence, either change to the directory `src/ExchangeRates`, or to the directory `
 
 ## Installing the Examples
 
-For the _Currency Exchange_ application, follow the instructions in `CurrencyExchangeInstall.md`. For _The Answer_, follow the instructions in `TheAnswerInstall.md`.
+For the _Currency Exchange_ application, follow the instructions in [CurrencyExchangeInstall.md](CurrencyExchangeInstall.md). For _The Answer_, follow the instructions in [TheAnswerInstall.md](TheAnswerInstall.md).

@@ -18,4 +18,4 @@ Select the command **Import Appliance** from the VirtualBox _File_ menu. Select 
 
 ## 2. Installing the Demo's
 
-For the _Currency Exchange_ demo', follow the instructions in `VBoxCurrencyExchangeInstall.md`. For _The Answer_ demonstration, follow the instructions in `VBoxTheAnswerInstall.md`.
+For the _Currency Exchange_ demo', follow the instructions in [VBoxCurrencyExchangeInstall.md](VBoxCurrencyExchangeInstall.md). For _The Answer_ demonstration, follow the instructions in [VBoxTheAnswerInstall.md](VBoxTheAnswerInstall.md).

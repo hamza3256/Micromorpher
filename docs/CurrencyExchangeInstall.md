@@ -2,7 +2,7 @@
 
 Below are the instructions for installing the Currency Exchange demonstration. They have been tested and run on Ubuntu 16.04 and MAC OS X.
 
-These instructions are separate from the Virtual Box setup; if you have been supplied a `tutorial.ova` file, then please refer to `VBoxCurrencyExchangeInstall.md` instead.
+These instructions are separate from the Virtual Box setup; if you have been supplied a `tutorial.ova` file, then please refer to [VBoxCurrencyExchangeInstall.md](VBoxCurrencyExchangeInstall.md) instead.
 
 ## Overview
 
@@ -26,7 +26,7 @@ Change to the Currency Exchange Administrator home directory `src/react-exchange
 
 Edit the file `app/index.jsx` so the constructor function variables `exchangerAbi` and `contractAddress` contain the correct values. These values will have changed after Step 1 above (actually, the `exchangerAbi` variable may not have changed, but the `contractAddress` variable certainly will have), since you deployed your own versions of the smart contracts to the blockchain. To get the necessary values, open the file `../ExchangeRates/dist/js/app.js` and find the variable `Exchanger` near the end of that file; it begins this way: `Exchanger = new EmbarkJS.Contract`. The `exchangerAbi` value is the array beginning at the square bracket immediately after `({abi: `, up until its closing square bracket, immediately before `, address: '0x`. The `contractAddress` variable is the whole hex' address immediately after the ABI array definition, which will look something similar to: `0xf348821c4ba241bc267ddbfd075d46ac46ebb171`.
 
-Once you have the correct values for `exchangerAbi` and `contractAddress`, you must build the development release of the Currency Exchange Administrator. Firstly, run `npm run copy`, which puts the required html and css into `build/client/public`. Then run `npm run dev`, which sets up a process that continuously watches for changes in the subdirectory `app` and, as long as the changes do not contain errors, deploys them to `build/client/public`. That runs continuously, so it will not return a prompt. So open another terminal window and run `npm run start`, which will fire up a simple web server at `http://localhost:8081`. 
+Once you have the correct values for `exchangerAbi` and `contractAddress`, you must build the development release of the Currency Exchange Administrator. Firstly, run `npm run copy`, which puts the required html and css into `build/client/public`. Then run `npm run dev`, which sets up a process that continuously watches for changes in the subdirectory `app` and, as long as the changes do not contain errors, deploys them to `build/client/public`. That runs continuously, so it will not return a prompt. So open another terminal window and run `npm run start`, which will fire up a simple web server at `http://localhost:8081`.
 
 ## 3. Install the Front End Currency Exchange Application
 
@@ -45,4 +45,4 @@ Open a browser at the following URIs, you should see interfaces allowing you to 
 
 ## 5. Run the Demo's
 
-Follow the instructions in `CurrencyExchangeDemo.md`.
+Follow the instructions in [CurrencyExchangeDemo.md](CurrencyExchangeDemo.md).
