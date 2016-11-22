@@ -12,7 +12,7 @@ It is assumed you have already followed the instructions in [VBoxInstall.md](VBo
 
 ## 2. Login and Load Atom (Text Editor)
 
-Once the Guest OS has booted, you will see a login prompt, asking you to login to the account `sussex`:
+Once the Guest OS has booted, you will see a login prompt. Login to the account `sussex`:
 
 ![Login](../images/login.png)
 
@@ -55,26 +55,25 @@ Save the file.
 
 ## 4. Deploy the Contract
 
-Login to the VirtualBox Guest OS `bitnami-nodejs`:
+Load a terminal window by launching `LXTerminal`  from the `Application Launch Bar`:
 
-- Login: bitnami
-- Password: h3ll0w0rld
+![LXTerminal](../images/LXTerminal.png)
 
-Change to the directory `share/ExchangeCurrency/src/TheAnswer` (`cd /share/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the running blockchain.
+Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the running blockchain. It loads a console window telling you the status of the deployment. While deploying, the contract will show `pending`. Once the contract has been successfully deployed (it may take up to 5 minutes or more), the screen will look similar to the following:
+
+![The Answer Deployed](../images/theAnswerDeployed.png)
 
 ## 5. Install the Front End
 
-Because you have mounted the Virtual Box's shared drive on your local machine, the changes below can be done there. However, if you prefer, you can continue to work on the VirtualBox Guest OS. If so, the files mentioned below are relative to `/share`. Otherwise, the files are relative to where you mounted them under `Finder`/`Nautilus`/`File Manager`.
+The [React](https://facebook.github.io/react/) based front end has been written for you.
 
-The [React](https://facebook.github.io/react/) based front end has been written for you. However, you still need to edit the file `ExchangeCurrency/src/react-the-answer/app/index.jsx` so the constructor function variables `answerAbi` and `contractAddress` contain the correct values. To get the necessary values, open the file `../TheAnswer/dist/js/app.js` and find the variable `TheAnswer` near the end of that file; it begins this way: `TheAnswer = new EmbarkJS.Contract`. The `answerAbi` value is the array beginning at the square bracket immediately after `({abi: `, up until its closing square bracket, immediately before `, address: '0x`. The `contractAddress` variable is the whole hex' address immediately after the ABI array definition, which will look something similar to: `0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`.
-
-Save the file. There is a daemon running on the VirtualBox Guest OS that will notice the changes you just made. It will build the front end application for you.  
+However, you still need to edit the file `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx` so the constructor function variable `contractAddress` contains the correct value. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json`). The `contractAddress` variable is the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Ensure the constructor variable `contractAddress` in `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx` contains that value. Save the file. There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.  
 
 ## 6. Load the URI
 
 On your local machine, open a browser at the following URI:
 
-- http://192.168.56.100:8082
+- http://blockchain.sussex.ac.uk:8082
 
 ## 7. Run the Demo
 
