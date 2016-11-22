@@ -24,7 +24,11 @@ Load a terminal window by launching `LXTerminal`  from the `Application Launch B
 
 ![LXTerminal](../images/LXTerminal.png)
 
-Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates`). The smart contracts for this application have been written for you (they are much too complex to write in a single tutorial session); you just need to deploy them to the blockchain with the command `embark run`. That loads a console window telling you the status of the deployment. While deploying, the contract will show `pending`. The console will display contract addresses once they have been successfully deployed (it may take up to 5 minutes or more). In a moment we will need the address of the `Exchanger` contract for our application's front end.
+Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates`). The smart contracts for this application have been written for you (they are much too complex to write in a single tutorial session); you just need to deploy them to the blockchain with the command `embark run`. That loads a console window telling you the status of the deployment. While deploying, the contract will show `pending`. The console will display contract addresses once they have been successfully deployed (it may take up to 5 minutes or more) - the screen will look similar to the following:
+
+![Exchanger Deployed](../images/exchangerDeployed.png)
+
+In a moment we will need the address of the `Exchanger` contract for our application's front end.
 
 ## 4. Load Atom (Text Editor)
 
@@ -42,7 +46,7 @@ Change to the Currency Exchange Administrator home directory `src/react-exchange
 
 The [React](https://facebook.github.io/react/) based front end has been written for you.
 
-However, you still need to ensure the front end has the correct value for its contract address. Open the file `src/react-exchange-rates/app/index.jsx` in `atom`; the constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates/chains.json`). The `contractAddress` variable requires the value of the `address` json key for the contraxct `Exchanger`- it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable and save the file. There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.
+However, you still need to ensure the front end has the correct value for its contract address. Open the file `src/react-exchange-rates/app/index.jsx` in `atom`; the constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates/chains.json`). The `contractAddress` variable requires the value of the `address` json key for the contract with the value for its `name` json key of `Exchanger` (**Note**: not `Exchange` - that's its abstract interface) - the address will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable and save the `index.jsx` file. There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.
 
 ## 6. Install the Front End Currency Exchange Application
 
