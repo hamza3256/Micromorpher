@@ -10,10 +10,9 @@ Checkout the Master branch of this repository - it should contain a working exam
 
 You must ensure you have the following dependencies installed.
 
-+ [geth](https://github.com/ethereum/go-ethereum/wiki/geth)
-+ [embark](https://github.com/iurimatias/embark-framework)
-+ [node](https://nodejs.org/en/)
-+ [npm](https://www.npmjs.com/)
+1. [node](https://nodejs.org/en/)
+2. [geth](https://github.com/ethereum/go-ethereum/wiki/geth)
+3. [embark](https://github.com/iurimatias/embark-framework)
 
 You will need a text editor. Fyi, these instructions and the code herein was written using [Atom](https://atom.io/ "Atom"), with linters and markdown packages installed.
 
