@@ -6,34 +6,29 @@ It is assumed you have already followed the instructions in [VBoxInstall.md](VBo
 
 ## 1. Start the Guest OS
 
-**Start** the Guest OS `bitnami-nodejs`.
+**Start** the Guest OS `Sussex`.
 
-![Start the Guest OS](../images/vboxStart.png)
+![Start](../images/vboxStart.png)
 
-## 2. Mount the Shared Drive
+## 2. Login and Load Atom (Text Editor)
 
-Once the Guest OS has booted (you will see a login prompt), mount its shared drive to your local machine. To do so, on MAC OSX, open `Finder`, then select `Go` and `Connect to Server` and enter the value `smb://192.168.56.100/share`.
+Once the Guest OS has booted, you will see a login prompt, asking you to login to the account `sussex`:
 
-![Connect to Server](../images/macConnectToServer.png)
+![Login](../images/login.png)
 
-Hit 'Connect' and when prompted, select `Connect as Registered User`. Enter the following values:
-
-- Name: bitnami
 - Password: h3ll0w0rld
 
-The process is similar on Ubuntu 16.04, except, instead of `Finder`, use the `Nautilus` file browser, then under the `File` menu, choose `Connect to Server...` and enter `smb://192.168.56.100/share`.
+Launch `atom` from the `Application Launch Bar`:
 
-![Connect to Server](../images/connectToServer.png)
+![Atom](../images/atom.png)
 
-The `Username` and `Password` are as above, the `Domain` is `WORKGROUP`.
+Open the folder `/home/sussex/gitrepos/ExchangeCurrency`:
 
-Once you have the share from VirtualBox mounted on your local machine, you can use your favourite editor to make the necessary changes below.
+![ExchangeCurrency Directory](../images/exchangeDirectory.png)
 
 ## 3. Write the Smart Contract
 
-Change to the directory `ExchangeCurrency/src/TheAnswer`.
-
-Open the file `app/contracts/TheAnswer.sol` and edit it so it looks like this:
+Open the file `src/TheAnswer/app/contracts/TheAnswer.sol` and edit it so it looks like this:
 
     pragma solidity ^0.4.2;
 
