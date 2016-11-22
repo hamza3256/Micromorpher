@@ -71,9 +71,17 @@ However, you still need to edit the file `/home/sussex/gitrepos/ExchangeCurrency
 
 ## 6. Load the URI
 
-On your local machine, open a browser at the following URI:
+Load a web browser by launching `Web Browser`  from the `Application Launch Bar`:
+
+![Web Browser](../images/webBrowser.png)
+
+Go to the following URL:
 
 - http://blockchain.sussex.ac.uk:8082
+
+You should see a screen like this:
+
+![the Answer Web Page](../images/theAnswerWebPage.png)
 
 ## 7. Run the Demo
 
