@@ -65,9 +65,11 @@ Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` (`cd 
 
 ## 5. Install the Front End
 
-The [React](https://facebook.github.io/react/) based front end has been written for you.
+The [React](https://facebook.github.io/react/) Javascript front end has been written for you.
 
-However, you still need to ensure the front end has the correct value for its contract address. Open the file `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx` in `atom`; the constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json`). The `contractAddress` variable requires the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable and save the `index.jsx` file. There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.  
+However, you still need to ensure the front end has the correct value for its smart contract address. Open the file `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx` in `atom`; the constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json`). The `contractAddress` variable requires the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable and save `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx`.
+
+There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.  
 
 ## 6. Load the URI
 
