@@ -8,8 +8,8 @@ Please note that the application is at the early stages of development, so there
 
 ## Using the Currency Exchange Administrator
 
-1. Fund the contract from the Administrator account. Why didn't the funding happen instantly?
-2. Note the Administrator's amount of Ether on the _account_ page. Set some Exchange Rates. Go back to the _account_ page. What's changed? Why?
+1. Fund the contract from the Administrator account. Why didn't the funding happen instantly (it may take up to 5 minutes or more on some machines)?
+2. Note the Administrator's amount of Ether on the _account_ page. Set some Exchange Rates.
 
 ## Using the Currency Exchanger
 

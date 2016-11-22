@@ -1,4 +1,4 @@
-# VirtualBox _The Answer_ Demonstration
+# VirtualBox _The Answer_ Install
 
 Below are the instructions for running _The Answer_ from within VirtualBox.
 
@@ -6,7 +6,7 @@ It is assumed you have already followed the instructions in [VBoxInstall.md](VBo
 
 ## 1. Start the Guest OS
 
-**Start** the Guest OS `Sussex`.
+If it is not already running, **Start** the Guest OS `Sussex`.
 
 ![Start](../images/vboxStart.png)
 
@@ -28,7 +28,7 @@ Open the folder `/home/sussex/gitrepos/ExchangeCurrency`:
 
 ## 3. Write the Smart Contract
 
-Open the file `src/TheAnswer/app/contracts/TheAnswer.sol` and edit it so it looks like this:
+Open the file `src/TheAnswer/app/contracts/TheAnswer.sol` and edit it so it looks **EXACTLY** like this:
 
     pragma solidity ^0.4.2;
 
@@ -67,11 +67,11 @@ Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` (`cd 
 
 The [React](https://facebook.github.io/react/) based front end has been written for you.
 
-However, you still need to endure the front end has the correct value for its contract address. Open the file `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx` in `atom`; the constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json`). The `contractAddress` variable requires the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable and save the file. There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.  
+However, you still need to ensure the front end has the correct value for its contract address. Open the file `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx` in `atom`; the constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json`). The `contractAddress` variable requires the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable and save the file. There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.  
 
 ## 6. Load the URI
 
-Load a web browser by launching `Web Browser`  from the `Application Launch Bar`:
+Load a web browser by launching `Web Browser` from the `Application Launch Bar`:
 
 ![Web Browser](../images/webBrowser.png)
 
