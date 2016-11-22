@@ -6,10 +6,10 @@ These instructions assume you have already followed the instructions detailed in
 
 ## Use _The Answer_
 
-1. Type in a question and hit _Ask!_. Why didn't the answer appear instantly?
+1. Type in a question and hit _Ask!_. The answer may take a while to appear (on some machines, it may take 5 minutes or more). Why is that?
 
 ## Examine the Front End Application
 
-Change to _The Answer_ front end home directory `src/react-the-answer`.
+Change to _The Answer_ front end home directory `~/gitrepos/ExchangeCurrency/src/react-the-answer`.
 
-open the files `app/index.jsx`, `app/containers/answer.jsx` and `app/components/answer.jsx`. Do you understand the architecture of the application? Would you architect it that way? Why does the application use an event to get _The Answer_?
+Open the files `app/index.jsx`, `app/containers/answer.jsx` and `app/components/answer.jsx`. Do you understand the architecture of the application? Would you architect it that way? Why does the application use an event to get _The Answer_?
