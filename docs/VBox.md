@@ -126,7 +126,7 @@ From within `atom`, open the files `src/react-the-answer/app/index.jsx`, `src/re
 1. Do you understand the architecture of the front end application? Would you architect it that way? If not, how would you build the application?
 2. Why does the application use an event to get _The Answer_?
 
-# Install The Currency Exchange
+# Install The Currency Exchange Application
 
 Below are the instructions for running the Currency Exchange demonstration from within VirtualBox.
 
