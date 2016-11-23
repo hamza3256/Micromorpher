@@ -85,9 +85,13 @@ Load a terminal window by launching `LXTerminal`  from the `Application Launch B
 
 ![LXTerminal](../images/LXTerminal.png)
 
-Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the running blockchain. It loads a console window telling you the status of the deployment. While deploying, the contract will show `pending`. Once the contract has been successfully deployed (it may take up to 5 minutes or more), the screen will look similar to the following:
+Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the blockchain, which is running as a system daemon. `embark run` will load a console window telling you the status of the deployment. While deploying, the contract will show `pending`. Once the contract has been successfully deployed (it may take up to 5 minutes or more), the screen will look similar to the following:
 
 ![The Answer Deployed](../images/theAnswerDeployed.png)
+
+**Note**: If you open another terminal window (there are at least three ways to do this - either by launching another `LXTerminal`, or by creating a new tab within the existing `LXTerminal` window (`shift+ctrl+t`), or by using `ssh`), you can tail the blockchain log (`tail -f /var/log/supervisor/blockchain.err.log`) to see how the mining is doing. You should see a block commit when the contract is pending, and a mined block once it has been deployed:
+
+![Monitoring the Blockchain Log](../images/mining.png)
 
 ## 5. Install the Front End
 
