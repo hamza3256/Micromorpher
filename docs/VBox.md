@@ -32,6 +32,13 @@ Make sure the DHCP Server is disabled:
 
 Below are the instructions for running _The Answer_.
 
+# Preamble - _The Answer_ Architecture Overview
+
+_The Answer_ has the following architecture:
+
+1. An [Ethereum](https://www.ethereum.org/) blockchain back end. _The Answer_ uses the [Embark Framework](https://github.com/iurimatias/embark-framework) to ease smart contract deployment. Once you have booted the VirtualBox Guest OS and logged in, you will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`.
+2. A [React](https://facebook.github.io/react/) Javascript front end. You will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`.
+
 ## 1. Start the Guest OS
 
 **Start** the Guest OS `Sussex`.
@@ -133,6 +140,14 @@ From within `atom`, open the files `src/react-the-answer/app/index.jsx`, `src/re
 # Install The Currency Exchange Application
 
 Below are the instructions for running the Currency Exchange demonstration from within VirtualBox.
+
+# Preamble - The Currency Exchange Architecture Overview
+
+The Currency Exchange application has the following architecture:
+
+1. An [Ethereum](https://www.ethereum.org/) blockchain back end. Again, the Currency Exchange uses the [Embark Framework](https://github.com/iurimatias/embark-framework) to ease smart contract deployment. Once you have booted the VirtualBox Guest OS and logged in, you will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates`.
+2. A [React](https://facebook.github.io/react/) Javascript front end for the Currency Exchange Administrator. You will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/react-exchange-rates`.
+3. A [React](https://facebook.github.io/react/) Javascript front end for the Currency Exchanger application itself. You will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/react-do-exchange`.
 
 ## 1. Start the Guest OS
 
