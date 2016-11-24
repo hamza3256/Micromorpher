@@ -20,11 +20,13 @@ Select the command **Import Appliance** from the VirtualBox _File_ menu. Select 
 
 Create a `Host-only Network`. On MAC OS X, Go to `VirtualBox VM` on the main menu bar, select `Preferences`, `Network`, `Host-only Networks`.
 
-![vboxnet0](../images/vboxnet0.png)
+Add a new Host-only Network and edit the default `vboxnet0`:
 
-Edit the default `vboxnet0`, and make sure the DHCP Server is disabled.
+![The default vboxnet0](../images/vboxnet0.png)
 
-![DHCP Server](../images/dhcpServer.png)
+Make sure the DHCP Server is disabled:
+
+![Disable the DHCP Server](../images/dhcpServer.png)
 
 # Install _The Answer_
 
@@ -34,7 +36,7 @@ Below are the instructions for running _The Answer_.
 
 **Start** the Guest OS `Sussex`.
 
-![Start](../images/vboxStart.png)
+![Start the VirtualBox Guest OS](../images/vboxStart.png)
 
 ## 2. Login and Load the Text Editor `Atom`
 
@@ -81,7 +83,7 @@ Save the file.
 
 Load a terminal window by launching `LXTerminal`  from the `Application Launch Bar`:
 
-![LXTerminal](../images/LXTerminal.png)
+![Load a Terminal Window](../images/LXTerminal.png)
 
 Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the blockchain, which is running as a system daemon. `embark run` will load a console window telling you the status of the deployment. While deploying, the contract will show `pending`. Once the contract has been successfully deployed (it may take up to 5 minutes or more), the screen will look similar to the following:
 
@@ -103,7 +105,7 @@ There is a daemon running on the VirtualBox Guest OS that will notice the change
 
 Load a web browser by launching `Web Browser` from the `Application Launch Bar`:
 
-![Web Browser](../images/webBrowser.png)
+![Loading the Web Browser](../images/webBrowser.png)
 
 Go to the following URL:
 
@@ -111,7 +113,7 @@ Go to the following URL:
 
 You should see a screen like this:
 
-![the Answer Web Page](../images/theAnswerWebPage.png)
+![The Answer Web Page](../images/theAnswerWebPage.png)
 
 # Using *The Answer* Demonstrator Application
 
@@ -136,21 +138,19 @@ Below are the instructions for running the Currency Exchange demonstration from 
 
 If it is not already running, **Start** the Guest OS `Sussex`.
 
-![Start](../images/vboxStart.png)
+![[Start the VirtualBox Guest OS](../images/vboxStart.png)
 
 ## 2. Login
 
-If you are not already logged into the account `sussex` on the Virtual Box Guest OS, do so now:
+If you are not already logged into the account `sussex` on the Virtual Box Guest OS, do so now. The password is `h3ll0w0rld`:
 
-![Login](../images/login.png)
-
-- Password: h3ll0w0rld
+![Login to the VirtualBox Guest OS](../images/login.png)
 
 ## 3. Deploy the Contract
 
 Load a terminal window by launching `LXTerminal` from the `Application Launch Bar`:
 
-![LXTerminal](../images/LXTerminal.png)
+![Load a Terminal Window](../images/LXTerminal.png)
 
 Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates`). The smart contracts for this application have been written for you (they are much too complex to write in a single tutorial session); you just need to deploy them to the blockchain with the command `embark run`. That loads a console window telling you the status of the deployment. While deploying, the contract will show `pending`. The console will display contract addresses once they have been successfully deployed (to deploy every contract, it may take up to 5 minutes or more) - the screen will look similar to the following:
 
@@ -160,7 +160,7 @@ Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates` (
 
 If `atom` is not already running, launch it now from the `Application Launch Bar`:
 
-![Atom](../images/atom.png)
+![The Atom Text Editor](../images/atom.png)
 
 Open the folder `/home/sussex/gitrepos/ExchangeCurrency`:
 
@@ -182,7 +182,7 @@ Similarly, you still need to ensure the front end has the correct value for its 
 
 Load a web browser by launching `Web Browser` from the `Application Launch Bar`:
 
-![Web Browser](../images/webBrowser.png)
+![Load the Web Browser](../images/webBrowser.png)
 
 Load the following URIs:
 
@@ -197,12 +197,12 @@ Below are the instructions for using the Currency Exchange application.
 
 ## 1. Run the Currency Exchange Administrator
 
-1. Fund the contract from the Administrator account. Why didn't the funding happen instantly (it may take up to 5 minutes or more on some machines)?
-2. Note the Administrator's amount of Ether on the _account_ page. Set some Exchange Rates (again, these actions may take a while to complete).
+1. Fund the contract from the Administrator account. Why didn't the funding happen instantly (it may take up to 5 minutes or more on some machines)? After the funding, you might have expected the Administrator account to have the oringal funds minus those you just gave to the contract. Why is that not so?
+2. Set some Exchange Rates (again, these actions may take a while to complete). Again, note that the Administrator's funds will have changed. You should now be able to explain why.
 
 ## 2. Run the Currency Exchanger
 
-1. Choose an Exchange Rate for a currency we set above and exchange some of that currency. Note what happens to the account's Ether funds. Can you explain why that account has more Ether than you may have expected?
+1. Choose an Exchange Rate for a currency we set above and exchange some of that currency.
 2. If you successfully exchanged the currency, go back to the Currency Exchange Administrator and withdraw some of the currency just deposited.
 
 ## Known Limitations and Bugs
