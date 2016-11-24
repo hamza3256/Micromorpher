@@ -38,23 +38,21 @@ Below are the instructions for running _The Answer_.
 
 ## 2. Login and Load the Text Editor `Atom`
 
-Once the Guest OS has booted, you will see a login prompt. Login to the account `sussex`:
+Once the Guest OS has booted, you will see a login prompt. Login to the account `sussex` with the password `h3ll0w0rld`:
 
-![Login](../images/login.png)
-
-- Password: h3ll0w0rld
+![Login to the VirtualBox Guest OS](../images/login.png)
 
 Launch `atom` from the `Application Launch Bar`:
 
-![Atom](../images/atom.png)
+![The Atom text Editor](../images/atom.png)
 
 From `atom`, open the folder `/home/sussex/gitrepos/ExchangeCurrency`:
 
-![ExchangeCurrency Directory](../images/exchangeDirectory.png)
+![The ExchangeCurrency Directory](../images/exchangeDirectory.png)
 
 ## 3. Write the Smart Contract
 
-Open the file `src/TheAnswer/app/contracts/TheAnswer.sol` and edit it so it looks **EXACTLY** like this:
+In `atom`, open the file `src/TheAnswer/app/contracts/TheAnswer.sol` and edit it so it looks **EXACTLY** like this:
 
     pragma solidity ^0.4.2;
 
