@@ -212,7 +212,7 @@ Below are the instructions for using the Currency Exchange application.
 
 ## 1. Run the Currency Exchange Administrator
 
-1. Fund the contract from the Administrator account. Why didn't the funding happen instantly (it may take up to 5 minutes or more on some machines)? After the funding, you might have expected the Administrator account to have the oringal funds minus those you just gave to the contract. Why is that not so?
+1. Fund the contract from the Administrator account. Why didn't the funding happen instantly (it may take up to 5 minutes or more on some machines)? After the funding, you might have expected the Administrator account to have the original funds minus those you just gave to the contract. Why is that not so?
 2. Set some Exchange Rates (again, these actions may take a while to complete). Again, note that the Administrator's funds will have changed. You should now be able to explain why.
 
 ## 2. Run the Currency Exchanger
