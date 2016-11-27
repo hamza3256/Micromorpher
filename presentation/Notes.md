@@ -8,7 +8,7 @@ Ashton supposed that humans are time limited, so they are unable to capture too 
 
 ## However (IoT is Cloud Centric)...
 
-Li et al. (S. Li, L. D. Xu, and S. Zhao, “The Internet of Things: A Survey,” Information Systems Frontiers) list five security and privacy issues that need addressing for IoT: 
+Li et al. (S. Li, L. D. Xu, and S. Zhao, “The Internet of Things: A Survey,” Information Systems Frontiers) list five security and privacy issues that need addressing for IoT:
 
 1. Security and privacy from the social, legal and cultural perspectives
 2. Trust mechanisms
@@ -18,25 +18,39 @@ Li et al. (S. Li, L. D. Xu, and S. Zhao, “The Internet of Things: A Survey,”
 
 ## ShareLab's Solution...
 
-IPFS works much like the BitTorrent service Pirate Bay. 
+IPFS works much like the BitTorrent service Pirate Bay.
+
 Such systems overcome security and privacy issues by using public key cryptography. Furthermore, there's no central authority in control. Hence, there's no single point of failure (assuming a functioning Internet).
 
 ## Shared Public Ledger
 
-Hence, you might argue that blockchains represent an irrevocable representation of the truth because they're a permanent and complete record of every transaction that’s ever taken place (on the blockchain). 
-In other words, the control of write permissions means that blockchains have an inherent _track changes_ ability.
+You might argue that blockchains represent an irrevocable representation of the truth because they're a permanent and complete record of every transaction that’s ever taken place (on the blockchain).
+
+The control of write permissions means that blockchains have an inherent _track changes_ ability.
 
 ## Blockchain Transaction
 
 This example shows Alice buying a cup of coffee from Bob’s coffee shop. Alice spends BTC with Bob by using a BTC wallet on her smartphone. She does so by scanning a two-dimensional barcode, known as a QR code, of the payment request generated from Bob’s BTC enabled point-of-sale system. That contains Bob’s destination address, how much Alice should pay and the written description of the trade.
 
-Alice pays Bob for his cup of coffee by creating new outputs from the inputs of a previous transaction with Joe, who used Alice’s public key as the destination address for the BTC involved. When Alice uses some of those funds to pay Bob for his coffee, she supplies her private key to unlock them. That ensures that those transactions are read-only to every other user on the BTC network because it is impossible for anyone to modify them without knowing Alice’s private key. Once the network is satisfied Alice has a sufficient number of BTC to cover the necessary outputs for the transaction with Bob, the required BTC are transferred using Bob’s public key. That encumbers that output with the requirement that, to spend the amount transferred, Bob must produce his private key. In other words, it represents a secure transfer of value between Alice and Bob. 
+Alice pays Bob for his cup of coffee by creating new outputs from the inputs of a previous transaction with Joe, who used Alice’s public key as the destination address for the BTC involved. When Alice uses some of those funds to pay Bob for his coffee, she supplies her private key to unlock them. That ensures that those transactions are read-only to every other user on the BTC network because it is impossible for anyone to modify them without knowing Alice’s private key. Once the network is satisfied Alice has a sufficient number of BTC to cover the necessary outputs for the transaction with Bob, the required BTC are transferred using Bob’s public key. That encumbers that output with the requirement that, to spend the amount transferred, Bob must produce his private key. In other words, it represents a secure transfer of value between Alice and Bob.
 
 Security of the transfer is enforced by the timestamping and hashing functions of the validators on the Bitcoin network, who form a chain of final transactions. That ensures that even Alice, with her private key, can’t modify confirmed transactions, since it is technically infeasible; she would have to change all the blocks in the chain to change a single block. In 2014, a computing array with the power of 1,753,694 PetaFLOPS would have been needed to make a fake block on the BTC blockchain. At the time, the world’s fastest supercomputer, the Chinese Tianhe–2, could manage 33.9 PetaFLOPS. That means over 50,000 Tianhe–2 supercomputers would be required to attempt to create the fake block.
 
 ## A Timeline of Blockchain Technology (cont'd - Silk Road)
 
 Ross Ulbricht, aka "Dread Pirate Roberts".
+
+## dApp Architecture Overview
+
+Later, when we get to deploy the Currency Exchanger, you will notice the use of unsigned integers (uint256) to represent currency amounts. But consider an amount such as $8.52 - reals would clearly be better. Unfortunately, Solidity, as of version 0.4.3, does not support fixed point maths. Another limitation of the language is that, currently, it doesn’t support passing strings, such as “GBP” or “USD”, between internal functions. Hence, when implementing the function ‘placeOrder’ we had to pass in the ‘wantCurrency’ string, rather than have ‘placeOrder’ retrieve that currency from another function used to access stored values.
+
+Both of the issues above will be resolved in an imminent release of Solidity. When that ’s released, we’ll refactor the application to use real numbers and simplify the interface. However, that hints at another complication of blockchain development; once smart contracts have been deployed, they remain deployed forever. That’s why the Currency Exchanger application uses interfaces extensively; it allows us to decouple implementation and, in theory, updates should only affect a single instance of an interface and not the whole application. In practice, however, when Solidity starts supporting real numbers, we’ll have much to change, and hence, we’ll need to redeploy the whole application.  
+
+Thankfully, we haven’t yet deployed the application to a production environment. Indeed, we’ve been using a test setup based on the embark Ethereum development framework, which simplifies blockchain development because it establishes a running Ethereum network on your local machine and unlocks an account funded with lots of Ether (Ethereum’s native currency). That removes much of the complication of calling smart contract transactions which would otherwise need to be signed by the sender. Additionally, they would need to supply *gas*, which you can think of as an amount of Ether. In essence, that makes smart contracts behave something like Amazon Web Services where you have to pay for what you use. Furthermore, there’s a maximum amount you are allowed to pay, which discourages excessive consumption and helps prevent attackers from trying to exploit code through extensive transaction calls.
+
+Unfortunately, we also came foul of the maximum gas limit because you even have to pay to deploy contracts to the Ethereum blockchain. My original implementation of the Currency Exchanger had the Exchange class instantiating all of its composite classes. That caused an “Out of Gas” exception because the deployment of the Exchange contract was too expensive. Hence, I had to refactor. Therefore, smart contracts (can) behave somewhat differently to traditional Object Oriented applications. Hence, programmers using Solidity for the first time will have to learn new tricks.
+
+Furthermore, it’s not just dApp development teams that will need to change their thinking; IT departments used to client-server models and production environments that use firewalls to create demarcation zones and protect backend databases, will have to change their thinking too. After all, blockchains use public key cryptography for data protection, not firewalls. Furthermore, unlike dApps, traditional commercial operations are hierarchical, not decentralised. We should not underestimate the barrier to adoption such changes might entail for many companies.
 
 ## AutoPay
 
@@ -48,9 +62,9 @@ While at work, Jane receives a message that SmartBasket has tendered her daily s
 
 2012 was the first year that electronic sales of songs surpassed those of their physical counterparts. However, that has not dawned a golden age for music because of problems with the distribution and monetisation of digitised copyrighted material. Then there are a myriad of rights; sync rights, mechanical royalties, songwriter royalties and performance fees. As a consequence, streaming revenue can go to many services, and the artists themselves rarely receive much more than a tiny percentage of the monies generated.
 
-Imogen Heap tried to overcome all that by releasing her latest song, Tiny Human, on the prototype music platform ujo music, which uses blockchain technology to detail under what terms the track may be downloaded. The technology also describes how automated payments are distributed to the song’s different contributors. Furthermore, when someone streams the song, the transaction is permanently recorded on the blockchain, which makes it amenable to all kinds of data visualisations and data mining techniques. Moreover, Heap receives immediate payment. That in itself could be a game changer since, currently, it can take months for an artist to receive their royalty payments. 
+Imogen Heap tried to overcome all that by releasing her latest song, Tiny Human, on the prototype music platform ujo music, which uses blockchain technology to detail under what terms the track may be downloaded. The technology also describes how automated payments are distributed to the song’s different contributors. Furthermore, when someone streams the song, the transaction is permanently recorded on the blockchain, which makes it amenable to all kinds of data visualisations and data mining techniques. Moreover, Heap receives immediate payment. That in itself could be a game changer since, currently, it can take months for an artist to receive their royalty payments.
 
-However, Tiny Human is still centrally stored. To support the distributed model, Heap could make the song available on IPFS, via a link on the blockchain. Thus, it would maximise Heap’s opportunities for revenue because her song could achieve high throughput streaming in a manner that’s fault tolerant. 
+However, Tiny Human is still centrally stored. To support the distributed model, Heap could make the song available on IPFS, via a link on the blockchain. Thus, it would maximise Heap’s opportunities for revenue because her song could achieve high throughput streaming in a manner that’s fault tolerant.
 
 Music is not the only medium that could benefit from the blockchain and IPFS model. Any digital assets could be distributed that way, with huge implications for electronic media. Legal systems currently consider such intangible assets as non-rivalrous, which means that digital media has long since been caught in the quagmire of intellectual property law because there is, supposedly, no way to prevent their duplication. The result is that users own practically no online material; instead, they merely license such material. However, because blockchain technology has mechanisms that resist falsification and duplication, it could change that and make intangible assets rivalrous. Furthermore, blockchains do that at a very low cost, which supports the type of micropayment models required by music streaming services. Hence, we imagine a future of transparent ownership and use of all digital assets, via blockchains.
 
@@ -58,10 +72,10 @@ Music is not the only medium that could benefit from the blockchain and IPFS mod
 
 A study from Zopa indicates that the British alone have an estimated UK£2.92 billion of leftover foreign currency. If the UK situation scales to the global population, then there’s a considerable amount of wealth lying unused.
 
-Imagine a scenario whereby, after returning home to London from a business trip to Chicago, John has with him some United States Dollars (USD) that he no longer needs. At the airport gate, using a bespoke smartphone _foreign exchange_ application, he finds the location of the nearest currency-accepting IoT-enabled smart kiosk. John holds his smartphone close to the booth, which identifies him using near-field communication technology (NFC) to exchange a smart contract via a blockchain application. 
+Imagine a scenario whereby, after returning home to London from a business trip to Chicago, John has with him some United States Dollars (USD) that he no longer needs. At the airport gate, using a bespoke smartphone _foreign exchange_ application, he finds the location of the nearest currency-accepting IoT-enabled smart kiosk. John holds his smartphone close to the booth, which identifies him using near-field communication technology (NFC) to exchange a smart contract via a blockchain application.
 
 John deposits his USD and instantly gets an electronic receipt of the deposit using another blockchain based smart contract exchange. Later,
-John posts his USD to GBP exchange rate using an intelligent system application that stays competitive by adjusting automatically using the latest mid-market rates. John soon receives an alert that someone has traded, via a smart contract, at his advertised price and the money has been transferred into John’s bank account. 
+John posts his USD to GBP exchange rate using an intelligent system application that stays competitive by adjusting automatically using the latest mid-market rates. John soon receives an alert that someone has traded, via a smart contract, at his advertised price and the money has been transferred into John’s bank account.
 
 ## PeerBnB
 

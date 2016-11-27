@@ -199,8 +199,9 @@ Blockchain technologies have capabilities far beyond any traditional ledger or o
 + Distributed network of transactions where the control of write permissions is via public-private key cryptography  
 
 <div class="notes">
-Hence, you might argue that blockchains represent an irrevocable representation of the truth because they're a permanent and complete record of every transaction that’s ever taken place (on the blockchain).
-In other words, the control of write permissions means that blockchains have an inherent _track changes_ ability.
+You might argue that blockchains represent an irrevocable representation of the truth because they're a permanent and complete record of every transaction that’s ever taken place (on the blockchain).
+
+The control of write permissions means that blockchains have an inherent _track changes_ ability.
 </div>
 
 ## Blockchain Transaction
@@ -314,9 +315,21 @@ _Image Source: [Ethereum Blog](https://blog.ethereum.org/2016/07/12/build-server
 + Backend - Blockchain
     + Accounts, Gas, Transactions
     + Contracts as addressable code on the blockchain
-    + Asynchronous programming - mining and blocks
+    + Limitations and Complications
 + Front end dApp Browser
-    + State based event driven architecture
+    + Asynchronous programming - State based event driven architecture
+
+<div class="notes">
+  Later, when we get to deploy the Currency Exchanger, you will notice the use of unsigned integers (uint256) to represent currency amounts. Consider $8.52 - reals would clearly be better. Unfortunately, Solidity, as of version 0.4.3, does not support fixed point maths. Another limitation of the language is that, currently, it doesn’t support passing strings, such as “GBP” or “USD”, between internal functions. Hence, when implementing the function ‘placeOrder’ we had to pass in the ‘wantCurrency’ string, rather than have ‘placeOrder’ retrieve that currency from another function used to access stored values.
+
+  Both of the issues above will be resolved in an imminent release of Solidity. When that ’s released, we’ll refactor the application to use real numbers and simplify the interface. However, that hints at another complication of blockchain development; once smart contracts have been deployed, they remain deployed forever. That’s why the Currency Exchanger application uses interfaces extensively; it allows us to decouple implementation and, in theory, updates should only affect a single instance of an interface and not the whole application. In practice, however, when Solidity starts supporting real numbers, we’ll have much to change, and hence, we’ll need to redeploy the whole application.  
+
+  Thankfully, we haven’t yet deployed the application to a production environment. Indeed, we’ve been using a test setup based on the embark Ethereum development framework, which simplifies blockchain development because it establishes a running Ethereum network on your local machine and unlocks an account funded with lots of Ether (Ethereum’s native currency). That removes much of the complication of calling smart contract transactions which would otherwise need to be signed by the sender. Additionally, they would need to supply *gas*, which you can think of as an amount of Ether. In essence, that makes smart contracts behave something like Amazon Web Services where you have to pay for what you use. Furthermore, there’s a maximum amount you are allowed to pay, which discourages excessive consumption and helps prevent attackers from trying to exploit code through extensive transaction calls.
+
+  Unfortunately, we also came foul of the maximum gas limit because you even have to pay to deploy contracts to the Ethereum blockchain. My original implementation of the Currency Exchanger had the Exchange class instantiating all of its composite classes. That caused an “Out of Gas” exception because the deployment of the Exchange contract was too expensive. Hence, I had to refactor. Therefore, smart contracts (can) behave somewhat differently to traditional Object Oriented applications. Hence, programmers using Solidity for the first time will have to learn new tricks.
+
+  Furthermore, it’s not just dApp development teams that will need to change their thinking; IT departments used to client-server models and production environments that use firewalls to create demarcation zones and protect backend databases, will have to change their thinking too. After all, blockchains use public key cryptography for data protection, not firewalls. Furthermore, unlike dApps, traditional commercial operations are hierarchical, not decentralised. We should not underestimate the barrier to adoption such changes might entail for many companies.
+</div>
 
 ## dApp Ecosystem
 
