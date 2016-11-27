@@ -13,10 +13,10 @@ s.huckle@sussex.ac.uk
 ## Presentation Objectives
 
 1. Introduce the ShareLab team at Sussex
-2. Give a brief overview of IoT and blockchain
-3. Describe some IoT, blockchain based sharing economy scenarios
-4. Give an overview of distributed application development
-5. Draw some conclusions about the IoT and blockchain technology
+2. Give an overview of IoT and blockchain technology
+3. Look at what's involved with distributed application development
+4. Describe some IoT and blockchain based sharing economy scenarios
+5. Draw some conclusions about IoT and blockchain technology
 
 # The ShareLab Team
 
