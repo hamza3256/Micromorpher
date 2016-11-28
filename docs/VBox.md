@@ -62,9 +62,11 @@ _The Answer_ has the following architecture:
 1. An [Ethereum](https://www.ethereum.org/) blockchain back end. _The Answer_ uses the [Embark Framework](https://github.com/iurimatias/embark-framework) to ease smart contract deployment. Once you have booted the VirtualBox Guest OS and logged in, you will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`.
 2. A [React](https://facebook.github.io/react/) Javascript front end. You will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`.
 
-`geth` is the the command line interface for running a full ethereum node, and the command `embark blockchain`, run from the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`, will load a correctly configured `geth` for you. However, you do need to do that because `embark blockchain` has been called at system startup. In fact, if you load a terminal window (by launching `LXTerminal` from the `Application Launch Bar`: ![](../images/LXTerminal.png)), the command `pgrep -a geth` will show you the running process.
+`geth` is the the command line interface for running a full [Ethereum](https://www.ethereum.org/) node, and the command `embark blockchain`, run from the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`, will load a correctly configured `geth` for you. However, you do need to do that because `embark blockchain` has been called at system startup. In fact, if you load a terminal window (by launching `LXTerminal` from the `Application Launch Bar`: ![](../images/LXTerminal.png)), the command `pgrep -a geth` will show you the running process.
 
-Additionally, there is a process loaded at startup, `webpack -d watch`, which is monitoring for changes in the javascript front end directory, `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`. Finally, there's another process, again loaded at startup, that establishes a simple web-server on port 8082. You'll use that to communicate with the front end javascript application. `pgrep -a node | grep the-answer` will show those processes.
+Additionally, there is a process loaded at startup, `webpack -d watch`, which is monitoring for changes in the javascript front end directory, `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`. Hence, when you make changes to the front end later, the build process is done for you.
+
+Finally, there's another process, again loaded at startup, that establishes a simple web-server on port 8082. You'll use that to communicate with the front end javascript application. `pgrep -a node | grep the-answer` will show the build and web server processes.
 
 ## 1. Start the Guest OS
 
