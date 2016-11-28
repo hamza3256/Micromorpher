@@ -8,29 +8,52 @@ These instructions assume you have access to the file `Sussex.ova`. If you do no
 
 Download and install [VirtualBox](https://www.virtualbox.org). If you are using Windows, you may wish to install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html), which will allow you to `ssh` onto the VirtualBox Guest OS (`ssh -l sussex 192.168.56.100`). On a MAC or Linux machine, you will be able to do that from a terminal window.
 
-## Important Note
+## Import the Tutorial
 
-If your mouse disappears while you are using VirtualBox, press the defined Host key - on a MAC this will probably be the command key, directly to the left of the spacebar. On Linux, it should be the Alt key, again, to the left of the spacebar.
+The following steps show you how to install the pre-installed image, `Sussex.ova`, which contains all the code and tools you will need for this tutorial.
 
-## 1. Import the VirtualBox Appliance
+**Step 1:** Import the appliance
 
-Select the command **Import Appliance** from the VirtualBox _File_ menu. Select the file `Sussex.ova` from the USB drive supplied.
+Open [VirtualBox](https://www.virtualbox.org) and select the command **Import Appliance** from the VirtualBox _File_ menu. See Figure 1.
 
-## 2. Create the Network
+![Figure 1: Install the pre-installed image using the ‘Import Appliance’ command](../images/importAppliance.png)
 
-Create a `Host-only Network`. On MAC OS X, Go to `VirtualBox VM` on the main menu bar, select `Preferences`, `Network`, `Host-only Networks`.
+Select the file `Sussex.ova` from the USB drive supplied. See Figure 2.
 
-Add a new Host-only Network and edit the default `vboxnet0`:
+![Figure 2: Navigate to the Sussex.ova file on the USB stick supplied](../images/importTutorial.png)
 
-![The default vboxnet0](../images/vboxnet0.png)
+Once the VirtualBox image is installed you should have an Ubunto 64-bit operating system called Sussex, which is currently Powered Off, inside your VirtualBox Manager. See Figure 3.
 
-Make sure the DHCP Server is disabled:
+![Figure 3: The Ubunto 64-bt operating system in the VirtualBox](../images/vboxStart.png)
 
-![Disable the DHCP Server](../images/dhcpServer.png)
+You will be creating (or configuring) the smart contract applications _The Answer_ and _Currency Exchange_ demonstrator applications from within this version of Ubunto running inside VirtualBox.
+
+**Step 2:** Create the Network
+
+Create a `Host-only Network`. On MAC OS X, Go to `VirtualBox VM` on the main menu bar, select `Preferences`, `Network`, `Host-only Networks`. See Figure 4.
+
+![Figure 4: Set up the VirtualBox Host-only Networks](../images/hostOnly.png)
+
+Add a new Host-only Network: ![](../images/addHostOnly.png). See Figure 5.
+
+![Figure 5: Add the Host-only Network — `vboxnet0`](../images/vboxnet0.png)
+
+Edit the default `vboxnet0` and make sure the DHCP Server is disabled. See Figure 6.
+
+![Figure 6: Disable the DHCP Server](../images/dhcpServer.png)
+
+Click **OK** a couple of times to return to the VirtualBox main screen.
 
 # Install _The Answer_
 
-Below are the instructions for running _The Answer_.
+You have six steps to follow to install and write the smart contract for running _The Answer_.
+
+1. Start the Sussex Ubunto Operating System.
+2. Login to the OS and load the Atom text editor.
+3. Write the smart contract (_The Answer_ — a blockchain equivalent of _Hello World_).
+4. Deploy the smart contract to the blockchain.
+5. Install the front-end (the user interface) to the smart contract.
+6. Load up the front-end, which is a simple web page and use the smart contract, i.e. play with the simple interface.
 
 # Preamble - _The Answer_ Architecture Overview
 
@@ -38,6 +61,10 @@ _The Answer_ has the following architecture:
 
 1. An [Ethereum](https://www.ethereum.org/) blockchain back end. _The Answer_ uses the [Embark Framework](https://github.com/iurimatias/embark-framework) to ease smart contract deployment. Once you have booted the VirtualBox Guest OS and logged in, you will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`.
 2. A [React](https://facebook.github.io/react/) Javascript front end. You will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`.
+
+`geth` is the the command line interface for running a full ethereum node, and the command `embark blockchain`, run from the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`, will load a correctly configured `geth` for you. However, you do need to do that because `embark blockchain` has been called at system startup. In fact, if you load a terminal window (by launching `LXTerminal` from the `Application Launch Bar`: ![](../images/LXTerminal.png)), the command `pgrep -a geth` will show you the running process.
+
+Additionally, there is a process loaded at startup, `webpack -d watch`, which is monitoring for changes in the javascript front end directory, `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`. Finally, there's another process, again loaded at startup, that establishes a simple web-server on port 8082. You'll use that to communicate with the front end javascript application. `pgrep -a node | grep the-answer` will show those processes.
 
 ## 1. Start the Guest OS
 
