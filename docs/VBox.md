@@ -1,3 +1,9 @@
+Copyright © University of Sussex, 2016.
+
+![CC-BY-NC-SA 4.0 International](images/ccbyncsa.png)
+
+The work here is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/) (CC BY-NC-SA 4.0). It is attributed to the University of Sussex. The license lets you remix, tweak, and build upon the work non-commercially, as long as you credit the University of Sussex and license your new creations under the identical terms.
+
 # VirtualBox Install
 
 These are the installation instructions for running the _The Answer_ and _Currency Exchange_ demonstrator applications from within VirtualBox.
@@ -32,7 +38,7 @@ You will be creating (or configuring) the smart contract applications _The Answe
 
 Create a `Host-only Network`. On MAC OS X, Go to `VirtualBox VM` on the main menu bar, select `Preferences`, `Network`, `Host-only Networks`. See Figure 4.
 
-![Figure 4: Set up the VirtualBox Host-only Networks](../images/hostOnly.png)
+![Figure 4: Set up the VirtualBox Host-only Network](../images/hostOnly.png)
 
 Add a new Host-only Network: ![](../images/addHostOnly.png). See Figure 5.
 
@@ -62,35 +68,49 @@ _The Answer_ has the following architecture:
 1. An [Ethereum](https://www.ethereum.org/) blockchain back end. _The Answer_ uses the [Embark Framework](https://github.com/iurimatias/embark-framework) to ease smart contract deployment. Once you have booted the VirtualBox Guest OS and logged in, you will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`.
 2. A [React](https://facebook.github.io/react/) Javascript front end. You will find this in the directory `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`.
 
-`geth` is the the command line interface for running a full [Ethereum](https://www.ethereum.org/) node, and the command `embark blockchain`, run from the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`, will load a correctly configured `geth` for you. However, you do need to do that because `embark blockchain` has been called at system startup. In fact, if you load a terminal window (by launching `LXTerminal` from the `Application Launch Bar`: ![](../images/LXTerminal.png)), the command `pgrep -a geth` will show you the running process.
+`geth` is the the command line interface for running a full [Ethereum](https://www.ethereum.org/) node, and the command `embark blockchain`, run from the directory `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`, will load a correctly configured `geth` for you. However, you do need to do that because `embark blockchain` has been called at system startup. In fact, load a terminal window (by launching `LXTerminal` from the `Application Launch Bar`: ![](../images/LXTerminal.png)) and run the command `pgrep -a geth` - you will see the running process.
 
-Additionally, there is a process loaded at startup, `webpack -d watch`, which is monitoring for changes in the javascript front end directory, `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`. Hence, when you make changes to the front end later, the build process is done for you.
+There is another process loaded at system startup which is monitoring for changes in the javascript front end directory, `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer`. Hence, when you make changes to the front end later, the build process is done for you. The process is `webpack -d watch`.
 
-Finally, there's another process, again loaded at startup, that establishes a simple web-server on port 8082. You'll use that to communicate with the front end javascript application. `pgrep -a node | grep the-answer` will show the build and web server processes.
+Finally, there's another process loaded at system startup that establishes a simple web-server on port 8082, which you'll use to communicate with the front end javascript application for _The Answer_. `pgrep -a node | grep the-answer` will show both the build and web server processes.
 
-## 1. Start the Guest OS
+**Note**: Subsequently, if you need other terminal windows, there are at least three ways to do this, 1) by launching another `LXTerminal`, 2) by creating a new tab within the existing `LXTerminal` window (`shift+ctrl+t`), 3) by using `ssh` to login to the Guest OS from the host (`ssh -l sussex 192.168.56.100`).
 
-**Start** the Guest OS `Sussex`.
+**Step 1:** Start the Guest OS
 
-![Start the VirtualBox Guest OS](../images/vboxStart.png)
+To start the Guest OS (Ubunto), simply double click on the **Sussex Powered Off** button in the [VirtualBox](https://www.virtualbox.org) Manager. See Figure 7.
 
-## 2. Login and Load the Text Editor `Atom`
+![Figure 7: The Ubunto 64-bit OS — click on the power button to turn it on](../images/vboxStart.png)
 
-Once the Guest OS has booted, you will see a login prompt. Login to the account `sussex` with the password `h3ll0w0rld`:
+When you start the Guest OS, you should see a new window appear with the Ubunto OS booting up. See Figure 8. Eventually, it should show the login window.
 
-![Login to the VirtualBox Guest OS](../images/login.png)
+**Note**: You can close the two warning messages. They are just telling you that when you are active in the [VirtualBox](https://www.virtualbox.org) window, the Guest OS will process input may hang onto the keyboard and mouse when you try to use them back in your host operating system. In which case, you'll need to press the designated 'Host Key', which for the Mac is the left CMD key.
 
-Launch `atom` from the `Application Launch Bar`:
+**Step 2:** Login and Load the Text Editor `Atom`
 
-![The Atom text Editor](../images/atom.png)
+Once the Guest OS has booted, you will see a login prompt. Login to the account `sussex` with the password `h3ll0w0rld`. See Figure 8.
 
-From `atom`, open the folder `/home/sussex/gitrepos/ExchangeCurrency`:
+![Figure 8: The Guest OS Login Screen](../images/login.png)
 
-![The ExchangeCurrency Directory](../images/exchangeDirectory.png)
+You should now be logged into the Guest OS. See Figure 9.
 
-## 3. Write the Smart Contract
+![Figure 9: Logged into the Guest OS](../images/loggedIn.png)
 
-In `atom`, open the file `src/TheAnswer/app/contracts/TheAnswer.sol` and edit it so it looks **EXACTLY** like this:
+**Step 3:** Write the Smart Contract
+
+You will now code the smart contract _The Answer_ using the Atom Editor, whose icon you will find on the `Application Launch Bar` at the bottom left of the Guest OS: ![](../images/atom.png). Click on the `atom icon` to the launch the `atom` editor. See Figure 10.
+
+![Figure 10: The Atom text editor](../images/atomEditorWindow.png)
+
+From within `atom`, open the folder `/home/sussex/gitrepos/ExchangeCurrency`. See Figure 11.
+
+![Figure 11: Navigate to the ExchangeCurrency folder](../images/theAnswerDirectory.png)
+
+The directory tree of the files you'll be working on are now open within `atom`. Navigate to the file `src/TheAnswer/app/contracts/TheAnswer.sol` and open it. See Figure 12.
+
+![Figure 12: Edit `TheAnswer.sol` to create the smart contract](../images/theAnswerContract.png)
+
+Edit the file so it looks **EXACTLY** like this:
 
     pragma solidity ^0.4.2;
 
@@ -115,51 +135,65 @@ In `atom`, open the file `src/TheAnswer/app/contracts/TheAnswer.sol` and edit it
 
 Save the file.
 
-## 4. Deploy the Contract
+**Step 4:** Deploy the Contract
 
-Load a terminal window by launching `LXTerminal`  from the `Application Launch Bar`:
+If you still have the terminal window open, go to that now. Otherwise, load a terminal window by launching `LXTerminal`  from the `Application Launch Bar`: ![](../images/LXTerminal.png)
 
-![Load a Terminal Window](../images/LXTerminal.png)
+In the terminal window, change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` by running the command `cd /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`.
 
-Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` (`cd /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`). The command `embark run` will deploy the contract to the blockchain, which is running as a system daemon. `embark run` will load a console window telling you the status of the deployment. While deploying, the contract will show `pending`. Once the contract has been successfully deployed (it may take up to 5 minutes or more), the screen will look similar to the following:
+The command `embark run` will deploy the contract to the blockchain running as a system daemon. It will do so by loading a console window telling you the status of the deployment. While deploying, the contract will show `pending`. See Figure 13.
 
-![The Answer Deployed](../images/theAnswerDeployed.png)
+![Figure 13: The smart contract deploying on the blockchain (showing pending)](../images/theAnswerPending.png)
 
-**Note**: If you open another terminal window (there are at least three ways to do this - either by launching another `LXTerminal`, or by creating a new tab within the existing `LXTerminal` window (`shift+ctrl+t`), or by using `ssh`), you can tail the blockchain log (`tail -f /var/log/supervisor/blockchain.err.log`) to see how the mining is doing. You should see a block commit when the contract is pending, and a mined block once it has been deployed:
+Once the contract has been successfully deployed (it may take up to 5 minutes or more), the screen will look similar to that shown in Figure 14.
 
-![Monitoring the Blockchain Log](../images/mining.png)
+![Figure 14: The smart contract now deployed on the blockchain (showing its address)](../images/theAnswerDeployed.png)
 
-## 5. Install the Front End
+You can `tail` the blockchain log (`tail -f /var/log/supervisor/blockchain.err.log`) to see how the mining is doing. You should see a block commit when the contract is pending, and a mined block once it has been deployed. See Figure 15.
 
-The [React](https://facebook.github.io/react/) Javascript front end has been written for you.
+![Figure 15: Monitoring the Blockchain Log](../images/mining.png)
 
-However, you still need to ensure the front end has the correct value for its smart contract address. Open the file `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx` in `atom`; the constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` (from within the `LXTerminal` window, run `cat /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json`). The `contractAddress` variable requires the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable and save `/home/sussex/gitrepos/ExchangeCurrency/src/react-the-answer/app/index.jsx`.
+**Step 5**. Install the Front End
 
-There is a daemon running on the VirtualBox Guest OS that will notice the change you just made. It will build the front end application for you.   
+Now you need to connect to the smart contract with some kind of an application interface. You are going to use The [React](https://facebook.github.io/react/) Javascript Framework for this, which has already been written for you. However, you still need to ensure the front end has the correct value for its smart contract address.
 
-## 6. Load the URI
+From within `atom`, navigate to the file `src/react-the-answer/app/index.jsx`. Figure 16 shows a version of the file.
 
-Load a web browser by launching `Web Browser` from the `Application Launch Bar`:
+![Figure 16: `index.jsx` file open in `atom`](../images/theAnswerIndexJSX.png)
 
-![Loading the Web Browser](../images/webBrowser.png)
+In Figure 16, you can see the constructor function variable `contractAddress`, which is where the code stores the smart contract address.
+
+To get the new value for the smart contract address, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` by running the command `cat /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer/chains.json` from a terminal window. As the name implies, `chains.json` is a JSON formatted text file that stores the smart contract address. See Figure 17.
+
+![Figure 17: The terminal window showing the JSON formatted smart contract address](../images/theSmartContractAddress.png)
+
+Alternatively, just open the file in `atom` and copy the address.
+
+The `contractAddress` variable requires the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`.
+
+Copy the new smart contract address value you took from `chains.json` and replace the `contractAddress` variable in the `index.jsx` file shown in Figure 16.
+
+Once you save the file, the daemon running in the background will notice the change and will build the front end application for you.   
+
+**Step 6:** Load the URI
+
+Load a web browser by launching `Web Browser` from the `Application Launch Bar`: ![](../images/webBrowser.png).
 
 Go to the following URL:
 
 - http://blockchain.sussex.ac.uk:8082
 
-You should see a screen like this:
+You should see a screen like the one shown in Figure 18:
 
-![The Answer Web Page](../images/theAnswerWebPage.png)
+![Figure 18: The smart contract front-end application as a web page in Mozilla Firefox](../images/theAnswerWebPage.png)
 
-# Using *The Answer* Demonstrator Application
+## Using *The Answer* Demonstrator Application
 
-Below are the instructions for using _The Answer_.
+To use the smart contract frontend application, simply type in a question and hit the `Ask!` Button.
 
-## 1. Use _The Answer_
+The answer may take a while to appear (on some machines, it may take 5 minutes or more). Can you explain why it does not return instantly?
 
-1. Type in a question and hit _Ask!_. The answer may take a while to appear (on some machines, it may take 5 minutes or more). Can you explain why it does not return instantly?
-
-## 2. Examine the Front End Application
+### Examine the Front End Application
 
 From within `atom`, open the files `src/react-the-answer/app/index.jsx`, `src/react-the-answer/app/containers/answer.jsx` and `src/react-the-answer/app/components/answer.jsx`.
 
