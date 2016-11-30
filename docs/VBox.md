@@ -137,7 +137,7 @@ Save the file.
 
 **Step 4:** Deploy the Contract
 
-If you still have the terminal window open, go to that now. Otherwise, load a terminal window by launching `LXTerminal`  from the `Application Launch Bar`: ![](../images/LXTerminal.png)
+If you still have the terminal window open, go to that now. Otherwise, load a terminal window by launching `LXTerminal`  from the `Application Launch Bar`: ![](../images/LXTerminal.png).
 
 In the terminal window, change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer` by running the command `cd /home/sussex/gitrepos/ExchangeCurrency/src/TheAnswer`.
 
@@ -149,13 +149,13 @@ Once the contract has been successfully deployed (it may take up to 5 minutes or
 
 ![Figure 14: The smart contract now deployed on the blockchain (showing its address)](../images/theAnswerDeployed.png)
 
-You can `tail` the blockchain log (`tail -f /var/log/supervisor/blockchain.err.log`) to see how the mining is doing. You should see a block commit when the contract is pending, and a mined block once it has been deployed. See Figure 15.
+To see how the mining is progressing, you can `tail` the blockchain log by running the command `tail -f /var/log/supervisor/blockchain.err.log`. You should see a block commit when the contract is pending, and a mined block once it has been deployed. See Figure 15.
 
 ![Figure 15: Monitoring the Blockchain Log](../images/mining.png)
 
 **Step 5**. Install the Front End
 
-Now you need to connect to the smart contract with some kind of an application interface. You are going to use the [React](https://facebook.github.io/react/) Javascript Framework for this because blockchains require asynchronous programming techniques (since you have to wait for blocks to be mined) and [React](https://facebook.github.io/react/) manages 'State' really nicely. Due to its complexity, the frontend has already been written for you. However, you still need to ensure it has the correct value for its smart contract address.
+Now you need to connect to the smart contract with some kind of an application interface. You are going to use the [React](https://facebook.github.io/react/) Javascript Framework for this because blockchains require asynchronous programming techniques (since you have to wait for blocks to be mined) and [React](https://facebook.github.io/react/) manages 'State' really nicely. Due to its complexity, the front end has already been written for you. However, you still need to ensure it has the correct value for its smart contract address.
 
 From within `atom`, navigate to the file `src/react-the-answer/app/index.jsx`. Figure 16 shows a version of the file.
 
@@ -167,13 +167,11 @@ To get the new value for the smart contract address, open the file `/home/sussex
 
 ![Figure 17: The terminal window showing the JSON formatted smart contract address](../images/theSmartContractAddress.png)
 
-Alternatively, just open the file in `atom` and copy the address.
+Alternatively, just open the file in `atom`.
 
-The `contractAddress` variable requires the value of the `address` json key - it will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`.
+The `contractAddress` variable in `index.jsx`, shown in Figure 16 above, requires the value of the `address` json key from `chains.json`. It will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable.
 
-Copy the new smart contract address value you took from `chains.json` and replace the `contractAddress` variable in the `index.jsx` file shown in Figure 16.
-
-Once you save the file, the daemon running in the background will notice the change and will build the front end application for you.   
+Once you save `index.jsx`, the daemon running in the background will notice the change and will build the front end application for you.   
 
 **Step 6:** Load the URI
 
@@ -272,13 +270,13 @@ However, you still need to ensure the front end has the correct value for its sm
 
 The constructor function variable `contractAddress` is where the code stores the address. To get the necessary value, open the file `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates/chains.json` by running the command `cat /home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates/chains.json` from a terminal window. As the name implies, `chains.json` is a JSON formatted text file that stores the smart contract address.
 
-Alternatively, just open the file in `atom` and copy the address.
+Alternatively, just open the file in `atom`.
 
-The `contractAddress` variable requires the value of the `address` json key for the contract `Exchanger` (**Note**: not `Exchange` - that's its abstract interface) - the address will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. See Figure 23 for a version of the file. Copy that value to the `contractAddress` variable and save `src/react-exchange-rates/app/index.jsx`.
+The `contractAddress` variable in `index.jsx` requires the value of the `address` json key from `chains.json` for the contract `Exchanger` (**Note**: not `Exchange` - that's its abstract interface). It will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. See Figure 23 for a version of `chains.json`. Copy that value to the `contractAddress` variable.
 
 ![Figure 23: The Exchanger smart contract#s address in `chains.json`](../images/exchangerChains.png)
 
-Once you save the file, the daemon running in the background will notice the change and will build the front end application for you.   
+Once you save `index.jsx`, the daemon running in the background will notice the change and will build the front end application for you.   
 
 **Step 6:** Install the Front End Currency Exchange Application
 
