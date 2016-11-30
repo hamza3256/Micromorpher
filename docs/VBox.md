@@ -242,7 +242,7 @@ Once the Guest OS has booted, you will see a login prompt. Login to the account 
 
 **Step 3:** Deploy the Contract
 
-Load a terminal window by launching `LXTerminal` from the `Application Launch Bar`: ![](../images/LXTerminal.png)
+Load a terminal window by launching `LXTerminal` from the `Application Launch Bar`: ![](../images/LXTerminal.png).
 
 Change directory to `/home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates` by running the command `cd /home/sussex/gitrepos/ExchangeCurrency/src/ExchangeRates`.
 
@@ -254,7 +254,7 @@ The smart contracts for this application have been written for you. Unfortunatel
 
 **Step 4:** Load `atom`
 
-Launch `atom` from the `Application Launch Bar`: ![](../images/atom.png)
+Launch `atom` from the `Application Launch Bar`: ![](../images/atom.png).
 
 From within `atom`, open the folder `/home/sussex/gitrepos/ExchangeCurrency`. See Figure 21.
 
