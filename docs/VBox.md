@@ -86,7 +86,7 @@ When you start the Guest OS, you should see a new window appear with the Ubunto 
 
 **Note**: You can close the two warning messages. They are just telling you that when you are active in the [VirtualBox](https://www.virtualbox.org) window, the Guest OS will process input may hang onto the keyboard and mouse when you try to use them back in your host operating system. In which case, you'll need to press the designated 'Host Key', which for the Mac is the left CMD key.
 
-**Step 2:** Login and Load the Text Editor `Atom`
+**Step 2:** Login and Load the Text Editor `atom`
 
 Once the Guest OS has booted, you will see a login prompt. Login to the account `sussex` with the password `h3ll0w0rld`. See Figure 8.
 
@@ -98,7 +98,7 @@ You should now be logged into the Guest OS. See Figure 9.
 
 **Step 3:** Write the Smart Contract
 
-You will now code the smart contract _The Answer_ using the Atom Editor, whose icon you will find on the `Application Launch Bar` at the bottom left of the Guest OS: ![](../images/atom.png). Click on the `atom icon` to the launch the `atom` editor. See Figure 10.
+You will now code the smart contract _The Answer_ using the `atom` text editor, whose icon you will find on the `Application Launch Bar` at the bottom left of the Guest OS: ![](../images/atom.png). Click on `atom` to the launch the editor. See Figure 10.
 
 ![Figure 10: The Atom text editor](../images/atomEditorWindow.png)
 
