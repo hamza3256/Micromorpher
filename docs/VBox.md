@@ -234,7 +234,7 @@ To start the Guest OS (Ubunto), simply double click on the **Sussex Powered Off*
 
 When you start the Guest OS, you should see a new window appear with the Ubunto OS booting up. Eventually, it should show the login window.
 
-**Note**: You can close the two warning messages. They are just telling you that when you are active in the [VirtualBox](https://www.virtualbox.org) window, the Guest OS will process input may hang onto the keyboard and mouse when you try to use them back in your host operating system. In which case, you'll need to press the designated 'Host Key', which for the Mac is the left CMD key.
+**Note:** You can close the two warning messages. They are just telling you that when you are active in the [VirtualBox](https://www.virtualbox.org) window, the Guest OS will process input may hang onto the keyboard and mouse when you try to use them back in your host operating system. In which case, you'll need to press the designated 'Host Key', which for the Mac is the left CMD key.
 
 **Step 2:** Login
 
@@ -284,7 +284,7 @@ Similarly to the previous step, you still need to ensure the front end has the c
 
 **Step 7:** Load the URIs
 
-Load a web browser by launching `Web Browser` from the `Application Launch Bar`: ![](../images/webBrowser.png)
+Load a web browser by launching `Web Browser` from the `Application Launch Bar`: ![](../images/webBrowser.png).
 
 Load the following URIs,which are the front-end applications:
 
@@ -319,7 +319,7 @@ The application is at the early stages of development, so there are many ways it
 Below are some of the known limitations/bugs of the application. There will be (many) others too!
 
 - Blockchain transactions would normally need 'signing' to identify the sender. See [Ethereum Contracts and Transactions](http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html#what-is-a-transaction). That behaviour has not been implemented because you are using a private Ethereum blockchain whose default account is automatically 'unlocked'. In a 'live' environment, that signing requirement will need implementing.
-- There's no account security because the default account is unlocked. You can steal it's Ether!
+- There's no account security because the default account is unlocked. You can steal its Ether!
 - The application isn't really distributed, since the frontend relies on (centralised) web servers. You can deploy to [Mist](https://github.com/ethereum/mist/releases) to overcome that; see [Dapps deployment](http://ethdocs.org/en/latest/contracts-and-transactions/mix/dapp-deployment.html?highlight=Mist). dApp resources, such as files and images, can be deployed to [IPFS](https://ipfs.io/), or the forthcoming [Swarm](https://github.com/ethersphere/swarm), and referenced.
 - You can (try) and give more Ether to the contract that the Administrator owns. What happens if you do that?
 - The Administrator's Events page only shows events for the current session. It _could_ show **all** events.
