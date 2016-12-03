@@ -200,7 +200,7 @@ From within `atom`, open the files `src/react-the-answer/app/index.jsx`, `src/re
 
 # Install The Currency Exchange Application
 
-You have six steps to follow to install and write the smart contract for running _Currency Exchange_.
+You have seven steps to follow to install and write the smart contract for running _Currency Exchange_.
 
 1. Start the Sussex Ubunto Operating System.
 2. Login to the Guest OS.
