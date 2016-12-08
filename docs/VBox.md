@@ -169,7 +169,7 @@ To get the new value for the smart contract address, open the file `/home/sussex
 
 Alternatively, just open the file in `atom`.
 
-The `contractAddress` variable in `index.jsx`, shown in Figure 16 above, requires the value of the `address` json key from `chains.json`. It will look something similar to:`0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable.
+The `contractAddress` variable in `index.jsx`, shown in Figure 16 above, requires the value of the `address` json key from `chains.json`. It will look something similar to: `0x11bcf0e4dfeacd5d68a05180ceee4d50cc7cf720`. Copy that value to the `contractAddress` variable.
 
 Once you save `index.jsx`, the daemon running in the background will notice the change and will build the front end application for you.   
 
