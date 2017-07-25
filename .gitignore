@@ -1,8 +1,12 @@
 src/react-do-exchange/build
+src/react-do-exchange/node_modules
 src/react-exchange-rates/build
+src/react-exchange-rates/node_modules
 src/react-the-answer/build
+src/react-the-answer/node_modules/*
 
 src/ExchangeRates/dist
+src/ExchangeRates/.embark/*
 src/ExchangeRates/chains.json
 src/TheAnswer/dist
 src/TheAnswer/chains.json
