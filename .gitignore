@@ -6,8 +6,8 @@ src/react-the-answer/build
 src/react-the-answer/node_modules/*
 
 src/ExchangeRates/dist
-src/ExchangeRates/.embark/*
-src/ExchangeRates/chains.json
+src/ExchangeRates/build
+
 src/TheAnswer/dist
 src/TheAnswer/chains.json
 

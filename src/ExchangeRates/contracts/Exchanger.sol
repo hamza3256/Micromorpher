@@ -27,9 +27,9 @@ contract Exchanger is Exchange, Mortal {
   event RateSet(string code, uint256 rate);
 
   function Exchanger(address _forexDb, address _orderDb, address _depositDb) {
-		forexDB = _forexDb;
-	  orderDB = _orderDb;
-		depositDB = _depositDb;
+		forexDB = ForexDB(_forexDb);
+	  orderDB = OrderDB(_orderDb);
+		depositDB = DepositDB(_depositDb);
   }
 
   function() payable onlyOwner {
