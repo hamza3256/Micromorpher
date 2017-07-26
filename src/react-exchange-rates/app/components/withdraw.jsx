@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Select from 'react-select';
 
 class WithdrawCurrency extends React.Component {
@@ -61,8 +62,8 @@ class Amount extends React.Component {
 }
 
 Amount.propTypes = {
-  amount: React.PropTypes.number,
-  label: React.PropTypes.string
+  amount:PropTypes.number,
+  label:PropTypes.string
 }
 
 class WithdrawAmount extends React.Component {
@@ -91,9 +92,9 @@ class WithdrawAmount extends React.Component {
 }
 
 WithdrawAmount.propTypes = {
-  parentFunc: React.PropTypes.func,
-  withdrawAmount: React.PropTypes.number,
-  label: React.PropTypes.string
+  parentFunc:PropTypes.func,
+  withdrawAmount:PropTypes.number,
+  label:PropTypes.string
 }
 
 class WithdrawSubmit extends React.Component {
@@ -117,9 +118,9 @@ class WithdrawSubmit extends React.Component {
 }
 
 WithdrawSubmit.propTypes = {
-  parentFunc: React.PropTypes.func,
-  label: React.PropTypes.string,
-  buttonLabel: React.PropTypes.string
+  parentFunc:PropTypes.func,
+  label:PropTypes.string,
+  buttonLabel:PropTypes.string
 }
 
 class WithdrawSubmitted extends React.Component {
@@ -143,4 +144,4 @@ WithdrawSubmitted.propTypes = {
   result: PropTypes.string
 }
 
-export {Currency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted}
+export {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted}

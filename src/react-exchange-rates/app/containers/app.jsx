@@ -31,11 +31,11 @@ class App extends React.Component {
         <div>
           <h1>{AppStrings.heading}</h1>
           <ul role="nav">
-            <li><Link to="/" activeClassName="active">{AppStrings.home}</Link></li>
-            <li><Link to="/admin" activeClassName="active">{AppStrings.admin}</Link></li>
-            <li><Link to="/rates" activeClassName="active">{AppStrings.exchange}</Link></li>
-            <li><Link to="/withdraw" activeClassName="active">{AppStrings.withdraw}</Link></li>
-            <li><Link to="/events" activeClassName="active">{AppStrings.events}</Link></li>
+            <li><Link to="/">{AppStrings.home}</Link></li>
+            <li><Link to="/admin">{AppStrings.admin}</Link></li>
+            <li><Link to="/rates">{AppStrings.exchange}</Link></li>
+            <li><Link to="/withdraw">{AppStrings.withdraw}</Link></li>
+            <li><Link to="/events">{AppStrings.events}</Link></li>
           </ul>
 
           <Route exact path="/" render={() => <Home />} />

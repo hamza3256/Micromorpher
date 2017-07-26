@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Select from 'react-select';
 
 class AdminAccount extends React.Component {
@@ -7,23 +8,19 @@ class AdminAccount extends React.Component {
     super(props)
   }
 
-  render() {
+  render () {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.address}</p>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
 AdminAccount.propTypes = {
-  address: React.PropTypes.string,
-  label: React.PropTypes.string
-}
-
-AdminAccount.defaultProps = {
-  label: 'Admin Account:'
+  result: PropTypes.string,
+  label: PropTypes.string
 }
 
 class AdminFunds extends React.Component {
@@ -32,23 +29,19 @@ class AdminFunds extends React.Component {
     super(props)
   }
 
-  render() {
+  render () {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.funds}</p>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
 AdminFunds.propTypes = {
-  funds: React.PropTypes.string,
-  label: React.PropTypes.string
-}
-
-AdminFunds.defaultProps = {
-  label: 'Admin Account Funds (Ether):'
+  result: PropTypes.string,
+  label: PropTypes.string
 }
 
 class ContractFunds extends React.Component {
@@ -57,19 +50,19 @@ class ContractFunds extends React.Component {
     super(props)
   }
 
-  render() {
+  render () {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.funds}</p>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
 ContractFunds.propTypes = {
-  funds: React.PropTypes.string,
-  label: React.PropTypes.string
+  result: PropTypes.string,
+  label: PropTypes.string
 }
 
 ContractFunds.defaultProps = {
@@ -88,23 +81,23 @@ class FundContract extends React.Component {
 
   render() {
     return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <input
-          type="text"
-          placeholder="Ether Amount"
-          value={this.props.ether}
-          onChange={this._handleFundContract.bind(this)}
-        />
+      <div className="textInput">
+        <p>{this.props.label}
+          <input
+            type="text"
+            placeholder={this.props.placeHolder}
+            onChange={this._handleFundContract.bind(this)}
+          />
+        </p>
       </div>
-    );
+    )
   }
 }
 
 FundContract.propTypes = {
-  parentFunc: React.PropTypes.func,
-  ether: React.PropTypes.string,
-  label: React.PropTypes.string
+  parentFunc: PropTypes.func,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string
 }
 
 FundContract.defaultProps = {
@@ -125,14 +118,37 @@ class FundSubmit extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <button onClick={this._handlePress.bind(this)}>Fund Contract!</button>
+        <button onClick={this._handlePress.bind(this)}>{this.props.buttonLabel}</button>
       </div>
     );
   }
 }
 
-FundSubmit.defaultProps = {
-  label: 'Send Ether to Contract:'
+FundSubmit.propTypes = {
+  parentFunc:PropTypes.func,
+  label:PropTypes.string,
+  buttonLabel:PropTypes.string
 }
 
-export {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit}
+class FundsSubmitted extends React.Component {
+
+  /* constructor(props) {
+    super(props)
+  } */
+
+  render () {
+    return (
+      <div className="section">
+        <h2 className="section-heading">{this.props.label}</h2>
+        <p>{this.props.result}</p>
+      </div>
+    )
+  }
+}
+
+FundsSubmitted.propTypes = {
+  label: PropTypes.string,
+  result: PropTypes.string
+}
+
+export {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit, FundsSubmitted}

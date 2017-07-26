@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Select from 'react-select';
 
 class ExchangeCurrency extends React.Component {
@@ -96,9 +97,9 @@ class ExchangeSubmit extends React.Component {
 }
 
 ExchangeSubmit.propTypes = {
-  parentFunc: React.PropTypes.func,
-  label: React.PropTypes.string,
-  buttonLabel: React.PropTypes.string
+  parentFunc:PropTypes.func,
+  label:PropTypes.string,
+  buttonLabel:PropTypes.string
 }
 
 class RateSubmitted extends React.Component {
@@ -119,7 +120,7 @@ class RateSubmitted extends React.Component {
 
 RateSubmitted.propTypes = {
   label: PropTypes.string,
-  text: PropTypes.string
+  result: PropTypes.string
 }
 
 export {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted}

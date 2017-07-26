@@ -1,6 +1,7 @@
 import React from 'react'
-import {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted} from '../components/exchange'
+import PropTypes from 'prop-types'
 
+import {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted} from '../components/exchange'
 import ExchangeHandler from '../utils/exchangeHandler'
 import {ExchangeStrings} from '../utils/outputStrings'
 
@@ -9,7 +10,7 @@ class Exchanger extends React.Component {
   constructor(props) {
     super(props)
 
-    const web3 = this.props.web3
+    const web3Handler = this.props.web3
     const constractHander = this.props.contract
     const exchanger = constractHander.getExchanger()
     this.exchangeHandler = new ExchangeHandler()
@@ -30,7 +31,9 @@ class Exchanger extends React.Component {
 
   }
 
-  /* _setExchangeRatesEvent() {
+  /* _setExchangeRatesEvent() {,
+    searchable: true,
+  }
     const exchanger = this.state.exchanger
     const thisJs = this
     const web3 = this.state.web3
@@ -50,10 +53,11 @@ class Exchanger extends React.Component {
 
   setRate (_self, _result) {
     _self.setState({result: _result})
+    _self.exchangeHandler.reset()
   }
 
   _handleCurrency (selection) {
-    this.props.exchangeHandler.setCurrency(_selection.label)
+    this.exchangeHandler.setCurrency(_selection.label)
   }
 
   _handleRate (value) {
@@ -63,9 +67,10 @@ class Exchanger extends React.Component {
   _handleRateSet () {
     //console.log("In rate set")
     if (this.exchangeHandler.checkSet()) {
+      const web3 = this.web3Handler.getWeb3()
       const currency = this.exchangeHandler.getCurrency()
       const rate = this.exchangeHandler.getRate()
-      const thisRate = this.web3.toWei(rate,"ether")
+      const thisRate = web3.toWei(rate,"ether")
       params = [currency, thisRate, this.defaultTO]
       this.web3Handler.callParamHandler(this, this.exchanger.setRate, params, this.setRate, false)
       console.log("Set Wei exchange rate for " + currency + " at rate " + thisRate)
@@ -86,7 +91,6 @@ class Exchanger extends React.Component {
 
 Exchanger.propTypes = {
   contract: PropTypes.object,
-  exchangeHandler: PropTypes.object,
   web3: PropTypes.object
 }
 

@@ -19,6 +19,10 @@ class ContractHandler {
   getExchanger () {
     return this.exchanger
   }
+
+  getAddress () {
+    return ContractHandler.exchangerAddress
+  }
 }
 
 export default ContractHandler

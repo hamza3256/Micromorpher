@@ -283,7 +283,7 @@ class WithdrawHandler {
   }
 
   setWithdrawAmount (_amount) {
-    if (_amount < this.withdraw.amount ) {      
+    if (_amount <= this.withdraw.amount ) {      
       this.withdraw.withdrawAmount = _amount
     }
   }

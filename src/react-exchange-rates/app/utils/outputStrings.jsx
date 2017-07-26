@@ -1,6 +1,7 @@
 class AppStrings {
 
   static heading = 'Currency Exchange Administrator'
+  static home = 'Home'
   static admin = 'Administrator Account'
   static exchange= 'Set Exchange Rates'
   static withdraw = 'Withdraw Deposits'
@@ -9,9 +10,23 @@ class AppStrings {
 
 class HomeStrings {
 
-  static info = 'Use this application to set Ether exchange rates.'
+  static info = 'Administrator interface for the Currency Exchange application.'
 
 }
+
+class AdminStrings {
+
+  static info = 'Use this form to fund the contract.'
+  static adminAccountLabel = 'Admin Account: '
+  static adminFundsLabel = 'Admin Account Funds (Ether): '
+  static contractFundsLabel = 'Contract Account Funds (Ether): '
+  static fundContractPlaceholder = 'amount'
+  static fundContractLabel = 'Amount of Ether to Send to Contract: '
+  static fundSubmitLabel = 'Send Ether to Contract: '
+  static buttonLabel = 'Fund Contract!'
+  static submittedResultLabel = 'Set Funds Result: '
+}
+
 
 class ExchangeStrings {
 
@@ -45,4 +60,4 @@ class EventViewerStrings {
 }
 
 
-export {AppStrings, HomeStrings, ExchangeStrings, WithdrawStrings, EventViewerStrings}
+export {AppStrings, HomeStrings, AdminStrings, ExchangeStrings, WithdrawStrings, EventViewerStrings}

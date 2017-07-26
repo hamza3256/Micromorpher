@@ -1,6 +1,7 @@
 import React from 'react'
-import {Currency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted} from '../components/withdraw'
+import PropTypes from 'prop-types'
 
+import {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted} from '../components/withdraw'
 import WithdrawHandler from '../utils/withdrawHandler'
 import {WithdrawStrings} from '../utils/outputStrings'
 
@@ -9,7 +10,7 @@ class Withdraw extends React.Component {
   constructor(props) {
     super(props)
 
-    const web3 = this.props.web3
+    const web3Handler = this.props.web3
     const constractHander = this.props.contract
     const exchanger = constractHander.getExchanger()
     this.withdrawHandler = new WithdrawHandler()
@@ -66,7 +67,7 @@ class Withdraw extends React.Component {
   }
 
   setAmount (_self, _result) {
-    const amount = _self.web3.fromWei(_result,"ether").toNumber()
+    const amount = _self.web3Handler.fromWei(_result,"ether").toNumber()
     _self.withdrawHandler.setAmount(amount)
     _self.setState({amount: amount})
   }
@@ -85,9 +86,10 @@ class Withdraw extends React.Component {
 
   _handleWithdraw() {
     if (this.withdrawHandler.checkSet()) {
+      const web3 = this.web3Handler.getWeb3()
       const currency = this.withdrawHandler.getCurrency()
       const withdrawAmount = this.withdrawHandler.getWithdrawAmount()
-      const thisWithdrawAmount = this.web3.toWei(withdrawAmount,"ether")
+      const thisWithdrawAmount = web3.toWei(withdrawAmount,"ether")
       params = [currency, thisWithdrawAmount, this.defaultTO]
       this.web3Handler.callParamHandler(this, this.exchanger.withdraw, params, this.setWithdraw, false)
     }

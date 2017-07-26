@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Select from 'react-select';
 
 class Events extends React.Component {
@@ -27,12 +28,8 @@ class Events extends React.Component {
 }
 
 Events.propTypes = {
-  results: React.PropTypes.string,
-  label: React.PropTypes.string
-}
-
-Events.defaultProps = {
-  label: 'Currency Exchange Events:'
+  results:PropTypes.string,
+  label:PropTypes.string
 }
 
 export {Events}

@@ -1,49 +1,49 @@
-import React from 'react'     
-import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit} from '../components/admin'
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import AdminHandler from '../utils/adminHandler'
+
+import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit, FundsSubmitted} from '../components/admin'
+import {AdminStrings} from '../utils/outputStrings'
 
 class Admin extends React.Component {
 
   constructor(props) {
     super(props)
 
-    const web3 = this.props.route.web3    
-    const contractAddress = this.props.route.contractAddress
-    //const web3 = this.props.web3    
-    //const contractAddress = this.props.contractAddress
-    const latestFilter = web3.eth.filter('latest')
-    const acc = web3.eth.accounts[0]  
-    const adminFunds = web3.fromWei(web3.eth.getBalance(acc),"ether").toString()   
-    const contractFunds = web3.fromWei(web3.eth.getBalance(contractAddress),"ether").toString() 
-    const newFunds = ""
-    const txHash = ""
+    this.web3Handler = this.props.web3
+    this.contractHander = this.props.contract
+    this.exchanger = this.contractHander.getExchanger()
+    this.contractAddress = this.contractHander.getAddress()
+    this.adminHandler = new AdminHandler()
+    const account = this.web3Handler.getAccount()
 
     this.state = {
-        web3: web3,
-        latest: latestFilter,
-        txHash: txHash,
-        contractAddress: contractAddress,
-        account: acc,
-        adminFunds: adminFunds,
-        contractFunds: contractFunds,
-        contractNewFunds: newFunds
+      account: account,
+      adminFunds: '',
+      contractFunds: '',
+      result: ""
     }
 
-    this._latestBlock()
+    this._getAdminFunds()
+    this._getContractFunds()
+
+    // this._latestBlock()
 
   }
 
-  _latestBlock() {
+  /* _latestBlock() {
     const thisJs = this
     const filter = this.state.latest
     const web3 = this.state.web3
     const contractAddress = this.state.contractAddress
-    const adminAccount = this.state.account 
+    const adminAccount = this.state.account
 
     filter.watch(function (error, result) {
       if (error) {
         console.error(error)
       } else {
-        const thisTx = thisJs.state.txHash 
+        const thisTx = thisJs.state.txHash
         console.log("State transaction " + thisTx)
         const block = web3.eth.getBlock(result, true)
         const transactions = block.transactions
@@ -52,7 +52,7 @@ class Admin extends React.Component {
           console.log("block transaction " + transactions[i].hash)
           if( thisTx == transactions[i].hash ){
             console.log("Got match!")
-            const adminFunds = web3.fromWei(web3.eth.getBalance(adminAccount),"ether").toString()   
+            const adminFunds = web3.fromWei(web3.eth.getBalance(adminAccount),"ether").toString()
             const contractFunds = web3.fromWei(web3.eth.getBalance(contractAddress),"ether").toString()
             thisJs.setState({adminFunds: adminFunds})
             thisJs.setState({contractFunds: contractFunds})
@@ -61,31 +61,63 @@ class Admin extends React.Component {
         }
       }
     })
+  } */
+
+  setFund (_self, _result) {
+    _self.setState({result: _result})
+    _self.adminHandler.reset()
+    _self._getAdminFunds()
+    _self._getContractFunds()
   }
 
-  _handleFundContract(value) {
-    console.log("Funded contract with " + value)
-    this.setState({contractNewFunds: value})
+  setAdminFunds (_self, _result) {
+    const web3 = _self.web3Handler.getWeb3()
+    const adminFunds = web3.fromWei(_result,"ether").toString()
+    _self.setState({adminFunds: adminFunds})
+  }
+
+  setContractFunds (_self, _result) {
+    const web3 = _self.web3Handler.getWeb3()
+    const contractFunds = web3.fromWei(_result,"ether").toString()
+    _self.setState({contractFunds: contractFunds})
+  }
+
+  _handleFundContract (_value) {
+    this.adminHandler.setNewFunds(_value)
+  }
+
+  _getAdminFunds () {
+    const web3 = this.web3Handler.getWeb3()
+    const params = [this.state.account]
+    this.web3Handler.callParamHandler(this, web3.eth.getBalance, params, this.setAdminFunds, false)
+  }
+
+  _getContractFunds () {
+    const web3 = this.web3Handler.getWeb3()
+    const params = [this.contractAddress]
+    this.web3Handler.callParamHandler(this, web3.eth.getBalance, params, this.setContractFunds, false)
   }
 
   _handleFund() {
-    const web3 = this.state.web3
-    const contractAddress = this.state.contractAddress
-    const funds = this.state.contractNewFunds
-    const adminAccount = this.state.account
-    const tx = web3.eth.sendTransaction({from: adminAccount, to: contractAddress, value: web3.toWei(funds,"ether")})
-    this.setState({txHash: tx})
-    console.log("Submitted funds " + funds)    
+    if (this.adminHandler.checkSet()) {
+      const web3 = this.web3Handler.getWeb3()
+      const account = this.web3Handler.getAccount()
+      this.setState({account: account})
+      const funds = this.adminHandler.getNewFunds()
+      const params = [{from: account, to: this.contractAddress, value: web3.toWei(funds,"ether")}]
+      this.web3Handler.callParamHandler(this, web3.eth.sendTransaction, params, this.setFund, false)
+    }
   }
 
   render() {
     return (
         <div>
-            <AdminAccount address={this.state.account}/>
-            <AdminFunds funds={this.state.adminFunds}/>
-            <ContractFunds funds={this.state.contractFunds}/> 
-            <FundContract ether={this.state.contractNewFunds} parentFunc={this._handleFundContract.bind(this)}/>
-            <FundSubmit parentFunc={this._handleFund.bind(this)}/>
+          <AdminAccount label={AdminStrings.adminAccountLabel} result={this.state.account} />
+          <AdminFunds label={AdminStrings.adminFundsLabel} result={this.state.adminFunds} />
+          <ContractFunds label={AdminStrings.contractFundsLabel} result={this.state.contractFunds}/>
+          <FundContract parentFunc={this._handleFundContract.bind(this)} placeHolder={AdminStrings.fundContractPlaceholder} label={AdminStrings.fundContractLabel} />
+          <FundSubmit parentFunc={this._handleFund.bind(this)} label={AdminStrings.fundSubmitLabel} buttonLabel={AdminStrings.buttonLabel} />
+          <FundsSubmitted label={AdminStrings.submittedResultLabel} result={this.state.result}/>
         </div>
     )
   }
@@ -97,8 +129,8 @@ class Admin extends React.Component {
 }
 
 Admin.propTypes = {
-  web3: React.PropTypes.object,
-  contractAddress: React.PropTypes.string
+  contract: PropTypes.object,
+  web3: PropTypes.object
 }
 
 export default Admin

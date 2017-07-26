@@ -1,4 +1,5 @@
 import React from 'react';
+import {HomeStrings} from '../utils/outputStrings'
 
 class Home extends React.Component {
 
@@ -9,7 +10,7 @@ class Home extends React.Component {
   render() {
     return (
         <div>
-            <p>Administrator interface for the Currency Exchange application.</p>
+            <p>{HomeStrings.info}</p>
         </div>
     )
   }
