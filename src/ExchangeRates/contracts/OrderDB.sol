@@ -1,9 +1,9 @@
 pragma solidity ^0.4.11;
 
 import "Order.sol";
-import "Owned.sol";
+import "Mortal.sol";
 
-contract OrderDB is Order, Owned {
+contract OrderDB is Order, Mortal {
 
   enum OrderStatus { OPEN, DELETED, COMPLETED }
 
@@ -22,18 +22,18 @@ contract OrderDB is Order, Owned {
   }
 
 	// hint - use js now() to generate the epochTime and make it unique
-  function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public {
+  function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) onlyOwner {
     var key = getOrderId(_epochTime,_creator);
     orders[key] = Order(_creator,_offerCurrency,_offerAmount,_etherValue,OrderStatus.OPEN);
   }
 
-  function completeOrder(uint256 _epochTime, address _creator) public {
+  function completeOrder(uint256 _epochTime, address _creator) onlyOwner {
   	var key = getOrderId(_epochTime,_creator);
     Order thisOrder = orders[key];
     thisOrder.status = OrderStatus.COMPLETED;
   }
 
-  function deleteOrder(uint256 _epochTime, address _creator) public {
+  function deleteOrder(uint256 _epochTime, address _creator) onlyOwner {
   	var key = getOrderId(_epochTime,_creator);
     Order thisOrder = orders[key];
     thisOrder.status = OrderStatus.DELETED;

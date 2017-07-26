@@ -3,47 +3,45 @@ import Select from 'react-select';
 
 class ExchangeCurrency extends React.Component {
 
-  constructor(props) {
+  /* constructor(props) {
     super(props)
+  } */
+
+  _handleChange (value) {
+    this.props.parentFunc(value)
   }
 
-  _handleCurrencyChange(value) {
-    this.props.parentFunc(value.label)    
-  }
-
-  render() {
-    
-    const currs = this.props.currencies.map(function(values) {
-      return { value: values, label: values}
-    })
-
+  render () {
     return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
+      <div className="select">
+        <p>{this.props.label}</p>
         <Select
+          placeholder={this.props.placeHolder}
           searchable={this.props.searchable}
-          disabled={false}
-          name='Select Currency'
-          options={currs}
-          value={this.props.currency}
-          onChange={this._handleCurrencyChange.bind(this)}
+          disabled={this.props.disabled}
+          clearable={this.props.clearable}
+          options={this.props.selections}
+          value={this.props.selection}
+          onChange={this._handleChange.bind(this)}
         />
       </div>
-    );
+    )
   }
 }
 
 ExchangeCurrency.propTypes = {
-  parentFunc: React.PropTypes.func,
-  currencies: React.PropTypes.array,
-  currency: React.PropTypes.string,
-  searchable: React.PropTypes.bool,
-  label: React.PropTypes.string
+  parentFunc: PropTypes.func,
+  selections: PropTypes.array,
+  selection: PropTypes.number,
+  searchable: PropTypes.bool,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string
 }
 
 ExchangeCurrency.defaultProps = {
-  label: 'Currency:',
-  searchable: true,
+  disabled: false,
+  clearable: true,
+  searchable: true
 }
 
 class ExchangeRate extends React.Component {
@@ -58,27 +56,23 @@ class ExchangeRate extends React.Component {
 
   render() {
     return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <input
-          type="text"
-          placeholder="Exchange Rate"
-          value={this.props.rate}
-          onChange={this._handleRateChange.bind(this)}
-        />
+      <div className="textInput">
+        <p>{this.props.label}
+          <input
+            type="text"
+            placeholder={this.props.placeHolder}
+            onChange={this._handleRateChange.bind(this)}
+          />
+        </p>
       </div>
     );
   }
 }
 
 ExchangeRate.propTypes = {
-  parentFunc: React.PropTypes.func,
-  rate: React.PropTypes.number,
-  label: React.PropTypes.string
-}
-
-ExchangeRate.defaultProps = {
-  label: 'Exchange Rate (Amount of Selected Currency to Ether):'
+  parentFunc: PropTypes.func,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string
 }
 
 class ExchangeSubmit extends React.Component {
@@ -95,7 +89,7 @@ class ExchangeSubmit extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <button onClick={this._handlePress.bind(this)}>Set Rate!</button>
+        <button onClick={this._handlePress.bind(this)}>{this.props.buttonLabel}</button>
       </div>
     );
   }
@@ -103,20 +97,17 @@ class ExchangeSubmit extends React.Component {
 
 ExchangeSubmit.propTypes = {
   parentFunc: React.PropTypes.func,
-  label: React.PropTypes.string
-}
-
-ExchangeSubmit.defaultProps = {
-  label: 'Set Exchange Rate:'
+  label: React.PropTypes.string,
+  buttonLabel: React.PropTypes.string
 }
 
 class RateSubmitted extends React.Component {
 
-  constructor(props) {
+  /* constructor(props) {
     super(props)
-  }
+  } */
 
-  render() {
+  render () {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
@@ -127,12 +118,8 @@ class RateSubmitted extends React.Component {
 }
 
 RateSubmitted.propTypes = {
-  result: React.PropTypes.string,
-  label: React.PropTypes.string
-}
-
-RateSubmitted.defaultProps = {
-  label: 'Exchange Rate Result:'
+  label: PropTypes.string,
+  text: PropTypes.string
 }
 
 export {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted}

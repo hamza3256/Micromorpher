@@ -1,27 +1,30 @@
-import React from 'react'    
-import {Events} from '../components/events'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {Logger} from '../components/logger'
+
+import {EventViewerStrings} from '../utils/outputStrings'
 
 class EventViewer extends React.Component {
 
   constructor(props) {
     super(props)
 
-    const web3 = this.props.route.web3    
-    const exchanger = this.props.route.exchanger 
-    //const web3 = this.props.web3    
-    //const exchanger = this.props.exchanger 
+    const web3 = this.props.web3
+    const constractHander = this.props.contract
+    const exchanger = constractHander.getExchanger()
 
-    const funded = exchanger.Funded()
+    //const web3 = this.props.web3
+    //const exchanger = this.props.exchanger
+
+    /*const funded = exchanger.Funded()
     const orderPlaced = exchanger.OrderPlaced()
     const orderCompleted = exchanger.OrderCompleted()
     const orderDeleted = exchanger.OrderDeleted()
     const deposited = exchanger.Deposited()
     const withdrawn = exchanger.Withdrawn()
     const rateSet = exchanger.RateSet()
-    
+
     this.state = {
-        web3: web3,
-        exchanger: exchanger,
         funded: funded,
         orderPlaced: orderPlaced,
         orderCompleted: orderCompleted,
@@ -38,15 +41,28 @@ class EventViewer extends React.Component {
     this._orderDeletedEvent()
     this._depositedEvent()
     this._withdrawnEvent()
-    this._ratesEvent()
+    this._ratesEvent() */
 
+    this.state = {
+      log: []
+    }
   }
 
-  _fundedEvent() {
+  _logResult (result) {
+    // const time = Date.now().toString()
+    const date = new Date().toString()
+    const logResults = date + ': ' + result
+    let logs = this.state.log
+    logs.push(logResults)
+    // console.log(logResults)
+    this.setState({ log: logs })
+  }
+
+  /* _fundedEvent() {
 
     //event Funded(address sender, uint rate);
 
-    const web3 = this.state.web3  
+    const web3 = this.state.web3
     const exchanger = this.state.exchanger
     const thisJs = this
     const funded = this.state.funded
@@ -58,7 +74,7 @@ class EventViewer extends React.Component {
         const value = web3.fromWei(result.args.rate.toNumber())
         const thisResult = "Sender " + sender + " funded contract with " + value + " ether"
         const priorResults = thisJs.state.results
-        let logResults = time + ": " + thisResult +  "\n" + priorResults 
+        let logResults = time + ": " + thisResult +  "\n" + priorResults
         //console.log(logResults)
         thisJs.setState({results: logResults})
         //console.log(result)
@@ -68,12 +84,12 @@ class EventViewer extends React.Component {
     })
 
   }
-   
+
   _orderPlacedEvent() {
 
     //event OrderPlaced(uint256 _epochTime, address _creator);
 
-    const web3 = this.state.web3  
+    const web3 = this.state.web3
     const exchanger = this.state.exchanger
     const thisJs = this
     const orderPlaced = this.state.orderPlaced
@@ -84,7 +100,7 @@ class EventViewer extends React.Component {
         const creator = result.args._creator
         const thisResult = "Order placed by " + creator
         const priorResults = thisJs.state.results
-        let logResults = time + ": " + thisResult +  "\n" + priorResults 
+        let logResults = time + ": " + thisResult +  "\n" + priorResults
         //console.log(logResults)
         thisJs.setState({results: logResults})
         //console.log(result)
@@ -94,12 +110,12 @@ class EventViewer extends React.Component {
     })
 
   }
-  
+
   _orderCompletedEvent() {
 
     //event OrderCompleted(uint256 _epochTime, address _creator);
 
-    const web3 = this.state.web3  
+    const web3 = this.state.web3
     const exchanger = this.state.exchanger
     const thisJs = this
     const orderCompleted = this.state.orderCompleted
@@ -110,7 +126,7 @@ class EventViewer extends React.Component {
         const creator = result.args._creator
         const thisResult = "Order completed by " + creator
         const priorResults = thisJs.state.results
-        let logResults = time + ": " + thisResult +  "\n" + priorResults 
+        let logResults = time + ": " + thisResult +  "\n" + priorResults
         //console.log(logResults)
         thisJs.setState({results: logResults})
         //console.log(result)
@@ -120,13 +136,13 @@ class EventViewer extends React.Component {
     })
 
   }
-  
+
   _orderDeletedEvent() {
 
 
-    //event OrderDeleted(uint256 _epochTime, address _creator);  
+    //event OrderDeleted(uint256 _epochTime, address _creator);
 
-    const web3 = this.state.web3  
+    const web3 = this.state.web3
     const exchanger = this.state.exchanger
     const thisJs = this
     const orderDeleted = this.state.orderDeleted
@@ -137,7 +153,7 @@ class EventViewer extends React.Component {
         const creator = result.args._creator
         const thisResult = "Order deleted by " + creator
         const priorResults = thisJs.state.results
-        let logResults = time + ": " + thisResult +  "\n" + priorResults 
+        let logResults = time + ": " + thisResult +  "\n" + priorResults
         //console.log(logResults)
         thisJs.setState({results: logResults})
         //console.log(result)
@@ -147,12 +163,12 @@ class EventViewer extends React.Component {
     })
 
   }
-  
+
   _depositedEvent() {
 
     //event Deposited(string _offerCurrency, uint256 _offerAmount);
 
-    const web3 = this.state.web3  
+    const web3 = this.state.web3
     const exchanger = this.state.exchanger
     const thisJs = this
     const deposited = this.state.deposited
@@ -160,11 +176,11 @@ class EventViewer extends React.Component {
     deposited.watch(function(error, result) {
       if (!error) {
         const time = Date.now().toString()
-        const offerCurrency = result.args._offerCurrency        
+        const offerCurrency = result.args._offerCurrency
         const offerAmount = web3.fromWei(result.args._offerAmount.toNumber())
         const thisResult = "Deposited " + offerCurrency + " at value " + offerAmount
         const priorResults = thisJs.state.results
-        let logResults = time + ": " + thisResult +  "\n" + priorResults 
+        let logResults = time + ": " + thisResult +  "\n" + priorResults
         //console.log(logResults)
         thisJs.setState({results: logResults})
         //console.log(result)
@@ -174,12 +190,12 @@ class EventViewer extends React.Component {
     })
 
   }
-  
+
   _withdrawnEvent() {
 
     //event Withdrawn(string code, uint256 value);
 
-    const web3 = this.state.web3  
+    const web3 = this.state.web3
     const exchanger = this.state.exchanger
     const thisJs = this
     const withdrawn = this.state.withdrawn
@@ -187,11 +203,11 @@ class EventViewer extends React.Component {
     withdrawn.watch(function(error, result) {
       if (!error) {
         const time = Date.now().toString()
-        const offerCurrency = result.args.code        
+        const offerCurrency = result.args.code
         const offerAmount = web3.fromWei(result.args.value.toNumber())
         const thisResult = "Withdrawn " + offerCurrency + " at value " + offerAmount
         const priorResults = thisJs.state.results
-        let logResults = time + ": " + thisResult +  "\n" + priorResults 
+        let logResults = time + ": " + thisResult +  "\n" + priorResults
         //console.log(logResults)
         thisJs.setState({results: logResults})
         //console.log(result)
@@ -206,7 +222,7 @@ class EventViewer extends React.Component {
 
     //event RateSet(string code, uint256 rate);
 
-    const web3 = this.state.web3  
+    const web3 = this.state.web3
     const exchanger = this.state.exchanger
     const thisJs = this
     const rateSet = this.state.rateSet
@@ -218,7 +234,7 @@ class EventViewer extends React.Component {
         const rate = web3.fromWei(result.args.rate.toNumber())
         const thisResult = code + " rate set to " + rate
         const priorResults = thisJs.state.results
-        let logResults = time + ": " + thisResult +  "\n" + priorResults 
+        let logResults = time + ": " + thisResult +  "\n" + priorResults
         console.log(logResults)
         thisJs.setState({results: logResults})
         //console.log(result)
@@ -227,16 +243,41 @@ class EventViewer extends React.Component {
       }
     })
 
+  } */
+
+  _allEvents () {
+    const self = this
+    const allEvt = this.exchanger.allEvents({}, {fromBlock: 1, toBlock: 'latest'})
+    allEvt.watch(function (e, result) {
+      self._logResult(result)
+    })
   }
-  render() {
+
+  render () {
     return (
-        <div>
-            <Events results={this.state.results}/>
+      <div>
+        <div className="info">
+          <p>{EventViewerStrings.info}</p>
+          <hr />
         </div>
+        <div>
+          <Logger heading={EventViewerStrings.heading} log={this.state.log} />
+          <hr />
+        </div>
+      </div>
     )
   }
 
-  componentWillUnmount() {
+  componentDidMount () {
+    this._allEvents()
+  }
+
+  componentWillUnmount () {
+    this.exchanger.allEvents().stopWatching()
+    this.props.web3.getWeb3().reset()
+  }
+
+  /* componentWillUnmount() {
     const funded = this.state.funded
     const orderPlaced = this.state.orderPlaced
     const orderCompleted = this.state.orderCompleted
@@ -252,7 +293,12 @@ class EventViewer extends React.Component {
     deposited.stopWatching()
     withdrawn.stopWatching()
     rateSet.stopWatching()
-  }
+  } */
+}
+
+EventViewer.propTypes = {
+  contract: PropTypes.object,
+  web3: PropTypes.object
 }
 
 export default EventViewer

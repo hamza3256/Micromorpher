@@ -1,42 +1,33 @@
 pragma solidity ^0.4.11;
 
 import "Depositor.sol";
-import "Owned.sol";
+import "Mortal.sol";
 
-contract DepositDB is Depositor, Owned {
+contract DepositDB is Depositor, Mortal {
 
-  mapping(bytes32 => uint256) private depositStore;
-  uint private timeStamp;
+  mapping(string => uint256) private depositStore;
 
-  function DepositDB() {
-		timeStamp = now;
+  /* function DepositDB() {
+	} */
+
+  function deposit(string _code, uint256 _value) onlyOwner {
+		if ( _value > 0 ) {
+      depositStore[_code] = _value;
+    }
 	}
 
-  function deposit(string _code, uint256 _value) public returns (bool) {
-		var key = sha3(_code, timeStamp);
+	function withdraw(string _code, uint256 _value) onlyOwner {
 		if ( _value > 0 ) {
-      depositStore[key] = _value;
-			return true;
-		}
-		return false;
-	}
-
-	function withdraw(string _code, uint256 _value) public returns (bool) {
-		var key = sha3(_code, timeStamp);
-		if ( _value > 0 ) {
-			uint256 depositedAmount = depositStore[key];
+			uint256 depositedAmount = depositStore[_code];
 			if ( depositedAmount >= _value ) {
 				uint256 newAmount = depositedAmount - _value;
-        depositStore[key] = newAmount;
-				return true;
-			}
-		}
-		return false;
-	}
+        depositStore[_code] = newAmount;
+  		}
+    }
+  }
 
 	function getDepositedAmount(string _code) public constant returns (uint256) {
-		var key = sha3(_code, timeStamp);
-		return depositStore[key];
+		return depositStore[_code];
 	}
 
 }

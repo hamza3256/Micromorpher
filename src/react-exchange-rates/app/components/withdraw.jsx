@@ -1,50 +1,48 @@
 import React from 'react';
 import Select from 'react-select';
 
-class Currency extends React.Component {
-  constructor(props) {
+class WithdrawCurrency extends React.Component {
+
+  /* constructor(props) {
     super(props)
+  } */
+
+  _handleChange (value) {
+    this.props.parentFunc(value)
   }
 
-  _handleCurrencyChange(value) {
-    this.props.parentFunc(value.label)    
-  }
-
-  render() {
-    
-    const currs = this.props.currencies.map(function(values) {
-      return { value: values, label: values}
-    })
-
+  render () {
     return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
+      <div className="select">
+        <p>{this.props.label}</p>
         <Select
+          placeholder={this.props.placeHolder}
           searchable={this.props.searchable}
-          disabled={false}
-          name='Select Currency'
-          options={currs}
-          value={this.props.currency}
-          onChange={this._handleCurrencyChange.bind(this)}
+          disabled={this.props.disabled}
+          clearable={this.props.clearable}
+          options={this.props.selections}
+          value={this.props.selection}
+          onChange={this._handleChange.bind(this)}
         />
       </div>
-    );
+    )
   }
 }
 
-Currency.propTypes = {
-  parentFunc: React.PropTypes.func,
-  currencies: React.PropTypes.array,
-  currency: React.PropTypes.string,
-  searchable: React.PropTypes.bool,
-  label: React.PropTypes.string
+WithdrawCurrency.propTypes = {
+  parentFunc: PropTypes.func,
+  selections: PropTypes.array,
+  selection: PropTypes.number,
+  searchable: PropTypes.bool,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string
 }
 
-Currency.defaultProps = {
-  label: 'Deposited Currency:',
-  searchable: true,
+WithdrawCurrency.defaultProps = {
+  disabled: false,
+  clearable: true,
+  searchable: true
 }
-
 
 class Amount extends React.Component {
 
@@ -63,13 +61,9 @@ class Amount extends React.Component {
 }
 
 Amount.propTypes = {
-  rate: React.PropTypes.number,
+  amount: React.PropTypes.number,
   label: React.PropTypes.string
 }
-
-Amount.defaultProps = {
-  label: 'Deposited Amount:'
-}          
 
 class WithdrawAmount extends React.Component {
 
@@ -102,11 +96,7 @@ WithdrawAmount.propTypes = {
   label: React.PropTypes.string
 }
 
-WithdrawAmount.defaultProps = {
-  label: 'Amount of Selected Currency to Withdraw (e.g 10.99 for £10.99):'
-}
-
-class Withdraw extends React.Component {
+class WithdrawSubmit extends React.Component {
 
   constructor(props) {
     super(props);
@@ -120,14 +110,37 @@ class Withdraw extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <button onClick={this._handlePress.bind(this)}>Confirm!</button>
+        <button onClick={this._handlePress.bind(this)}>{this.props.buttonLabel}</button>
+      </div>
+    );
+  }
+}
+
+WithdrawSubmit.propTypes = {
+  parentFunc: React.PropTypes.func,
+  label: React.PropTypes.string,
+  buttonLabel: React.PropTypes.string
+}
+
+class WithdrawSubmitted extends React.Component {
+
+  /* constructor(props) {
+    super(props)
+  } */
+
+  render () {
+    return (
+      <div className="section">
+        <h2 className="section-heading">{this.props.label}</h2>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
-Withdraw.defaultProps = {
-  label: 'Confirm Withdraw:'
+WithdrawSubmitted.propTypes = {
+  label: PropTypes.string,
+  result: PropTypes.string
 }
 
-export {Currency, Amount, WithdrawAmount, Withdraw}
+export {Currency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted}
