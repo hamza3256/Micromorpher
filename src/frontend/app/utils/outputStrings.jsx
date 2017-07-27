@@ -1,3 +1,11 @@
+class ExchangerAppStrings {
+
+  static heading = 'Currency Exchanger'
+  static home = 'Home'
+  static account = 'Account'
+  static exchange= 'Exchange Currency'
+}
+
 class AdminAppStrings {
 
   static heading = 'Currency Exchange Administrator'
@@ -313,4 +321,4 @@ class CountryCodes {
 
 }
 
-export {AdminAppStrings, AdminHomeStrings, AdminStrings, AdminExchangeStrings, AdminWithdrawStrings, AdminEventViewerStrings, CountryCodes}
+export {ExchangerAppStrings, AdminAppStrings, AdminHomeStrings, AdminStrings, AdminExchangeStrings, AdminWithdrawStrings, AdminEventViewerStrings, CountryCodes}
