@@ -11,14 +11,8 @@ src/ExchangeRates/build
 src/TheAnswer/dist
 src/TheAnswer/chains.json
 
-!src/ExchangeRates/.embark
-!src/ExchangeRates/.embark/*
-!src/ExchangeRates/.embark/development
-src/ExchangeRates/.embark/development/*
-!src/ExchangeRates/.embark/development/js
-
-!src/TheAnswer/.embark
-!src/TheAnswer/.embark/*
-!src/TheAnswer/.embark/development
+src/TheAnswer/.embark
+src/TheAnswer/.embark/*
+src/TheAnswer/.embark/development
 src/TheAnswer/.embark/development/*
-!src/TheAnswer/.embark/development/js
+src/TheAnswer/.embark/development/js
