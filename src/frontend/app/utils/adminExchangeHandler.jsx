@@ -1,4 +1,4 @@
-class ExchangeHandler {
+class AdminExchangeHandler {
 
   static countryCodes = ['AD',
   'AE',
@@ -288,4 +288,4 @@ class ExchangeHandler {
   }
 }
 
-export default ExchangeHandler
+export default AdminExchangeHandler

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Logger} from '../components/logger'
 
-import {EventViewerStrings} from '../utils/outputStrings'
+import {AdminEventViewerStrings} from '../../utils/outputStrings'
 
 class EventViewer extends React.Component {
 
@@ -257,11 +257,11 @@ class EventViewer extends React.Component {
     return (
       <div>
         <div className="info">
-          <p>{EventViewerStrings.info}</p>
+          <p>{AdminEventViewerStrings.info}</p>
           <hr />
         </div>
         <div>
-          <Logger heading={EventViewerStrings.heading} log={this.state.log} />
+          <Logger heading={AdminEventViewerStrings.heading} log={this.state.log} />
           <hr />
         </div>
       </div>

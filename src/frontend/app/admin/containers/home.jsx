@@ -1,5 +1,5 @@
 import React from 'react';
-import {HomeStrings} from '../utils/outputStrings'
+import {AdminHomeStrings} from '../../utils/outputStrings'
 
 class Home extends React.Component {
 
@@ -10,7 +10,7 @@ class Home extends React.Component {
   render() {
     return (
         <div>
-            <p>{HomeStrings.info}</p>
+            <p>{AdminHomeStrings.info}</p>
         </div>
     )
   }

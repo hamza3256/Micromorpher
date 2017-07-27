@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import Web3Handler from '../../utils/web3Handler'
 import ContractHandler from '../../utils/contractHandler'
-import ExchangeHandler from '../../utils/exchangeHandler'
+import AdminExchangeHandler from '../../utils/adminExchangeHandler'
 
-import {AppStrings} from '../../utils/outputStrings'
+import {AdminAppStrings} from '../../utils/outputStrings'
 
 import Home from './home'
 import Admin from './admin'
@@ -29,7 +29,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <h1>{AppStrings.heading}</h1>
+          <h1>{AdminAppStrings.heading}</h1>
           <ul role="nav">
             <li><Link to="/">{AppStrings.home}</Link></li>
             <li><Link to="/admin">{AppStrings.admin}</Link></li>
