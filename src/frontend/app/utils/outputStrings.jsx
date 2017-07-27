@@ -11,6 +11,12 @@ class ExchangerHomeStrings {
   static info = 'Digitise your currencies.'
 }
 
+class ExchangerAccountStrings {
+
+  static accountLabel = 'Account: '
+  static accountFundsLabel = 'Ether: '
+}
+
 class AdminAppStrings {
 
   static heading = 'Currency Exchange Administrator'
@@ -326,4 +332,4 @@ class CountryCodes {
 
 }
 
-export {ExchangerAppStrings, AdminAppStrings, AdminHomeStrings, AdminStrings, AdminExchangeStrings, AdminWithdrawStrings, AdminEventViewerStrings, CountryCodes}
+export {ExchangerAppStrings, ExchangerHomeStrings, ExchangerAccountStrings, AdminAppStrings, AdminHomeStrings, AdminStrings, AdminExchangeStrings, AdminWithdrawStrings, AdminEventViewerStrings, CountryCodes}
