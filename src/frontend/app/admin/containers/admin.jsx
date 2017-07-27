@@ -27,41 +27,7 @@ class Admin extends React.Component {
 
     this._getAdminFunds()
     this._getContractFunds()
-
-    // this._latestBlock()
-
   }
-
-  /* _latestBlock() {
-    const thisJs = this
-    const filter = this.state.latest
-    const web3 = this.state.web3
-    const contractAddress = this.state.contractAddress
-    const adminAccount = this.state.account
-
-    filter.watch(function (error, result) {
-      if (error) {
-        console.error(error)
-      } else {
-        const thisTx = thisJs.state.txHash
-        console.log("State transaction " + thisTx)
-        const block = web3.eth.getBlock(result, true)
-        const transactions = block.transactions
-        for(let i = 0; i < transactions.length; i++)
-        {
-          console.log("block transaction " + transactions[i].hash)
-          if( thisTx == transactions[i].hash ){
-            console.log("Got match!")
-            const adminFunds = web3.fromWei(web3.eth.getBalance(adminAccount),"ether").toString()
-            const contractFunds = web3.fromWei(web3.eth.getBalance(contractAddress),"ether").toString()
-            thisJs.setState({adminFunds: adminFunds})
-            thisJs.setState({contractFunds: contractFunds})
-            break
-          }
-        }
-      }
-    })
-  } */
 
   setFund (_self, _result) {
     _self.setState({result: _result})
@@ -124,11 +90,6 @@ class Admin extends React.Component {
           <FundsSubmitted label={AdminStrings.submittedResultLabel} result={this.state.result}/>
         </div>
     )
-  }
-
-  componentWillUnmount() {
-    const filter = this.state.latest
-    filter.stopWatching
   }
 }
 

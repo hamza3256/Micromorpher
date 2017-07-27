@@ -1,4 +1,5 @@
 import React from 'react';
+import {ExchangerHomeStrings} from '../../utils/outputStrings'
 
 class Home extends React.Component {
 
@@ -9,7 +10,7 @@ class Home extends React.Component {
   render() {
     return (
         <div>
-            <p>Digitise your currencies.</p>
+            <p>{ExchangerHomeStrings.info}</p>
         </div>
     )
   }

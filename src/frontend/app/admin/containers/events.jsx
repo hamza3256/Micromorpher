@@ -13,9 +13,6 @@ class EventViewer extends React.Component {
     const constractHander = this.props.contract
     const exchanger = constractHander.getExchanger()
 
-    //const web3 = this.props.web3
-    //const exchanger = this.props.exchanger
-
     /*const funded = exchanger.Funded()
     const orderPlaced = exchanger.OrderPlaced()
     const orderCompleted = exchanger.OrderCompleted()
@@ -23,17 +20,6 @@ class EventViewer extends React.Component {
     const deposited = exchanger.Deposited()
     const withdrawn = exchanger.Withdrawn()
     const rateSet = exchanger.RateSet()
-
-    this.state = {
-        funded: funded,
-        orderPlaced: orderPlaced,
-        orderCompleted: orderCompleted,
-        orderDeleted: orderDeleted,
-        deposited: deposited,
-        withdrawn: withdrawn,
-        rateSet: rateSet,
-        results: ""
-    }
 
     this._fundedEvent()
     this._orderPlacedEvent()

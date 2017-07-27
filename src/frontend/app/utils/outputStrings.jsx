@@ -6,6 +6,11 @@ class ExchangerAppStrings {
   static exchange= 'Exchange Currency'
 }
 
+class ExchangerHomeStrings {
+
+  static info = 'Digitise your currencies.'
+}
+
 class AdminAppStrings {
 
   static heading = 'Currency Exchange Administrator'
