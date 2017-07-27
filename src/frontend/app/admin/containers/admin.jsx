@@ -101,9 +101,9 @@ class Admin extends React.Component {
   }
 
   _handleFund() {
-    console.log('handle funds')
+    //console.log('handle funds')
     if (this.adminHandler.checkSet()) {
-      console.log('handling funds!')
+      //console.log('handling funds!')
       const web3 = this.web3Handler.getWeb3()
       const account = this.web3Handler.getAccount()
       this.setState({account: account})
