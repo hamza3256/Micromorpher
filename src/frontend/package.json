@@ -12,7 +12,7 @@
     "dev": "webpack -d",
     "build": "webpack -p",
     "copyadmin": "cp ./app/admin/index.html build/admin && cp ./app/admin/index.css build/admin && cp ./node_modules/react-select/dist/react-select.css build/admin",
-    "copyexchanger": "cp ./app/index.html build/exchanger && cp ./app/index.css build/exchanger && cp ./node_modules/react-select/dist/react-select.css build/exchanger",
+    "copyexchanger": "cp ./app/exchanger/index.html build/exchanger && cp ./app/exchanger/index.css build/exchanger && cp ./node_modules/react-select/dist/react-select.css build/exchanger",
     "test": "echo \"Error: no test specified\" && exit 1",
     "startadmin": "http-server -p 8081 build/admin",
     "startexchanger": "http-server -p 8082 build/exchanger"

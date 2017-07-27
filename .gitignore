@@ -1,4 +1,6 @@
 data
+*/*.log
+*/*.swp
 
 src/frontend/build
 src/frontend/node_modules
