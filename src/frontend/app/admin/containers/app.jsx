@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-import Web3Handler from '../utils/web3Handler'
-import ContractHandler from '../utils/contractHandler'
-import ExchangeHandler from '../utils/exchangeHandler'
+import Web3Handler from '../../utils/web3Handler'
+import ContractHandler from '../../utils/contractHandler'
+import ExchangeHandler from '../../utils/exchangeHandler'
 
-import {AppStrings} from '../utils/outputStrings'
+import {AppStrings} from '../../utils/outputStrings'
 
 import Home from './home'
 import Admin from './admin'
@@ -37,6 +37,8 @@ class App extends React.Component {
             <li><Link to="/withdraw">{AppStrings.withdraw}</Link></li>
             <li><Link to="/events">{AppStrings.events}</Link></li>
           </ul>
+
+          <hr />
 
           <Route exact path="/" render={() => <Home />} />
           <Route path="/admin" render={() => <Admin contract={this.contractHandler} web3={this.web3Handler} />} />

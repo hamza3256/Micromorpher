@@ -26,10 +26,10 @@ contract Exchanger is Exchange, Mortal {
   event Withdrawn(string code, uint256 value);
   event RateSet(string code, uint256 rate);
 
-  function Exchanger(address _forexDb, address _orderDb, address _depositDb) {
-		forexDB = ForexDB(_forexDb);
-	  orderDB = OrderDB(_orderDb);
-		depositDB = DepositDB(_depositDb);
+  function Exchanger() {
+		forexDB = new ForexDB();
+	  orderDB = new OrderDB();
+		depositDB = new DepositDB();
   }
 
   function() payable onlyOwner {
@@ -43,16 +43,15 @@ contract Exchanger is Exchange, Mortal {
 
   function completeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
 		//var sent = _creator.send(_etherValue);
-		if ( orderDB.isOpen(_epochTime,_creator) ) {
+    if ( orderDB.isOpen(_epochTime,_creator) ) {
 			orderDB.completeOrder(_epochTime,_creator);
-			if( depositDB.deposit(_offerCurrency,_offerAmount) ) {
-				if (_creator.send(_etherValue)) {
-	    		OrderCompleted(_epochTime,_creator);
-          Deposited(_offerCurrency,_offerAmount);
-				} else {
-					placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
-					withdraw(_offerCurrency,_offerAmount);
-				}
+			depositDB.deposit(_offerCurrency,_offerAmount);
+			if (_creator.send(_etherValue)) {
+    		OrderCompleted(_epochTime,_creator);
+        Deposited(_offerCurrency,_offerAmount);
+			} else {
+				placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
+				withdraw(_offerCurrency,_offerAmount);
 			}
 		}
   }
@@ -66,10 +65,12 @@ contract Exchanger is Exchange, Mortal {
     return orderDB.getOrderId(_epochTime,_creator);
   }
 
-  function withdraw(string code, uint256 value) public onlyOwner {
+  function withdraw(string _code, uint256 _value) public onlyOwner {
   	// Need to do something with the return result here
-  	if ( depositDB.withdraw(code,value) ) {
-  	 Withdrawn(code,value);
+    var depositedAmount = depositDB.getDepositedAmount(_code);
+    if (depositedAmount >= _value) {
+    	 depositDB.withdraw(_code,_value);
+    	 Withdrawn(_code,_value);
     }
   }
 

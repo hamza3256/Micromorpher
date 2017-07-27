@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import AdminHandler from '../utils/adminHandler'
+import AdminHandler from '../../utils/adminHandler'
 
 import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit, FundsSubmitted} from '../components/admin'
-import {AdminStrings} from '../utils/outputStrings'
+import {AdminStrings} from '../../utils/outputStrings'
 
 class Admin extends React.Component {
 
@@ -73,6 +73,7 @@ class Admin extends React.Component {
   setAdminFunds (_self, _result) {
     const web3 = _self.web3Handler.getWeb3()
     const adminFunds = web3.fromWei(_result,"ether").toString()
+    _self.adminHandler.setFunds(_result)
     _self.setState({adminFunds: adminFunds})
   }
 
@@ -83,6 +84,7 @@ class Admin extends React.Component {
   }
 
   _handleFundContract (_value) {
+    console.log(_value)
     this.adminHandler.setNewFunds(_value)
   }
 
@@ -99,7 +101,9 @@ class Admin extends React.Component {
   }
 
   _handleFund() {
+    console.log('handle funds')
     if (this.adminHandler.checkSet()) {
+      console.log('handling funds!')
       const web3 = this.web3Handler.getWeb3()
       const account = this.web3Handler.getAccount()
       this.setState({account: account})

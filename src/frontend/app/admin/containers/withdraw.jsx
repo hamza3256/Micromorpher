@@ -2,17 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted} from '../components/withdraw'
-import WithdrawHandler from '../utils/withdrawHandler'
-import {WithdrawStrings} from '../utils/outputStrings'
+import WithdrawHandler from '../../utils/withdrawHandler'
+import {WithdrawStrings} from '../../utils/outputStrings'
 
 class Withdraw extends React.Component {
 
   constructor(props) {
     super(props)
 
-    const web3Handler = this.props.web3
-    const constractHander = this.props.contract
-    const exchanger = constractHander.getExchanger()
+    this.web3Handler = this.props.web3
+    const contractHander = this.props.contract
+    this.exchanger = contractHander.getExchanger()
     this.withdrawHandler = new WithdrawHandler()
 
     const numCountryCodes = WithdrawHandler.countryCodes.length
@@ -105,11 +105,6 @@ class Withdraw extends React.Component {
         <WithdrawSubmitted label={WithdrawStrings.submittedResultLabel} result={this.state.result}/>
       </div>
     )
-  }
-
-  componentWillUnmount() {
-    const withdrawn = this.state.withdrawn
-    withdrawn.stopWatching()
   }
 }
 
