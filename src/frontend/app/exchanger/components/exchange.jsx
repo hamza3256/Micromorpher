@@ -1,73 +1,69 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Select from 'react-select';
 
 class LFCCurrency extends React.Component {
-  constructor(props) {
+
+  /* constructor(props) {
     super(props)
+  } */
+
+  _handleChange (value) {
+    this.props.parentFunc(value)
   }
 
-  _handleCurrencyChange(value) {
-    this.props.parentFunc(value.label)    
-  }
-
-  render() {
-    
-    const currs = this.props.currencies.map(function(values) {
-      return { value: values, label: values}
-    })
-
+  render () {
     return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
+      <div className="select">
+        <p>{this.props.label}</p>
         <Select
+          placeholder={this.props.placeHolder}
           searchable={this.props.searchable}
-          disabled={false}
-          name='Select Currency'
-          options={currs}
-          value={this.props.currency}
-          onChange={this._handleCurrencyChange.bind(this)}
+          disabled={this.props.disabled}
+          clearable={this.props.clearable}
+          options={this.props.selections}
+          value={this.props.selection}
+          onChange={this._handleChange.bind(this)}
         />
       </div>
-    );
+    )
   }
 }
 
 LFCCurrency.propTypes = {
-  parentFunc: React.PropTypes.func,
-  currencies: React.PropTypes.array,
-  currency: React.PropTypes.string,
-  searchable: React.PropTypes.bool,
-  label: React.PropTypes.string
+  parentFunc: PropTypes.func,
+  selections: PropTypes.array,
+  selection: PropTypes.number,
+  searchable: PropTypes.bool,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string
 }
 
 LFCCurrency.defaultProps = {
-  label: 'Exchange Currency:',
-  searchable: true,
+  disabled: false,
+  clearable: true,
+  searchable: true
 }
 
 class LFCRate extends React.Component {
 
-  constructor(props) {
+  /* constructor(props) {
     super(props)
-  }
+  } */
 
-  render() {
+  render () {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.rate}</p>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
 LFCRate.propTypes = {
-  rate: React.PropTypes.number,
-  label: React.PropTypes.string
-}
-
-LFCRate.defaultProps = {
-  label: 'Exchange Rate (Amount of Selected Currency to Ether):'
+  label: PropTypes.string,
+  result: PropTypes.string
 }
 
 class LFCAmount extends React.Component {
@@ -82,52 +78,23 @@ class LFCAmount extends React.Component {
 
   render() {
     return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <input
-          type="text"
-          placeholder="Currrency Amount"
-          value={this.props.amount}
-          onChange={this.handleAmountChange.bind(this)}
-        />
+      <div className="textInput">
+        <p>{this.props.label}
+          <input
+            type="text"
+            placeholder={this.props.placeHolder}
+            onChange={this.handleAmountChange.bind(this)}
+          />
+        </p>
       </div>
-    )
+    );
   }
 }
 
 LFCAmount.propTypes = {
-  parentFunc: React.PropTypes.func,
-  amount: React.PropTypes.number,
-  label: React.PropTypes.string
-}
-
-LFCAmount.defaultProps = {
-  label: 'Amount of Selected Currency to Exchange (e.g 10.99 for £10.99):'
-}
-
-class LFCEther extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.ether}</p>
-      </div>
-    )
-  }
-}
-
-LFCEther.propTypes = {
-  ether: React.PropTypes.number,
-  label: React.PropTypes.string
-}
-
-LFCEther.defaultProps = {
-  label: 'Amount of Ether to Which the Currency Converts:'
+  parentFunc: PropTypes.func,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string
 }
 
 class LFCPlaceOrder extends React.Component {
@@ -136,7 +103,7 @@ class LFCPlaceOrder extends React.Component {
     super(props);
   }
 
-  handlePress() {
+  _handlePress() {
     this.props.parentFunc()
   }
 
@@ -144,14 +111,37 @@ class LFCPlaceOrder extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <button onClick={this.handlePress.bind(this)}>Place Order!</button>
+        <button onClick={this._handlePress.bind(this)}>{this.props.buttonLabel}</button>
+      </div>
+    );
+  }
+}
+
+LFCPlaceOrder.propTypes = {
+  parentFunc: PropTypes.func,
+  label: PropTypes.string,
+  buttonLabel: PropTypes.string
+}
+
+class LFCEther extends React.Component {
+
+  /* constructor(props) {
+    super(props)
+  } */
+
+  render () {
+    return (
+      <div className="section">
+        <h2 className="section-heading">{this.props.label}</h2>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
-LFCPlaceOrder.defaultProps = {
-  label: 'Place Order:'
+LFCEther.propTypes = {
+  label: PropTypes.string,
+  result: PropTypes.string
 }
 
 class LFCSubmit extends React.Component {
@@ -160,7 +150,7 @@ class LFCSubmit extends React.Component {
     super(props);
   }
 
-  handlePress() {
+  _handlePress() {
     this.props.parentFunc()
   }
 
@@ -168,40 +158,37 @@ class LFCSubmit extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <button onClick={this.handlePress.bind(this)}>Confirm!</button>
+        <button onClick={this._handlePress.bind(this)}>{this.props.buttonLabel}</button>
       </div>
-    )
+    );
   }
 }
 
-LFCSubmit.defaultProps = {
-  label: 'Confirm Order:'
+LFCSubmit.propTypes = {
+  parentFunc: PropTypes.func,
+  label: PropTypes.string,
+  buttonLabel: PropTypes.string
 }
 
 class LFCOrderState extends React.Component {
 
-  constructor(props) {
+  /* constructor(props) {
     super(props)
-  }
+  } */
 
-  render() {
+  render () {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.orderState}</p>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
 LFCOrderState.propTypes = {
-  orderState: React.PropTypes.string,
-  label: React.PropTypes.string
-}
-
-LFCOrderState.defaultProps = {
-  orderState: " ",
-  label: 'Order State:'
+  label: PropTypes.string,
+  result: PropTypes.string
 }
 
 export {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit, LFCOrderState}

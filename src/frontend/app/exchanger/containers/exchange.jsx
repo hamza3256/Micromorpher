@@ -1,7 +1,8 @@
-import Web3 from 'web3';
 import React from 'react';
-import {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit, LFCOrderState} from '../components/exchange';
+import PropTypes from 'prop-types'
 
+import {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit, LFCOrderState} from '../components/exchange';
+import ExchangeHandler from '../../utils/exchangeHandler'
 import {ExchangerStrings, CountryCodes} from '../../utils/outputStrings'
 
 class Exchange extends React.Component {
@@ -24,143 +25,92 @@ class Exchange extends React.Component {
     this.state = {
       currencyId: undefined,
       currencies: countryCodeSelections,
-      result: ""
+      rate: '0',
+      etherAmount: '0',
+      result: ''
     }
-
-    /* this.state = {
-        web3: web3,
-        exchanger: exchanger,
-        latest: latestFilter,
-        currencies: currs,
-        txHash: "",
-        currency: "",
-        rate: 0,
-        amount: 0,
-        ether: 0,
-        orderTime: 0,
-        orderPlaced: false,
-        confirmPlaced: false,
-        orderState: " "
-    }  */
   }
 
-  /* _latestBlock() {
-    const thisJs = this
-    const filter = this.state.latest
-    const web3 = this.state.web3
-    const exchanger = this.state.exchanger
-
-    //Display the amount of ether you'll get
-
-    filter.watch(function (error, result) {
-      if (error) {
-        console.error(error)
-      } else {
-        let thisTx = thisJs.state.txHash
-        console.log("State transaction " + thisTx)
-        const block = web3.eth.getBlock(result, true)
-        let transactions = block.transactions
-        for(let i = 0; i < transactions.length; i++)
-        {
-          console.log("block transaction " + transactions[i].hash)
-          if( thisTx == transactions[i].hash ){
-            console.log("Got match!")
-            if (thisJs.state.orderPlaced) {
-              const currency = thisJs.state.currency
-              const amount = thisJs.state.amount
-              console.log("Amount is " + amount)
-              const amountToWei = web3.toWei(amount,"ether")
-              console.log("Amount in Wei is " + amountToWei)
-              const eth = exchanger.getEtherAmount(currency,amountToWei)
-              console.log("Got Amount in Eth: " + eth)
-              const thisEth = eth.toNumber()
-              thisJs.setState({ether: thisEth})
-              thisJs.setState({orderState: "Order Placed! (OrderId: " + thisTx + ")"})
-              thisJs.setState({orderPlaced: false})
-            } else if (thisJs.state.confirmPlaced) {
-              thisJs.setState({orderState: "Order Confirmed! (OrderId: " + thisTx + ")"})
-              thisJs.setState({confirmPlaced: false})
-            }
-            break
-          }
-        }
-      }
-    })
-  } */
-
-  _handleCurrency(value) {
-    this.setState({currency: value})
-    const web3 = this.state.web3
-    const exchanger = this.state.exchanger
-    console.log("Getting exchange rate for " + value)
-    const rate = exchanger.getRate(value).toNumber()
-    console.log("Got Rate in Wei: " + rate)
-    const theRate = web3.fromWei(rate,"ether")
-    console.log("Got Rate in Eth: " + theRate)
-    this.setState({rate: theRate})
+  setRate (_self, _result) {
+    //console.log("Got Rate in Wei: " + _result)
+    const theRate = web3.fromWei(_result,"ether").toString()
+    _self.exchangeHandler.setRate(theRate)
+    _self.setState({rate: theRate})
   }
 
-  _handleAmount(value) {
-    const web3 = this.state.web3
-    this.setState({amount: value})
-    console.log("Amount is " + value)
+  setOrderPlaced (_self, _result) {
+    const order = ExchangerStrings.orderStatusLabel + _result
+    _self.setState({result: order})
+  }
+
+  setCompleteOrder (_self, _result) {
+    const order = ExchangerStrings.orderStatusLabel + _result
+    _self.setState({result: order})
+  }
+
+  setEtherAmount (_self, _result) {
+    const amount = web3.fromWei(_result,"ether").toString()
+    _self.exchangeHandler.setEtherAmount(amount)
+    _self.setState({etherAmount: amount})
+  }
+
+  _handleCurrency (_selection) {
+    this.exchangeHandler.setCurrency(_selection.label)
+    this.setState({currencyId: _selection.value})
+    const params = [_selection.label, this.defaultTO]
+    this.web3Handler.callParamHandler(this, this.exchanger.getRate, params, this.setRate, false)
+  }
+
+  _handleAmount(_value) {
+    this.exchangeHandler.setAmount(_value)
   }
 
   _handlePlaceOrder() {
-    const web3 = this.state.web3
-    const exchanger = this.state.exchanger
     const epochTime = (new Date).getTime()
-    const account = web3.eth.defaultAccount
-    const currency = this.state.currency
-    const amount = this.state.amount
+    this.exchangeHandler.setOrderTime(epochTime)
+    const account = this.web3Handler.getAccount()
+    this.exchangeHandler.setAccount(account)
+    const currency = this.exchangeHandler.getCurrency()
+    const amount = this.exchangeHandler.getAmount()
     const thisAmount = web3.toWei(amount,"ether")
-    const ether = this.state.ether
+    const ether = this.exchangeHandler.getEtherAmount()
     const wei = web3.toWei(ether,"ether")
-    const tx = exchanger.placeOrder(epochTime, account, currency, thisAmount, wei)
-    console.log("Placed order: Time: " + epochTime + " Account: " + account + " Currency: " + currency + " Amount: " + thisAmount + " Wei: " + wei)
-    console.log("Place Transaction is " + tx)
-    this.setState({txHash: tx})
-    this.setState({orderTime: epochTime})
-    this.setState({orderPlaced: true})
+    let params = [epochTime, account, currency, thisAmount, wei, this.defaultTO]
+    this.web3Handler.callParamHandler(this, this.exchanger.placeOrder, params, this.setOrderPlaced, false)
+    params = [currency, thisAmount, this.defaultTO]
+    this.web3Handler.callParamHandler(this, this.exchanger.getEtherAmount, params, this.setEtherAmount, false)
   }
 
   _handleExchange() {
-    const web3 = this.state.web3
-    const exchanger = this.state.exchanger
-    const epochTime = this.state.orderTime
-    const account = web3.eth.defaultAccount
-    const currency = this.state.currency
-    const amount = this.state.amount
+    const orderTime = this.exchangeHandler.getOrderTime()
+    const account = this.exchangeHandler.getAccount()
+    const currency = this.exchangeHandler.getCurrency()
+    const amount = this.exchangeHandler.getAmount()
     const thisAmount = web3.toWei(amount,"ether")
-    const ether = this.state.ether
+    const ether = this.exchangeHandler.getEtherAmount()
     const wei = web3.toWei(ether,"ether")
-    const tx = exchanger.completeOrder(epochTime, account, currency, thisAmount, wei)
-    console.log("Placed order: Time: " + epochTime + " Account: " + account + " Currency: " + currency + " Amount: " + thisAmount + " Wei: " + wei)
-    console.log("Complete Transaction is " + tx + "for account " + account)
-    this.setState({txHash: tx})
-    this.setState({confirmPlaced: true})
+    const params = [orderTime, account, currency, thisAmount, wei, this.defaultTO]
+    this.web3Handler.callParamHandler(this, this.exchanger.completeOrder, params, this.setCompleteOrder, false)
   }
 
   render() {
     return (
-        <div>
-            <LFCCurrency currencies={this.state.currencies} currency={this.state.currency} parentFunc={this._handleCurrency.bind(this)}/>
-            <LFCRate rate={this.state.rate}/>
-            <LFCAmount amount={this.state.amount} parentFunc={this._handleAmount.bind(this)}/>
-            <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)}/>
-            <LFCEther ether={this.state.ether}/>
-            <LFCSubmit parentFunc={this._handleExchange.bind(this)}/>
-            <LFCOrderState orderState={this.state.orderState}/>
-        </div>
+      <div>
+        <LFCCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} selection={this.state.currencyId} />
+        <LFCRate label={ExchangerStrings.rateLabel} result={this.state.rate}/>
+        <LFCAmount parentFunc={this._handleAmount.bind(this)} placeHolder={ExchangerStrings.amountPlaceHolder} label={ExchangerStrings.amountLabel} />
+        <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)} label={ExchangerStrings.placeOrderLabel} buttonLabel={ExchangerStrings.orderButtonLabel} />
+        <LFCEther label={ExchangerStrings.etherLabel} result={this.state.etherAmount}/>
+        <LFCSubmit parentFunc={this._handleExchange.bind(this)} label={ExchangerStrings.confirmPlaceOrderLabel} buttonLabel={ExchangerStrings.confirmOrderButtonLabel} />
+        <LFCOrderState label={ExchangerStrings.orderStatusLabel} result={this.state.result}/>
+      </div>
     )
   }
 }
 
 Exchange.propTypes = {
-  web3: React.PropTypes.object,
-  exchanger: React.PropTypes.object,
-  account: React.PropTypes.string,
-  currencies: React.PropTypes.array
+  contract: PropTypes.object,
+  web3: PropTypes.object
 }
 
 export default Exchange

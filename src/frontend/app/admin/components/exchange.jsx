@@ -97,9 +97,9 @@ class ExchangeSubmit extends React.Component {
 }
 
 ExchangeSubmit.propTypes = {
-  parentFunc:PropTypes.func,
-  label:PropTypes.string,
-  buttonLabel:PropTypes.string
+  parentFunc: PropTypes.func,
+  label: PropTypes.string,
+  buttonLabel: PropTypes.string
 }
 
 class RateSubmitted extends React.Component {

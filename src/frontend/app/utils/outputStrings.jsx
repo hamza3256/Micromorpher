@@ -20,6 +20,21 @@ class ExchangerAccountStrings {
 class ExchangerStrings {
 
   static info = 'Use this form to exchange currencies for Ether.'
+  static exchangeCurrencyLabel = 'Exchange Currency: '
+  static exchangeCurrencyPlaceholder = 'currency'
+  static rateLabel = 'Exchange Rate (Amount of Selected Currency to Ether): '
+  static amountPlaceholder =  'amount'
+  static amountLabel =  'Amount of Selected Currency to Exchange (e.g 10.99 for £10.99): '
+
+  static orderButtonLabel = 'Place Order!'
+  static placeOrderLabel = 'Place Order: '
+  static orderPlaced = 'Order Placed with transaction ID: '
+  static etherLabel = 'Amount of Ether to Which the Currency Converts: '
+
+  static confirmOrderButtonLabel = 'Confirm Order!'
+  static confirmPlaceOrderLabel = 'onfirm Order: '
+
+  static orderStatusLabel = 'Order State: '
 
 }
 

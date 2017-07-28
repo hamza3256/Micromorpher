@@ -13,7 +13,7 @@ class Exchanger extends React.Component {
     this.web3Handler = this.props.web3
     const contractHander = this.props.contract
     this.exchanger = contractHander.getExchanger()
-    this.exchangeHandler = new ExchangeHandler()
+    this.exchangeHandler = new AdminExchangeHandler()
 
     const numCountryCodes = CountryCodes.codes.length
     let countryCodeSelections = []
