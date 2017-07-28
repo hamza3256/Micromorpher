@@ -48,9 +48,15 @@ class AccountAdmin extends React.Component {
   render() {
     return (
       <div>
+        <div>
+          <p>{ExchangerAccountStrings.info}</p>
+          <hr />
+        </div>
+        <div>
           <Account label={ExchangerAccountStrings.accountLabel} result={this.state.account}/>
           <AccountFunds label={ExchangerAccountStrings.accountFundsLabel} result={this.state.funds}/>
         </div>
+      </div>
     )
   }
 }

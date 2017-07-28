@@ -39,7 +39,11 @@ class EventViewer extends React.Component {
   render () {
     return (
       <div>
-        <Logger heading={AdminEventViewerStrings.heading} log={this.state.log} />
+        <div className="info">
+          <p>{AdminEventViewerStrings.info}</p>
+          <hr />
+        </div>
+        <div><p><b>Developer Note</b> - Not quite working, for some reason</p></div>
       </div>
     )
   }

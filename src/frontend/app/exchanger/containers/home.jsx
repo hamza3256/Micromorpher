@@ -9,9 +9,10 @@ class Home extends React.Component {
 
   render() {
     return (
-        <div>
-            <p>{ExchangerHomeStrings.info}</p>
-        </div>
+      <div>
+        <p>{ExchangerHomeStrings.info}</p>
+        <hr />
+      </div>
     )
   }
 }

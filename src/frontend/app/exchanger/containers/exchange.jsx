@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-import {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit, LFCOrderState} from '../components/exchange';
+import {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit} from '../components/exchange';
 import ExchangeHandler from '../../utils/exchangeHandler'
 import {ExchangerStrings, CountryCodes} from '../../utils/outputStrings'
 
@@ -21,13 +21,15 @@ class Exchange extends React.Component {
       countryCodeSelections[i] = { value: i, label: CountryCodes.codes[i] }
     }
 
+    const info = ExchangerStrings.info
+
     this.defaultTO = {gas: 300000}
     this.state = {
       currencyId: undefined,
       currencies: countryCodeSelections,
       rate: '0',
       etherAmount: '0',
-      result: ''
+      info: info
     }
   }
 
@@ -39,13 +41,13 @@ class Exchange extends React.Component {
   }
 
   setOrderPlaced (_self, _result) {
-    const order = ExchangerStrings.orderStatusLabel + _result
-    _self.setState({result: order})
+    const info = 'Order placed! Transaction ID: ' + _result
+    _self.setState({info: info})
   }
 
   setCompleteOrder (_self, _result) {
-    const order = ExchangerStrings.orderStatusLabel + _result
-    _self.setState({result: order})
+    const info = 'Order confirmed! Transaction ID: ' + _result
+    _self.setState({info: info})
     _self.exchangeHandler.reset()
   }
 
@@ -105,13 +107,18 @@ class Exchange extends React.Component {
   render() {
     return (
       <div>
-        <LFCCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} selection={this.state.currencyId} />
-        <LFCRate label={ExchangerStrings.rateLabel} result={this.state.rate}/>
-        <LFCAmount parentFunc={this._handleAmount.bind(this)} placeHolder={ExchangerStrings.amountPlaceHolder} label={ExchangerStrings.amountLabel} />
-        <LFCEther label={ExchangerStrings.etherLabel} result={this.state.etherAmount}/>
-        <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)} label={ExchangerStrings.placeOrderLabel} buttonLabel={ExchangerStrings.orderButtonLabel} />
-        <LFCSubmit parentFunc={this._handleExchange.bind(this)} label={ExchangerStrings.confirmPlaceOrderLabel} buttonLabel={ExchangerStrings.confirmOrderButtonLabel} />
-        <LFCOrderState label={ExchangerStrings.orderStatusLabel} result={this.state.result}/>
+        <div>
+          <p>{this.state.info}</p>
+          <hr />
+        </div>
+        <div>
+          <LFCCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} selection={this.state.currencyId} />
+          <LFCRate label={ExchangerStrings.rateLabel} result={this.state.rate}/>
+          <LFCAmount parentFunc={this._handleAmount.bind(this)} placeHolder={ExchangerStrings.amountPlaceHolder} label={ExchangerStrings.amountLabel} />
+          <LFCEther label={ExchangerStrings.etherLabel} result={this.state.etherAmount}/>
+          <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)} label={ExchangerStrings.placeOrderLabel} buttonLabel={ExchangerStrings.orderButtonLabel} />
+          <LFCSubmit parentFunc={this._handleExchange.bind(this)} label={ExchangerStrings.confirmPlaceOrderLabel} buttonLabel={ExchangerStrings.confirmOrderButtonLabel} />
+        </div>
       </div>
     )
   }

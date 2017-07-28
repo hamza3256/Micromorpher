@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted} from '../components/exchange'
+import {ExchangeCurrency, ExchangeRate, ExchangeSubmit} from '../components/exchange'
 import AdminExchangeHandler from '../../utils/adminExchangeHandler'
 import {AdminExchangeStrings, CountryCodes} from '../../utils/outputStrings'
 
@@ -15,6 +15,8 @@ class Exchanger extends React.Component {
     this.exchanger = contractHander.getExchanger()
     this.exchangeHandler = new AdminExchangeHandler()
 
+    const info = AdminExchangeStrings.info
+
     const numCountryCodes = CountryCodes.codes.length
     let countryCodeSelections = []
     for (let i = 0; i < numCountryCodes; i++) {
@@ -25,12 +27,15 @@ class Exchanger extends React.Component {
     this.state = {
       currencyId: undefined,
       currencies: countryCodeSelections,
-      result: ""
+      info: info
     }
   }
 
   setRate (_self, _result) {
-    _self.setState({result: _result})
+    const currency = _self.exchangeHandler.getCurrency()
+    const rate = _self.exchangeHandler.getRate()
+    const info = 'Exchange rate ' + rate + ' for Currency ' + currency + ' set. Transaction ID: ' + _result
+    _self.setState({info: info})
     _self.exchangeHandler.reset()
   }
 
@@ -44,8 +49,8 @@ class Exchanger extends React.Component {
   }
 
   _handleRateSet () {
-    //console.log("In rate set")
     if (this.exchangeHandler.checkSet()) {
+      //console.log('setting rate')
       const web3 = this.web3Handler.getWeb3()
       const currency = this.exchangeHandler.getCurrency()
       const rate = this.exchangeHandler.getRate()
@@ -60,10 +65,15 @@ class Exchanger extends React.Component {
   render() {
     return (
       <div>
-        <ExchangeCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminExchangeStrings.exchangePlaceHolder} label={AdminExchangeStrings.exchangeLabel} selections={this.state.currencies} selection={this.state.currencyId}  />
-        <ExchangeRate parentFunc={this._handleRate.bind(this)} placeHolder={AdminExchangeStrings.ratePlaceHolder} label={AdminExchangeStrings.rateLabel} />
-        <ExchangeSubmit parentFunc={this._handleRateSet.bind(this)} label={AdminExchangeStrings.rateSubmitLabel} buttonLabel={AdminExchangeStrings.buttonLabel} />
-        <RateSubmitted label={AdminExchangeStrings.submittedResultLabel} result={this.state.result}/>
+        <div className="info">
+          <p>{this.state.info}</p>
+          <hr />
+        </div>
+        <div>
+          <ExchangeCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminExchangeStrings.exchangePlaceHolder} label={AdminExchangeStrings.exchangeLabel} selections={this.state.currencies} selection={this.state.currencyId}  />
+          <ExchangeRate parentFunc={this._handleRate.bind(this)} placeHolder={AdminExchangeStrings.ratePlaceHolder} label={AdminExchangeStrings.rateLabel} />
+          <ExchangeSubmit parentFunc={this._handleRateSet.bind(this)} label={AdminExchangeStrings.rateSubmitLabel} buttonLabel={AdminExchangeStrings.buttonLabel} />
+        </div>
       </div>
     )
   }

@@ -18,11 +18,13 @@ class Admin extends React.Component {
     this.adminHandler = new AdminHandler()
     const account = this.web3Handler.getAccount()
 
+    const info = AdminStrings.info
+
     this.state = {
       account: account,
       adminFunds: '',
       contractFunds: '',
-      result: ""
+      info: info
     }
 
     this._getAdminFunds()
@@ -30,7 +32,8 @@ class Admin extends React.Component {
   }
 
   setFund (_self, _result) {
-    _self.setState({result: _result})
+    const info = 'Contract funded. Transaction ID: ' + _result
+    _self.setState({info: info})
     _self.adminHandler.reset()
     _self._getAdminFunds()
     _self._getContractFunds()
@@ -81,14 +84,19 @@ class Admin extends React.Component {
 
   render() {
     return (
+      <div>
+        <div className="info">
+          <p>{this.state.info}</p>
+          <hr />
+        </div>
         <div>
           <AdminAccount label={AdminStrings.adminAccountLabel} result={this.state.account} />
           <AdminFunds label={AdminStrings.adminFundsLabel} result={this.state.adminFunds} />
           <ContractFunds label={AdminStrings.contractFundsLabel} result={this.state.contractFunds}/>
           <FundContract parentFunc={this._handleFundContract.bind(this)} placeHolder={AdminStrings.fundContractPlaceholder} label={AdminStrings.fundContractLabel} />
           <FundSubmit parentFunc={this._handleFund.bind(this)} label={AdminStrings.fundSubmitLabel} buttonLabel={AdminStrings.buttonLabel} />
-          <FundsSubmitted label={AdminStrings.submittedResultLabel} result={this.state.result}/>
         </div>
+      </div>
     )
   }
 }

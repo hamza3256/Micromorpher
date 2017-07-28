@@ -102,25 +102,4 @@ ExchangeSubmit.propTypes = {
   buttonLabel: PropTypes.string
 }
 
-class RateSubmitted extends React.Component {
-
-  /* constructor(props) {
-    super(props)
-  } */
-
-  render () {
-    return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.result}</p>
-      </div>
-    )
-  }
-}
-
-RateSubmitted.propTypes = {
-  label: PropTypes.string,
-  result: PropTypes.string
-}
-
-export {ExchangeCurrency, ExchangeRate, ExchangeSubmit, RateSubmitted}
+export {ExchangeCurrency, ExchangeRate, ExchangeSubmit}

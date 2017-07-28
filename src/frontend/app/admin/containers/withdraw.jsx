@@ -23,15 +23,20 @@ class Withdraw extends React.Component {
 
     this.defaultTO = {gas: 300000}
 
+    const info = AdminWithdrawStrings.info
+
     this.state = {
       currencies: countryCodeSelections,
       amount: 0,
-      result: ""
+      info: info
     }
   }
 
   setWithdraw (_self, _result) {
-    _self.setState({result: _result})
+    const currency = _self.withdrawHandler.getCurrency()
+    const amount = _self.withdrawHandler.getWithdrawAmount()
+    const info = 'Amount ' + amount + ' for Currency ' + currency + ' withdrawn. Transaction ID: ' + _result
+    _self.setState({info: info})
     _self.withdrawHandler.reset()
   }
 
@@ -70,11 +75,16 @@ class Withdraw extends React.Component {
   render() {
     return (
       <div>
-        <WithdrawCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminWithdrawStrings.currencyPlaceHolder} label={AdminWithdrawStrings.currencyLabel} selections={this.state.currencies} />
-        <Amount label={AdminWithdrawStrings.amountLabel} result={this.state.amount}/>
-        <WithdrawAmount parentFunc={this._handleWithdrawAmount.bind(this)} placeHolder={AdminWithdrawStrings.withdrawAmountPlaceholder} label={AdminWithdrawStrings.withdrawAmountLabel} />
-        <WithdrawSubmit parentFunc={this._handleWithdraw.bind(this)} label={AdminWithdrawStrings.withdrawSubmitLabel} buttonLabel={AdminWithdrawStrings.buttonLabel} />
-        <WithdrawSubmitted label={AdminWithdrawStrings.submittedResultLabel} result={this.state.result}/>
+        <div className="info">
+          <p>{this.state.info}</p>
+          <hr />
+        </div>
+        <div>
+          <WithdrawCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminWithdrawStrings.currencyPlaceHolder} label={AdminWithdrawStrings.currencyLabel} selections={this.state.currencies} />
+          <Amount label={AdminWithdrawStrings.amountLabel} result={this.state.amount}/>
+          <WithdrawAmount parentFunc={this._handleWithdrawAmount.bind(this)} placeHolder={AdminWithdrawStrings.withdrawAmountPlaceholder} label={AdminWithdrawStrings.withdrawAmountLabel} />
+          <WithdrawSubmit parentFunc={this._handleWithdraw.bind(this)} label={AdminWithdrawStrings.withdrawSubmitLabel} buttonLabel={AdminWithdrawStrings.buttonLabel} />
+        </div>
       </div>
     )
   }

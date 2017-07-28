@@ -13,6 +13,8 @@ class ExchangerHomeStrings {
 
 class ExchangerAccountStrings {
 
+  static info = 'Account information'
+
   static accountLabel = 'Account: '
   static accountFundsLabel = 'Ether: '
 }
@@ -64,7 +66,6 @@ class AdminStrings {
   static fundContractLabel = 'Amount of Ether to Send to Contract: '
   static fundSubmitLabel = 'Send Ether to Contract: '
   static buttonLabel = 'Fund Contract!'
-  static submittedResultLabel = 'Set Funds Result: '
 }
 
 
@@ -77,7 +78,6 @@ class AdminExchangeStrings {
   static rateLabel = 'Exchange Rate (Amount of Selected Currency to Ether): '
   static rateSubmitLabel = 'Set Exchange Rate:'
   static buttonLabel = 'Set Rate!'
-  static submittedResultLabel = 'Exchange Rate Result: '
 }
 
 class AdminWithdrawStrings {
@@ -90,7 +90,6 @@ class AdminWithdrawStrings {
   static withdrawAmountLabel = 'Amount of Selected Currency to Withdraw (e.g 10.99 for £10.99): '
   static buttonLabel = 'Confirm!'
   static withdrawSubmitLabel = 'Confirm Withdraw: '
-  static submittedResultLabel = 'Withdraw Result: '
 }
 
 class AdminEventViewerStrings {

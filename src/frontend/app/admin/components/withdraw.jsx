@@ -117,31 +117,4 @@ class WithdrawSubmit extends React.Component {
   }
 }
 
-WithdrawSubmit.propTypes = {
-  parentFunc:PropTypes.func,
-  label:PropTypes.string,
-  buttonLabel:PropTypes.string
-}
-
-class WithdrawSubmitted extends React.Component {
-
-  /* constructor(props) {
-    super(props)
-  } */
-
-  render () {
-    return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.result}</p>
-      </div>
-    )
-  }
-}
-
-WithdrawSubmitted.propTypes = {
-  label: PropTypes.string,
-  result: PropTypes.string
-}
-
-export {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted}
+export {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit}

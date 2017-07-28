@@ -130,25 +130,4 @@ FundSubmit.propTypes = {
   buttonLabel:PropTypes.string
 }
 
-class FundsSubmitted extends React.Component {
-
-  /* constructor(props) {
-    super(props)
-  } */
-
-  render () {
-    return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.result}</p>
-      </div>
-    )
-  }
-}
-
-FundsSubmitted.propTypes = {
-  label: PropTypes.string,
-  result: PropTypes.string
-}
-
-export {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit, FundsSubmitted}
+export {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit}
