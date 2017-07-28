@@ -46,10 +46,12 @@ class Exchange extends React.Component {
   setCompleteOrder (_self, _result) {
     const order = ExchangerStrings.orderStatusLabel + _result
     _self.setState({result: order})
+    _self.exchangeHandler.reset()
   }
 
   setEtherAmount (_self, _result) {
-    const amount = web3.fromWei(_result,"ether").toString()
+    console.log('Ether amount' + _result)
+    const amount = _result.toString()
     _self.exchangeHandler.setEtherAmount(amount)
     _self.setState({etherAmount: amount})
   }
@@ -63,6 +65,11 @@ class Exchange extends React.Component {
 
   _handleAmount(_value) {
     this.exchangeHandler.setAmount(_value)
+    const currency = this.exchangeHandler.getCurrency()
+    const amount = this.exchangeHandler.getAmount()
+    const thisAmount = web3.toWei(amount,"ether")
+    const params = [currency, thisAmount, this.defaultTO]
+    this.web3Handler.callParamHandler(this, this.exchanger.getEtherAmount, params, this.setEtherAmount, false)
   }
 
   _handlePlaceOrder() {
@@ -70,27 +77,29 @@ class Exchange extends React.Component {
     this.exchangeHandler.setOrderTime(epochTime)
     const account = this.web3Handler.getAccount()
     this.exchangeHandler.setAccount(account)
-    const currency = this.exchangeHandler.getCurrency()
-    const amount = this.exchangeHandler.getAmount()
-    const thisAmount = web3.toWei(amount,"ether")
-    const ether = this.exchangeHandler.getEtherAmount()
-    const wei = web3.toWei(ether,"ether")
-    let params = [epochTime, account, currency, thisAmount, wei, this.defaultTO]
-    this.web3Handler.callParamHandler(this, this.exchanger.placeOrder, params, this.setOrderPlaced, false)
-    params = [currency, thisAmount, this.defaultTO]
-    this.web3Handler.callParamHandler(this, this.exchanger.getEtherAmount, params, this.setEtherAmount, false)
+    if (this.exchangeHandler.checkSet()) {
+      const currency = this.exchangeHandler.getCurrency()
+      const amount = this.exchangeHandler.getAmount()
+      const thisAmount = web3.toWei(amount,"ether")
+      const ether = this.exchangeHandler.getEtherAmount()
+      const wei = web3.toWei(ether,"ether")
+      const params = [epochTime, account, currency, thisAmount, wei, this.defaultTO]
+      this.web3Handler.callParamHandler(this, this.exchanger.placeOrder, params, this.setOrderPlaced, false)
+    }
   }
 
   _handleExchange() {
-    const orderTime = this.exchangeHandler.getOrderTime()
-    const account = this.exchangeHandler.getAccount()
-    const currency = this.exchangeHandler.getCurrency()
-    const amount = this.exchangeHandler.getAmount()
-    const thisAmount = web3.toWei(amount,"ether")
-    const ether = this.exchangeHandler.getEtherAmount()
-    const wei = web3.toWei(ether,"ether")
-    const params = [orderTime, account, currency, thisAmount, wei, this.defaultTO]
-    this.web3Handler.callParamHandler(this, this.exchanger.completeOrder, params, this.setCompleteOrder, false)
+    if (this.exchangeHandler.checkSet()) {
+      const orderTime = this.exchangeHandler.getOrderTime()
+      const account = this.exchangeHandler.getAccount()
+      const currency = this.exchangeHandler.getCurrency()
+      const amount = this.exchangeHandler.getAmount()
+      const thisAmount = web3.toWei(amount,"ether")
+      const ether = this.exchangeHandler.getEtherAmount()
+      const wei = web3.toWei(ether,"ether")
+      const params = [orderTime, account, currency, thisAmount, wei, this.defaultTO]
+      this.web3Handler.callParamHandler(this, this.exchanger.completeOrder, params, this.setCompleteOrder, false)
+    }
   }
 
   render() {
@@ -99,8 +108,8 @@ class Exchange extends React.Component {
         <LFCCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} selection={this.state.currencyId} />
         <LFCRate label={ExchangerStrings.rateLabel} result={this.state.rate}/>
         <LFCAmount parentFunc={this._handleAmount.bind(this)} placeHolder={ExchangerStrings.amountPlaceHolder} label={ExchangerStrings.amountLabel} />
-        <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)} label={ExchangerStrings.placeOrderLabel} buttonLabel={ExchangerStrings.orderButtonLabel} />
         <LFCEther label={ExchangerStrings.etherLabel} result={this.state.etherAmount}/>
+        <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)} label={ExchangerStrings.placeOrderLabel} buttonLabel={ExchangerStrings.orderButtonLabel} />
         <LFCSubmit parentFunc={this._handleExchange.bind(this)} label={ExchangerStrings.confirmPlaceOrderLabel} buttonLabel={ExchangerStrings.confirmOrderButtonLabel} />
         <LFCOrderState label={ExchangerStrings.orderStatusLabel} result={this.state.result}/>
       </div>

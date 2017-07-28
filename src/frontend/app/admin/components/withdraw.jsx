@@ -55,14 +55,14 @@ class Amount extends React.Component {
     return (
       <div className="section">
         <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.amount}</p>
+        <p>{this.props.result}</p>
       </div>
     )
   }
 }
 
 Amount.propTypes = {
-  amount:PropTypes.number,
+  result:PropTypes.number,
   label:PropTypes.string
 }
 

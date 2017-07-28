@@ -5,7 +5,7 @@ import Web3Handler from '../../utils/web3Handler'
 import ContractHandler from '../../utils/contractHandler'
 import AdminExchangeHandler from '../../utils/adminExchangeHandler'
 
-import {AdminAdminAppStrings} from '../../utils/outputStrings'
+import {AdminAppStrings} from '../../utils/outputStrings'
 
 import Home from './home'
 import Admin from './admin'
@@ -29,7 +29,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <h1>{AdminAdminAppStrings.heading}</h1>
+          <h1>{AdminAppStrings.heading}</h1>
           <ul role="nav">
             <li><Link to="/">{AdminAppStrings.home}</Link></li>
             <li><Link to="/admin">{AdminAppStrings.admin}</Link></li>

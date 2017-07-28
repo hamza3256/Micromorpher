@@ -16,7 +16,7 @@ class AdminWithdrawHandler {
 
   checkSet () {
     if ((this.withdraw.currency === undefined) ||
-        (this.withdraw.amount === undefined)
+        (this.withdraw.amount === undefined) ||
         (this.withdraw.withdrawAmount === undefined)) {
       return false
     } else {

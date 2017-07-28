@@ -29,7 +29,7 @@ class ExchangerStrings {
   static orderButtonLabel = 'Place Order!'
   static placeOrderLabel = 'Place Order: '
   static orderPlaced = 'Order Placed with transaction ID: '
-  static etherLabel = 'Amount of Ether to Which the Currency Converts: '
+  static etherLabel = 'Amount of Ether: '
 
   static confirmOrderButtonLabel = 'Confirm Order!'
   static confirmPlaceOrderLabel = 'Confirm Order: '
