@@ -33,6 +33,11 @@ class Exchange extends React.Component {
     }
   }
 
+  setOrderId (_self, _result) {
+    const info = 'Order placed! Order ID: ' + _result
+    _self.setState({info: info})
+  }
+
   setRate (_self, _result) {
     //console.log("Got Rate in Wei: " + _result)
     const theRate = web3.fromWei(_result,"ether").toString()
@@ -43,6 +48,10 @@ class Exchange extends React.Component {
   setOrderPlaced (_self, _result) {
     const info = 'Order placed! Transaction ID: ' + _result
     _self.setState({info: info})
+    const orderTime = _self.exchangeHandler.getOrderTime()
+    const account = _self.exchangeHandler.getAccount()
+    const params = [orderTime, account, _self.defaultTO]
+    _self.web3Handler.callParamHandler(_self, _self.exchanger.getOrderId, params, _self.setOrderId, false)
   }
 
   setCompleteOrder (_self, _result) {
@@ -52,7 +61,7 @@ class Exchange extends React.Component {
   }
 
   setEtherAmount (_self, _result) {
-    console.log('Ether amount' + _result)
+    //console.log('Ether amount ' + _result)
     const amount = _result.toString()
     _self.exchangeHandler.setEtherAmount(amount)
     _self.setState({etherAmount: amount})

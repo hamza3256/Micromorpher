@@ -53,7 +53,7 @@ class Admin extends React.Component {
   }
 
   _handleFundContract (_value) {
-    console.log(_value)
+    // console.log(_value)
     this.adminHandler.setNewFunds(_value)
   }
 
