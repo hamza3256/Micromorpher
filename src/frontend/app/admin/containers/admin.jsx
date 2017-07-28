@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import AdminHandler from '../../utils/adminHandler'
 
-import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit, FundsSubmitted} from '../components/admin'
+import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit} from '../components/admin'
 import {AdminStrings} from '../../utils/outputStrings'
 
 class Admin extends React.Component {

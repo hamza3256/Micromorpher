@@ -13,7 +13,7 @@ class ExchangerHomeStrings {
 
 class ExchangerAccountStrings {
 
-  static info = 'Account information'
+  static info = 'Account information.'
 
   static accountLabel = 'Account: '
   static accountFundsLabel = 'Ether: '

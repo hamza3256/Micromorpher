@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit, WithdrawSubmitted} from '../components/withdraw'
+import {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit} from '../components/withdraw'
 import AdminWithdrawHandler from '../../utils/adminWithdrawHandler'
 import {AdminWithdrawStrings, CountryCodes} from '../../utils/outputStrings'
 

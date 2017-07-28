@@ -170,25 +170,4 @@ LFCSubmit.propTypes = {
   buttonLabel: PropTypes.string
 }
 
-class LFCOrderState extends React.Component {
-
-  /* constructor(props) {
-    super(props)
-  } */
-
-  render () {
-    return (
-      <div className="section">
-        <h2 className="section-heading">{this.props.label}</h2>
-        <p>{this.props.result}</p>
-      </div>
-    )
-  }
-}
-
-LFCOrderState.propTypes = {
-  label: PropTypes.string,
-  result: PropTypes.string
-}
-
-export {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit, LFCOrderState}
+export {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit}
