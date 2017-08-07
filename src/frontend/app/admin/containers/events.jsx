@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Logger} from '../components/logger'
+import {Logger} from '../../components/logger'
 
 import {AdminEventViewerStrings} from '../../utils/outputStrings'
 

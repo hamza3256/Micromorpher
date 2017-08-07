@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {ExchangeCurrency, ExchangeRate, ExchangeSubmit} from '../components/exchange'
+// import {ExchangeCurrency, ExchangeRate, ExchangeSubmit} from '../components/exchange'
+
+import {Heading, TextOutput, TextInput, TextAreaInput, TextSelect, TextSelectPlus, FormSubmit} from '../../components/form'
 import AdminExchangeHandler from '../../utils/adminExchangeHandler'
 import {AdminExchangeStrings, CountryCodes} from '../../utils/outputStrings'
 
@@ -70,9 +72,9 @@ class Exchanger extends React.Component {
           <hr />
         </div>
         <div>
-          <ExchangeCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminExchangeStrings.exchangePlaceHolder} label={AdminExchangeStrings.exchangeLabel} selections={this.state.currencies} selection={this.state.currencyId}  />
-          <ExchangeRate parentFunc={this._handleRate.bind(this)} placeHolder={AdminExchangeStrings.ratePlaceHolder} label={AdminExchangeStrings.rateLabel} />
-          <ExchangeSubmit parentFunc={this._handleRateSet.bind(this)} label={AdminExchangeStrings.rateSubmitLabel} buttonLabel={AdminExchangeStrings.buttonLabel} />
+          <TextSelect parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminExchangeStrings.exchangePlaceHolder} label={AdminExchangeStrings.exchangeLabel} selections={this.state.currencies} selection={this.state.currencyId}  />
+          <TextInput parentFunc={this._handleRate.bind(this)} placeHolder={AdminExchangeStrings.ratePlaceHolder} label={AdminExchangeStrings.rateLabel} />
+          <FormSubmit parentFunc={this._handleRateSet.bind(this)} label={AdminExchangeStrings.rateSubmitLabel} buttonLabel={AdminExchangeStrings.buttonLabel} />
         </div>
       </div>
     )

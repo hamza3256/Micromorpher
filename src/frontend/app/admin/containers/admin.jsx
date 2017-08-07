@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 import AdminHandler from '../../utils/adminHandler'
 
-import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit} from '../components/admin'
+// import {AdminAccount, AdminFunds, ContractFunds, FundContract, FundSubmit} from '../components/admin'
+import {Heading, TextOutput, TextInput, TextAreaInput, TextSelect, TextSelectPlus, FormSubmit} from '../../components/form'
 import {AdminStrings} from '../../utils/outputStrings'
 
 class Admin extends React.Component {
@@ -90,11 +91,11 @@ class Admin extends React.Component {
           <hr />
         </div>
         <div>
-          <AdminAccount label={AdminStrings.adminAccountLabel} result={this.state.account} />
-          <AdminFunds label={AdminStrings.adminFundsLabel} result={this.state.adminFunds} />
-          <ContractFunds label={AdminStrings.contractFundsLabel} result={this.state.contractFunds}/>
-          <FundContract parentFunc={this._handleFundContract.bind(this)} placeHolder={AdminStrings.fundContractPlaceholder} label={AdminStrings.fundContractLabel} />
-          <FundSubmit parentFunc={this._handleFund.bind(this)} label={AdminStrings.fundSubmitLabel} buttonLabel={AdminStrings.buttonLabel} />
+          <TextOutput label={AdminStrings.adminAccountLabel} result={this.state.account} />
+          <TextOutput label={AdminStrings.adminFundsLabel} result={this.state.adminFunds} />
+          <TextOutput label={AdminStrings.contractFundsLabel} result={this.state.contractFunds}/>
+          <TextInput parentFunc={this._handleFundContract.bind(this)} placeHolder={AdminStrings.fundContractPlaceholder} label={AdminStrings.fundContractLabel} />
+          <FormSubmit parentFunc={this._handleFund.bind(this)} label={AdminStrings.fundSubmitLabel} buttonLabel={AdminStrings.buttonLabel} />
         </div>
       </div>
     )

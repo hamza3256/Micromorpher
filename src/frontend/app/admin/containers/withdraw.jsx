@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit} from '../components/withdraw'
+// import {WithdrawCurrency, Amount, WithdrawAmount, WithdrawSubmit} from '../components/withdraw'
+
+import {Heading, TextOutput, TextInput, TextAreaInput, TextSelect, TextSelectPlus, FormSubmit} from '../../components/form'
 import AdminWithdrawHandler from '../../utils/adminWithdrawHandler'
 import {AdminWithdrawStrings, CountryCodes} from '../../utils/outputStrings'
 
@@ -80,10 +82,10 @@ class Withdraw extends React.Component {
           <hr />
         </div>
         <div>
-          <WithdrawCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminWithdrawStrings.currencyPlaceHolder} label={AdminWithdrawStrings.currencyLabel} selections={this.state.currencies} />
-          <Amount label={AdminWithdrawStrings.amountLabel} result={this.state.amount}/>
-          <WithdrawAmount parentFunc={this._handleWithdrawAmount.bind(this)} placeHolder={AdminWithdrawStrings.withdrawAmountPlaceholder} label={AdminWithdrawStrings.withdrawAmountLabel} />
-          <WithdrawSubmit parentFunc={this._handleWithdraw.bind(this)} label={AdminWithdrawStrings.withdrawSubmitLabel} buttonLabel={AdminWithdrawStrings.buttonLabel} />
+          <TextSelect parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminWithdrawStrings.currencyPlaceHolder} label={AdminWithdrawStrings.currencyLabel} selections={this.state.currencies} />
+          <TextOutput label={AdminWithdrawStrings.amountLabel} result={this.state.amount}/>
+          <TextInput parentFunc={this._handleWithdrawAmount.bind(this)} placeHolder={AdminWithdrawStrings.withdrawAmountPlaceholder} label={AdminWithdrawStrings.withdrawAmountLabel} />
+          <FormSubmit parentFunc={this._handleWithdraw.bind(this)} label={AdminWithdrawStrings.withdrawSubmitLabel} buttonLabel={AdminWithdrawStrings.buttonLabel} />
         </div>
       </div>
     )

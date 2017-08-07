@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {Account, AccountFunds} from '../components/account'
+// import {Account, AccountFunds} from '../components/account'
 
+import {Heading, TextOutput, TextInput, TextAreaInput, TextSelect, TextSelectPlus, FormSubmit} from '../../components/form'
 import {ExchangerAccountStrings} from '../../utils/outputStrings'
 
 class AccountAdmin extends React.Component {
@@ -53,8 +54,8 @@ class AccountAdmin extends React.Component {
           <hr />
         </div>
         <div>
-          <Account label={ExchangerAccountStrings.accountLabel} result={this.state.account}/>
-          <AccountFunds label={ExchangerAccountStrings.accountFundsLabel} result={this.state.funds}/>
+          <TextOutput label={ExchangerAccountStrings.accountLabel} result={this.state.account}/>
+          <TextOutput label={ExchangerAccountStrings.accountFundsLabel} result={this.state.funds}/>
         </div>
       </div>
     )

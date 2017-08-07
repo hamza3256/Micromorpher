@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-import {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit} from '../components/exchange';
+// import {LFCCurrency, LFCRate, LFCAmount, LFCEther, LFCPlaceOrder, LFCSubmit} from '../components/exchange';
+
+import {Heading, TextOutput, TextInput, TextAreaInput, TextSelect, TextSelectPlus, FormSubmit} from '../../components/form'
 import ExchangeHandler from '../../utils/exchangeHandler'
 import {ExchangerStrings, CountryCodes} from '../../utils/outputStrings'
 
@@ -121,12 +123,12 @@ class Exchange extends React.Component {
           <hr />
         </div>
         <div>
-          <LFCCurrency parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} selection={this.state.currencyId} />
-          <LFCRate label={ExchangerStrings.rateLabel} result={this.state.rate}/>
-          <LFCAmount parentFunc={this._handleAmount.bind(this)} placeHolder={ExchangerStrings.amountPlaceHolder} label={ExchangerStrings.amountLabel} />
-          <LFCEther label={ExchangerStrings.etherLabel} result={this.state.etherAmount}/>
-          <LFCPlaceOrder parentFunc={this._handlePlaceOrder.bind(this)} label={ExchangerStrings.placeOrderLabel} buttonLabel={ExchangerStrings.orderButtonLabel} />
-          <LFCSubmit parentFunc={this._handleExchange.bind(this)} label={ExchangerStrings.confirmPlaceOrderLabel} buttonLabel={ExchangerStrings.confirmOrderButtonLabel} />
+          <TextSelect parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} selection={this.state.currencyId} />
+          <TextOutput label={ExchangerStrings.rateLabel} result={this.state.rate}/>
+          <TextInput parentFunc={this._handleAmount.bind(this)} placeHolder={ExchangerStrings.amountPlaceHolder} label={ExchangerStrings.amountLabel} />
+          <TextOutput label={ExchangerStrings.etherLabel} result={this.state.etherAmount}/>
+          <FormSubmit parentFunc={this._handlePlaceOrder.bind(this)} label={ExchangerStrings.placeOrderLabel} buttonLabel={ExchangerStrings.orderButtonLabel} />
+          <FormSubmit parentFunc={this._handleExchange.bind(this)} label={ExchangerStrings.confirmPlaceOrderLabel} buttonLabel={ExchangerStrings.confirmOrderButtonLabel} />
         </div>
       </div>
     )

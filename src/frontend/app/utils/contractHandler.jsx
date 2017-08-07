@@ -343,7 +343,7 @@ class ContractHandler {
     }
   ]
 
-  static exchangerAddress = '0x2628230c8e23bd7bbad21f3e4b67f46fe26c73c0'
+  static exchangerAddress = '0xfbbed6e0155eded1ddfcfb1b3d311ae88c46b7df'
 
   constructor (_web3Handler) {
     //console.log(_web3)
