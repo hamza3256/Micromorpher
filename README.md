@@ -16,7 +16,7 @@ If you would like to contribute (perhaps by helping with [future work](#1), or b
 
 The instructions below allow you to use a demo of **Micromorpher**, which is running on [ipfs](https://ipfs.io/) and Ethereum's test network, [rinkeby](https://www.rinkeby.io). Both [ipfs](https://ipfs.io/) and [rinkeby](https://www.rinkeby.io) are distributed, peer-to-peer technologies, so by utilising them, **Micromorpher** is itself wholly distributed.
 
-**Provenator** is alpha software. [MetaMask](https://metamask.io/) (discussed below) is beta software. In other words, both have their 'wrinkles'! Hence, please be patient; however, if you are having problems with the demo, please email s dot huckle at sussex dot ac dot uk - he will be pleased to help.
+**Micromorpher** is alpha software. [MetaMask](https://metamask.io/) (discussed below) is beta software. In other words, both have their 'wrinkles'! Hence, please be patient; however, if you are having problems with the demo, please email s dot huckle at sussex dot ac dot uk - he will be pleased to help.
 
 ### Prerequisites
 
@@ -71,7 +71,7 @@ Now, publish the contracts to your local blockchain (via [Ganache](https://githu
 
 Now create the web application:
 
-1. Change to the **Micromorpher** repositA current limitation of **Provenator** is also its strength - the same digital media resource will always generate the same hash. Hence, if two hashes match, you are certain that they are the same object. However, if a single pixel of some digital resource is changed, then that resource will generate a different hash entirely. Therefore, 'similar' media objects will never match. Now, it should be possible to extend **Provenator** so that it uses techniques for finding similar hashes, too. [Perceptual hashing](https://www.phash.org/) is one such candidate, but there may be other methods; by using such techniques, it should be possible to make **Provenator** more capable. The intention is to extend the application and write an academic paper about that extension. Want to help? Then please email s dot huckle at sussex dot ac dot uk.ory's home directory.
+1. Change to the **Micromorpher** repository's home directory.
 2. Build the REACT frontend by typing `npm run watch`.
 3. Copy some needed resources to the build directory by typing `npm run copy`.
 4. Startup an instance of [http-server](https://www.npmjs.com/package/http-server) by typing `npm run start`.
