@@ -9,7 +9,7 @@ import About from './about'
 import Overview from './overview'
 import Help from './help'
 import Admin from './admin'
-import Exchange from './exchange'
+import Exchanger from './exchanger'
 
 import AppBar from 'react-toolbox/lib/app_bar';
 import Navigation from 'react-toolbox/lib/navigation';
@@ -32,12 +32,12 @@ class App extends React.Component {
         <div className={rTLayout.app}>
           <AppBar title={AppStrings.heading}>
             <Navigation type='horizontal'>
-            <Link className={rTComponents.linkPrimary} href="#/">{AppStrings.home}</Link>
-            <Link className={rTComponents.linkPrimary} href="#/admin">{AppStrings.admin}</Link>
-            <Link className={rTComponents.linkPrimary} href="#/exchange">{AppStrings.exchange}</Link>
-            <Link className={rTComponents.linkPrimary} href="#/about">{AppStrings.about}</Link>
-            <Link className={rTComponents.linkPrimary} href="#/overview">{AppStrings.overview}</Link>
-            <Link className={rTComponents.linkPrimary} href="#/help">{AppStrings.help}</Link>
+              <Link className={rTComponents.linkPrimary} href="#/">{AppStrings.home}</Link>
+              <Link className={rTComponents.linkPrimary} href="#/admin">{AppStrings.admin}</Link>
+              <Link className={rTComponents.linkPrimary} href="#/exchanger">{AppStrings.exchange}</Link>
+              <Link className={rTComponents.linkPrimary} href="#/about">{AppStrings.about}</Link>
+              <Link className={rTComponents.linkPrimary} href="#/overview">{AppStrings.overview}</Link>
+              <Link className={rTComponents.linkPrimary} href="#/help">{AppStrings.help}</Link>
             </Navigation>
           </AppBar>
 
@@ -47,8 +47,8 @@ class App extends React.Component {
           <Route path="/about" component={About} />
           <Route path="/overview" component={Overview} />
           <Route path="/help" component={Help} />
-          <Route path="/admin" render={() => <Admin contracts={this.contractHandler} web3={this.web3Handler} />} />
-          <Route path="/exchange" render={() => <Exchange contracts={this.contractHandler} web3={this.web3Handler} />} />
+          <Route path="/admin" render={() => <Admin contract={this.contractHandler} web3={this.web3Handler} />} />
+          <Route path="/exchanger" render={() => <Exchanger contract={this.contractHandler} web3={this.web3Handler} />} />
         </div>
     )
   }

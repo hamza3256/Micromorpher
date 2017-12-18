@@ -86,7 +86,7 @@ class ExchangerStrings {
 
 class AdminAppStrings {
 
-  static heading = 'Currency Exchange Administrator'
+  static heading = 'Micromorpher Administrator'
   static home = 'Home'
   static admin = 'Administrator Account'
   static exchange= 'Set Exchange Rates'
@@ -148,4 +148,4 @@ class CountryCodes {
 
 }
 
-export {ExchangerAppStrings, ExchangerHomeStrings, ExchangerAccountStrings, ExchangerStrings, AdminAppStrings, AdminHomeStrings, AdminStrings, AdminExchangeStrings, AdminWithdrawStrings, AdminEventViewerStrings, CountryCodes}
+export {AppStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings, ExchangerAppStrings, ExchangerHomeStrings, ExchangerAccountStrings, ExchangerStrings, AdminAppStrings, AdminHomeStrings, AdminStrings, AdminExchangeStrings, AdminWithdrawStrings, AdminEventViewerStrings, CountryCodes}

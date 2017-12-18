@@ -3,20 +3,37 @@ import Web3 from 'web3'
 class Web3Handler {
 
   constructor (host, port) {
-
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof web3 !== 'undefined') {
-         // Use Mist/MetaMask's provider
-      //console.log('MetaMask!')
-      window.web3 = new Web3(web3.currentProvider)
+      console.log('MetaMask!')
+      this.web3 = new Web3(web3.currentProvider)
     } else {
       console.log('No web3? You should consider trying MetaMask!')
-       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-      window.web3 = new Web3(new Web3.providers.HttpProvider('http://' + host + ':' + port))
+      let host = '127.0.0.1'
+      let port = '8545'
+      this.web3 = new Web3(new Web3.providers.HttpProvider('http://' + host + ':' + port))
     }
-    this.web3 = window.web3
+    this.web3.version.getNetwork((err, netId) => {
+      switch (netId) {
+        case "1":
+          console.log('This is mainnet')
+          break
+        case "2":
+          console.log('This is the deprecated Morden test network.')
+          break
+        case "3":
+          console.log('This is the ropsten test network.')
+          break
+        case "4":
+          console.log('This is the rinkeby test network.')
+          break
+        default:
+          console.log('This is a local, unknown network.')
+      }
+    })
     this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
     this.account = this.web3.eth.defaultAccount
+    console.log('This account ' + this.account)
     setInterval(this._setAccount.bind(this), 3000)
   }
 

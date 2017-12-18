@@ -7,15 +7,15 @@ import AdminHandler from '../../utils/adminHandler'
 import {Heading, TextOutput, TextInput, TextAreaInput, TextSelect, TextSelectPlus, FormSubmit} from '../../components/form'
 import {AdminStrings} from '../../utils/outputStrings'
 
-class Admin extends React.Component {
+class Administrator extends React.Component {
 
   constructor(props) {
     super(props)
 
     this.web3Handler = this.props.web3
-    this.contractHander = this.props.contract
-    this.exchanger = this.contractHander.getExchanger()
-    this.contractAddress = this.contractHander.getAddress()
+    this.contractHandler = this.props.contract
+    this.exchanger = this.contractHandler.getExchanger()
+    this.contractAddress = this.contractHandler.getAddress()
     this.adminHandler = new AdminHandler()
     const account = this.web3Handler.getAccount()
 
@@ -102,9 +102,9 @@ class Admin extends React.Component {
   }
 }
 
-Admin.propTypes = {
+Administrator.propTypes = {
   contract: PropTypes.object,
   web3: PropTypes.object
 }
 
-export default Admin
+export default Administrator
