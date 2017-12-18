@@ -88,7 +88,9 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 <a name="1">&nbsp;</a>
 ## Future work
 
-...coming soon.
+1. Integrate with PayPal
+2. Lock certain functionality based on account type
+3. ...other ideas welcome ;)
 
 ## Licensing
 
