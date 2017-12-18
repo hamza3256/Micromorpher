@@ -1,23 +1,23 @@
 {
-  "name": "Provenator",
-  "version": "0.0.4",
-  "description": "Provenator Application",
+  "name": "Micromorpher",
+  "version": "0.0.2",
+  "description": "Micromorpher Application",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glowkeeper/Provenator.git"
+    "url": "git+https://github.com/glowkeeper/Micromorpher.git"
   },
   "scripts": {
     "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js",
     "watch": "./node_modules/.bin/webpack --config ./webpack.dev.js --watch",
     "dev": "./node_modules/.bin/webpack --config ./webpack.dev.js",
     "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js",
-    "copy": "cp ./node_modules/react-select/dist/react-select.css ./build && cp ./images/favicon-16x16.png ./build/favicon.ico && cp ./images/done.png ./build && cp ./images/fileUpload.png ./build",
+    "copy": "cp ./node_modules/react-select/dist/react-select.css ./build",
     "test": "./node_modules/.bin/mocha",
     "start": "http-server -p 8081 build/"
   },
   "author": "Steve Huckle",
-  "license": "ISC",
+  "license": "LGPL-3.0",
   "dependencies": {
     "caniuse-lite": "^1.0.30000715",
     "classnames": "^2.2.5",
@@ -69,7 +69,7 @@
     "webpack-merge": "^4.1.0"
   },
   "bugs": {
-    "url": "https://github.com/glowkeeper/FakeNews/issues"
+    "url": "https://github.com/glowkeeper/Micromorpher/issues"
   },
-  "homepage": "https://github.com/glowkeeper/FakeNews#readme"
+  "homepage": "https://github.com/glowkeeper/Micromorpher#readme"
 }
