@@ -12,6 +12,8 @@ import AppBar from 'react-toolbox/lib/app_bar';
 import Navigation from 'react-toolbox/lib/navigation';
 import Link from 'react-toolbox/lib/link';
 
+import {rTComponents, rTLayout} from '../components/theme'
+
 class Exchanger extends React.Component {
 
   constructor (props) {
@@ -23,19 +25,17 @@ class Exchanger extends React.Component {
       <div>
         <AppBar title={ExchangerAppStrings.heading}>
           <Navigation type='horizontal'>
-            <ul role="nav">
-              <li><Link to="/">{ExchangerAppStrings.home}</Link></li>
-              <li><Link to="/account">{ExchangerAppStrings.account}</Link></li>
-              <li><Link to="/exchange">{ExchangerAppStrings.exchange}</Link></li>
-            </ul>
+            <Link className={rTComponents.linkPrimary} href="#/exchanger">{ExchangerAppStrings.home}</Link>
+            <Link className={rTComponents.linkPrimary} href="#/exchanger/user">{ExchangerAppStrings.account}</Link>
+            <Link className={rTComponents.linkPrimary} href="#/exchanger/exchange">{ExchangerAppStrings.exchange}</Link>
           </Navigation>
         </AppBar>
 
         <hr />
 
-        <Route exact path="/" render={() => <Home />} />
-        <Route path="/account" render={() => <AccountAdmin contract={this.props.contract} web3={this.props.web3} />} />
-        <Route path="/exchange" render={() => <Exchange contract={this.props.contract} web3={this.props.web3} />} />
+        <Route exact path="/exchanger" component={Home} />
+        <Route path="/exchanger/admin" render={() => <AccountAdmin contract={this.props.contract} web3={this.props.web3} />} />
+        <Route path="/exchanger/exchange" render={() => <Exchange contract={this.props.contract} web3={this.props.web3} />} />
       </div>
     )
   }

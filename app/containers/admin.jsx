@@ -14,6 +14,8 @@ import AppBar from 'react-toolbox/lib/app_bar';
 import Navigation from 'react-toolbox/lib/navigation';
 import Link from 'react-toolbox/lib/link';
 
+import {rTComponents, rTLayout} from '../components/theme'
+
 class Admin extends React.Component {
 
   constructor (props) {
@@ -25,23 +27,21 @@ class Admin extends React.Component {
       <div>
         <AppBar title={AdminAppStrings.heading}>
           <Navigation type='horizontal'>
-            <ul role="nav">
-              <li><Link to="/">{AdminAppStrings.home}</Link></li>
-              <li><Link to="/admin">{AdminAppStrings.admin}</Link></li>
-              <li><Link to="/rates">{AdminAppStrings.exchange}</Link></li>
-              <li><Link to="/withdraw">{AdminAppStrings.withdraw}</Link></li>
-              <li><Link to="/events">{AdminAppStrings.events}</Link></li>
-            </ul>
+            <Link className={rTComponents.linkPrimary} href="#/admin">{AdminAppStrings.home}</Link>
+            <Link className={rTComponents.linkPrimary} href="#/admin/user">{AdminAppStrings.admin}</Link>
+            <Link className={rTComponents.linkPrimary} href="#/admin/rates">{AdminAppStrings.exchange}</Link>
+            <Link className={rTComponents.linkPrimary} href="#/admin/withdraw">{AdminAppStrings.withdraw}</Link>
+            <Link className={rTComponents.linkPrimary} href="#/admin/events">{AdminAppStrings.events}</Link>
           </Navigation>
         </AppBar>
 
         <hr />
 
-        <Route exact path="/" render={() => <Home />} />
-        <Route path="/admin" render={() => <Administrator contract={this.props.contract} web3={this.props.web3} />} />
-        <Route path="/rates" render={() => <Exchanger contract={this.props.contract} web3={this.props.web3} />} />
-        <Route path="/withdraw" render={() => <Withdraw contract={this.props.contract} web3={this.props.web3} />} />
-        <Route path="/events" render={() => <EventViewer contract={this.props.contract} web3={this.props.web3} />} />
+        <Route exact path="/admin" component={Home} />
+        <Route path="/admin/user" render={() => <Administrator contract={this.props.contract} web3={this.props.web3} />} />
+        <Route path="/admin/rates" render={() => <Exchanger contract={this.props.contract} web3={this.props.web3} />} />
+        <Route path="/admin/withdraw" render={() => <Withdraw contract={this.props.contract} web3={this.props.web3} />} />
+        <Route path="/admin/events" render={() => <EventViewer contract={this.props.contract} web3={this.props.web3} />} />
       </div>
     )
   }

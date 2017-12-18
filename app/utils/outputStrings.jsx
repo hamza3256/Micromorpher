@@ -44,8 +44,8 @@ class HelpStrings {
 
 class ExchangerAppStrings {
 
-  static heading = 'Currency Exchanger'
-  static home = 'Home'
+  static heading = 'Micromorpher Exchange'
+  static home = 'Exchanger Home'
   static account = 'Account'
   static exchange= 'Exchange Currency'
 }
@@ -86,9 +86,9 @@ class ExchangerStrings {
 
 class AdminAppStrings {
 
-  static heading = 'Micromorpher Administrator'
-  static home = 'Home'
-  static admin = 'Administrator Account'
+  static heading = 'Micromorpher Admin'
+  static home = 'Admin Home'
+  static admin = 'Admin Account'
   static exchange= 'Set Exchange Rates'
   static withdraw = 'Withdraw Deposits'
   static events = 'Events'
