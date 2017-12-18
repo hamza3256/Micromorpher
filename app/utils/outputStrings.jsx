@@ -1,3 +1,47 @@
+class AppStrings {
+
+  static heading = 'Micromorpher (alpha)'
+  static home = 'Home'
+  static about = 'About'
+  static overview = 'Overview'
+  static help = 'Help'
+  static admin = 'Admin'
+  static exchange = 'Exchange'
+  static events = 'Events'
+}
+
+class HomeStrings {
+
+  static heading = 'Home'
+
+  static info = 'Use this application to convert FIAT money into Ether'
+
+}
+
+class AboutStrings {
+
+  static heading = 'About Micromorpher'
+
+  static info = ''
+
+}
+
+class OverviewStrings {
+
+  static heading = 'Overview of Micromorpher'
+
+  static info = ''
+
+}
+
+class HelpStrings {
+
+  static heading = 'Help'
+
+  static info = ''
+
+}
+
 class ExchangerAppStrings {
 
   static heading = 'Currency Exchanger'
