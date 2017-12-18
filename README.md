@@ -2,7 +2,7 @@
 
 [![Travis build](	https://img.shields.io/travis/glowkeeper/Micromorpher.svg?style=flat-square)](https://travis-ci.org/glowkeeper/Micromorpher)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](/docs/prs.md)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
+[![License LGPL-3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
 
 This is the repository for **Micromorpher**, a prototype distributed application (dApp) for converting small amounts of FIAT cash into a cryyptocurrency (currently, Ether). It does so using cryptographic tools and blockchain technology.
 
