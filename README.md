@@ -4,7 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](/docs/prs.md)
 [![License LGPL-3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
 
-This is the repository for **Micromorpher**, which is a prototype distributed application (dApp) which has the intention of converting small amounts of £s into Ether, using blockchain smart contracts.
+This is the repository for **Micromorpher**, which is a prototype distributed application (dApp) that has the intention of converting small amounts of £s into Ether, using blockchain smart contracts.
 
 The original test **Micromorpher** application was the result of the academic paper called, [Towards a post-cash society: An application to convert fiat money into a cryptocurrency](http://dx.doi.org/10.5210/fm.v22i3.7410), by Steve Huckle, Martin White and Rituparna Bhattacharya, of the [University of Sussex Informatics Department](http://www.sussex.ac.uk/informatics/).
 
@@ -90,8 +90,7 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 
 ## Contributing
 
-Have a look at [future work](#1), [open issues](https://github.com/glowkeeper/Micromorpher/issues)), or visit the **Provenator's** [Kanban board](https://trello.com/b/aYk6GwSf/provenator) for some ideas as to how you may contribute. However, other suggestions are very welcome!
-
+Have a look at [future work](#1), [open issues](https://github.com/glowkeeper/Micromorpher/issues), or visit **Micromorpher's** [Kanban board](https://trello.com/b/Pv0N8POE/micromorpher) for some ideas as to how you may contribute. However, other suggestions are very welcome!
 <a name="1">&nbsp;</a>
 ## Future work
 
