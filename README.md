@@ -4,15 +4,17 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](/docs/prs.md)
 [![License LGPL-3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
 
-This is the repository for **Micromorpher**, a prototype distributed application (dApp) for converting small amounts of FIAT cash into a cryyptocurrency (currently, Ether). It does so using cryptographic tools and blockchain technology.
+This is the repository for **Micromorpher**, which is a prototype distributed application (dApp) which has the intention of converting small amounts of £s into Ether, using blockchain smart contracts.
 
-**Micromorpher** is the result of the academic paper called, [Towards a post-cash society: An application to convert fiat money into a cryptocurrency](http://dx.doi.org/10.5210/fm.v22i3.7410), by Steve Huckle, Martin White and Rituparna Bhattacharya, of the [University of Sussex Informatics Department](http://www.sussex.ac.uk/informatics/).
+The original test **Micromorpher** application was the result of the academic paper called, [Towards a post-cash society: An application to convert fiat money into a cryptocurrency](http://dx.doi.org/10.5210/fm.v22i3.7410), by Steve Huckle, Martin White and Rituparna Bhattacharya, of the [University of Sussex Informatics Department](http://www.sussex.ac.uk/informatics/).
+
+The dApp discussed in the paper was just a demo - the intention now is to move it into production (however, beforehand, that means progressing through PayPal's developer test api and Ethereum's test network [rinkeby](https://www.rinkeby.io)).  
 
 If you would like to contribute (perhaps by helping with [future work](#1), or by working on some of the [open issues](https://github.com/glowkeeper/Micromorpher/issues)), then please email s dot huckle at sussex dot ac dot uk.
 
-## Demo
+## Test Demonstrator
 
-(coming soon)
+(coming sometime in the future)
 
 The instructions below allow you to use a demo of **Micromorpher**, which is running on [ipfs](https://ipfs.io/) and Ethereum's test network, [rinkeby](https://www.rinkeby.io). Both [ipfs](https://ipfs.io/) and [rinkeby](https://www.rinkeby.io) are distributed, peer-to-peer technologies, so by utilising them, **Micromorpher** is itself wholly distributed.
 
@@ -26,7 +28,7 @@ To perform currency conversions in **Micromorpher**, you will need some test Eth
 
 ### Running the Demo
 
-Load the live demo of **Micromorpher** by loading the following URL into your browser: (coming soon)
+Load the live demo of **Micromorpher** by loading the following URL into your browser: (coming sometime in the future)
 
 [URL to go here](http://an.ipfs.address.io)
 
@@ -90,8 +92,11 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 
 1. Integrate with PayPal
 2. Implement anti-money laundering (AML) and know your customer (KYC) regulations (see [bitcoin forum](https://bitcointalk.org/index.php?topic=454795.0) on AML/KYC)
-2. Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin.
-3. ...other ideas welcome ;)
+3. Get exchange rates via a public api, such as [coinbase](https://developers.coinbase.com/api/v2)
+4. Do exchange
+5. Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin
+6. ...see [issues](/issues)
+7. other ideas welcome ;)
 
 ## Licensing
 
