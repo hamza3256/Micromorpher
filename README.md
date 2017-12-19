@@ -12,29 +12,7 @@ The dApp discussed in the paper was just a demo - the intention now is to move i
 
 If you would like to contribute (perhaps by helping with [future work](#1), or by working on some of the [open issues](https://github.com/glowkeeper/Micromorpher/issues)), then please email s dot huckle at sussex dot ac dot uk.
 
-## Test Demonstrator
-
-(coming sometime in the future)
-
-The instructions below allow you to use a demo of **Micromorpher**, which is running on [ipfs](https://ipfs.io/) and Ethereum's test network, [rinkeby](https://www.rinkeby.io). Both [ipfs](https://ipfs.io/) and [rinkeby](https://www.rinkeby.io) are distributed, peer-to-peer technologies, so by utilising them, **Micromorpher** is itself wholly distributed.
-
-**Micromorpher** is alpha software. [MetaMask](https://metamask.io/) (discussed below) is beta software. In other words, both have their 'wrinkles'! Hence, please be patient; however, if you are having problems with the demo, please email s dot huckle at sussex dot ac dot uk - he will be pleased to help.
-
-### Prerequisites
-
-To run the demo, you must first install the browser plugin [MetaMask](https://metamask.io/), which allows you to sign transactions on [Ethereum](https://www.ethereum.org/) networks. **Micromorpher** is running on the [rinkeby](https://www.rinkeby.io) test Ethereum network, so once you've installed [MetaMask](https://metamask.io/), please set it to use [rinkeby](https://www.rinkeby.io).
-
-To perform currency conversions in **Micromorpher**, you will need some test Ether. To get some, follow the instructions at the [rinkeby faucet](https://www.rinkeby.io/#faucet).
-
-### Running the Demo
-
-Load the live demo of **Micromorpher** by loading the following URL into your browser: (coming sometime in the future)
-
-[URL to go here](http://an.ipfs.address.io)
-
- If you have not followed the prerequisites above (if you have not installed [MetaMask](https://metamask.io/) and set it to use [rinkeby](https://www.rinkeby.io)), then **Micromorpher** will not load.
-
-### Demo Screenshot
+## Demo
 
 (coming soon)
 
