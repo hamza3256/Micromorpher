@@ -89,7 +89,8 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 ## Future work
 
 1. Integrate with PayPal
-2. Lock certain functionality based on account type
+2. Implement anti-money laundering (AML) and know your customer (KYC) regulations (see [bitcoin forum](https://bitcointalk.org/index.php?topic=454795.0) on AML/KYC)
+2. Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin.
 3. ...other ideas welcome ;)
 
 ## Licensing
