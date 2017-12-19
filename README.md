@@ -87,6 +87,11 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 - [Ganache](https://github.com/trufflesuite/ganache)
 - [Truffle](https://github.com/trufflesuite/truffle)
 - [REACT](https://reactjs.org/)
+
+## Contributing
+
+Have a look at [future work](#1), [open issues](https://github.com/glowkeeper/Micromorpher/issues)), or visit the **Provenator's** [Kanban board](https://trello.com/b/aYk6GwSf/provenator) for some ideas as to how you may contribute. However, other suggestions are very welcome!
+
 <a name="1">&nbsp;</a>
 ## Future work
 
@@ -97,6 +102,10 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 5. Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin
 6. ...see [open issues](https://github.com/glowkeeper/Micromorpher/issues))
 7. other ideas welcome ;)
+
+## Credits
+
+Original author: Steve Huckle, s dot huckle at sussex dot ac dot uk.
 
 ## Licensing
 
