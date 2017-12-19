@@ -95,7 +95,7 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 3. Get exchange rates via a public api, such as [coinbase](https://developers.coinbase.com/api/v2)
 4. Do exchange
 5. Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin
-6. ...see [issues](/issues)
+6. ...see [open issues](https://github.com/glowkeeper/Micromorpher/issues))
 7. other ideas welcome ;)
 
 ## Licensing
