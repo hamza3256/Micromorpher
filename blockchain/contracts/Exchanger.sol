@@ -1,4 +1,4 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.5.0;
 
 // ForEx exchanger
 // Steve Huckle
@@ -26,29 +26,29 @@ contract Exchanger is Exchange, Mortal {
   event Withdrawn(string code, uint256 value);
   event RateSet(string code, uint256 rate);
 
-  function Exchanger() {
-		forexDB = new ForexDB();
+  constructor() public {
+    forexDB = new ForexDB();
 	  orderDB = new OrderDB();
 		depositDB = new DepositDB();
   }
 
-  function() payable onlyOwner {
-    Funded(msg.sender, msg.value);
+  function() external payable onlyOwner {
+    emit Funded(msg.sender, msg.value);
   }
 
-  function placeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
+  function placeOrder(uint256 _epochTime, address payable _creator, string memory _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
   	orderDB.placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
-  	OrderPlaced(_epochTime, _creator);
+  	emit OrderPlaced(_epochTime, _creator);
   }
 
-  function completeOrder(uint256 _epochTime, address _creator, string _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
+  function completeOrder(uint256 _epochTime, address payable _creator, string memory _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
 		//var sent = _creator.send(_etherValue);
     if ( orderDB.isOpen(_epochTime,_creator) ) {
 			orderDB.completeOrder(_epochTime,_creator);
 			depositDB.deposit(_offerCurrency,_offerAmount);
 			if (_creator.send(_etherValue)) {
-    		OrderCompleted(_epochTime,_creator);
-        Deposited(_offerCurrency,_offerAmount);
+    		emit OrderCompleted(_epochTime,_creator);
+        emit Deposited(_offerCurrency,_offerAmount);
 			} else {
 				placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
 				withdraw(_offerCurrency,_offerAmount);
@@ -58,42 +58,42 @@ contract Exchanger is Exchange, Mortal {
 
   function deleteOrder(uint256 _epochTime, address _creator) public onlyOwner {
 		orderDB.deleteOrder(_epochTime,_creator);
-    OrderDeleted(_epochTime,_creator);
+    emit OrderDeleted(_epochTime,_creator);
   }
 
-  function getOrderId(uint256 _epochTime, address _creator) public onlyOwner constant returns (bytes32) {
+  function getOrderId(uint256 _epochTime, address _creator) public onlyOwner view returns (bytes32) {
     return orderDB.getOrderId(_epochTime,_creator);
   }
 
-  function withdraw(string _code, uint256 _value) public onlyOwner {
+  function withdraw(string memory _code, uint256 _value) public onlyOwner {
   	// Need to do something with the return result here
-    var depositedAmount = depositDB.getDepositedAmount(_code);
+    uint256 depositedAmount = depositDB.getDepositedAmount(_code);
     if (depositedAmount >= _value) {
     	 depositDB.withdraw(_code,_value);
-    	 Withdrawn(_code,_value);
+    	 emit Withdrawn(_code,_value);
     }
   }
 
-  function getDepositedAmount(string code) public onlyOwner constant returns (uint256) {
+  function getDepositedAmount(string memory code) public onlyOwner view returns (uint256) {
   	return depositDB.getDepositedAmount(code);
   }
 
-  function setRate(string _code, uint256 _rate) public onlyOwner {
+  function setRate(string memory _code, uint256 _rate) public onlyOwner {
   	forexDB.setRate(_code,_rate);
-		RateSet(_code,_rate);
+		emit RateSet(_code,_rate);
     //var key = sha3(_code);
     //rateStorage[key] = _rate;
     //rateStorage[_code] = _rate;
   }
 
-  function getRate(string _code) public onlyOwner constant returns (uint256) {
+  function getRate(string memory _code) public onlyOwner view returns (uint256) {
   	return forexDB.getRate(_code);
     //var key = sha3(_code);
     //return rateStorage[key];
     //return rateStorage[_code];
   }
 
-  function getEtherAmount(string _code, uint256 _amount) public onlyOwner constant returns (uint256) {
+  function getEtherAmount(string memory _code, uint256 _amount) public onlyOwner view returns (uint256) {
     return forexDB.getEtherAmount(_code,_amount);
   }
 

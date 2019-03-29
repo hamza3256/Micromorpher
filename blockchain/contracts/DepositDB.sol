@@ -1,4 +1,4 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.5.0;
 
 import "Depositor.sol";
 import "Mortal.sol";
@@ -10,11 +10,11 @@ contract DepositDB is Depositor, Mortal {
   /* function DepositDB() {
 	} */
 
-  function deposit(string _code, uint256 _value) onlyOwner {
+  function deposit(string memory _code, uint256 _value) public onlyOwner {
 		depositStore[_code] += _value;
 	}
 
-	function withdraw(string _code, uint256 _value) onlyOwner {
+	function withdraw(string memory _code, uint256 _value) public onlyOwner {
 		uint256 depositedAmount = depositStore[_code];
 		if ( depositedAmount >= _value ) {
 			uint256 newAmount = depositedAmount - _value;
@@ -22,7 +22,7 @@ contract DepositDB is Depositor, Mortal {
 		}
   }
 
-	function getDepositedAmount(string _code) public constant returns (uint256) {
+	function getDepositedAmount(string memory _code) public view returns (uint256) {
 		return depositStore[_code];
 	}
 }

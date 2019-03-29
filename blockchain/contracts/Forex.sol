@@ -1,11 +1,11 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.5.0;
 
 // Exchange rate interface
 
 contract Forex {
 
-	function setRate(string code, uint256 rate);
-	function getRate(string code) constant returns (uint256);
-	function getEtherAmount(string _code, uint256 _amount) constant returns (uint256);
+	function setRate(string memory code, uint256 rate) public;
+	function getRate(string memory code) public view returns (uint256);
+	function getEtherAmount(string memory _code, uint256 _amount) public view returns (uint256);
 
 }

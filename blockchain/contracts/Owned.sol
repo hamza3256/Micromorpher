@@ -1,18 +1,20 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.5.0;
 
 contract Owned {
-    address internal owner;
 
-    function Owned() {
-        owner = msg.sender;
-    }
+  address payable owner;
 
-    modifier onlyOwner {
-        if (msg.sender != owner) throw;
-        _;
-    }
+  constructor() public { owner = msg.sender; }
 
-    function transferOwnership(address _newOwner) onlyOwner {
-        owner = _newOwner;
-    }
+  modifier onlyOwner {
+    require(
+        msg.sender == owner,
+        "Only owner can call this function."
+    );
+    _;
+  }
+
+  function transferOwnership(address payable _newOwner) public onlyOwner {
+      owner = _newOwner;
+  }
 }
