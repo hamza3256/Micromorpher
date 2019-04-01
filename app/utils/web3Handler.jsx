@@ -2,27 +2,6 @@ import Web3 from 'web3'
 
 class Web3Handler {
 
-  /*
-  let ethereum = (window as any).ethereum
-  let web3 = (window as any).web3
-
-  if (ethereum) {
-    //console.log('New MetaMask!')
-    web3 = new Web3(ethereum)
-    blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
-    await ethereum.enable()
-  } else if (typeof web3 !== 'undefined') {
-    //console.log('In legacy web3 provider')
-    blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
-  } else {
-    const host = Blockchain.host
-    const port = Blockchain.port
-    const provider = host + ":" + port
-    const network = Blockchain.network
-    blockchainProvider = new ethers.providers.JsonRpcProvider(provider, network)
-  }
-  */
-
   constructor (host, port) {
     this._getWeb3(host, port)
   }
@@ -80,6 +59,7 @@ async _setAccount () {
   }
 
   _callParamsChecker (_func, _params, _cb) {
+    console.log('_callParamsChecker', _func, _params, _cb)
     if ((typeof _func === 'function') && (typeof _cb === 'function') && (Array.isArray(_params))) {
       return true
     } else {
@@ -160,8 +140,11 @@ async _setAccount () {
     console.log('params ' + _params)
     console.log('cb ' + _cb)
     console.log('batch ' + _isBatch) */
+    console.log('_call3Params func ' + _func)
     if (this._callParamsChecker(_func, _params, _cb)) {
+      //console.log('made it here?')
       if (_isBatch) {
+        console.log('am I here?')
         this.batch.add(_func(_params[0], _params[1], _params[2], function (err, result) {
           if (err) {
             console.log(err)
@@ -170,10 +153,13 @@ async _setAccount () {
           }
         }))
       } else {
-        _func(_params[0], _params[1], _params[2], function (err, result) {
+        console.log('made it here? ', _params)
+        const transactionObject = {from: this.account}
+        _func(_params[0], _params[1]).send(transactionObject, function (err, result) {
           if (err) {
             console.log(err)
           } else {
+            console.log('what about making it here?')
             _cb(_caller, result)
           }
         })
@@ -281,11 +267,8 @@ async _setAccount () {
   }
 
   callParamHandler (_caller, _func, _params, _cb, _isBatch) {
-    // console.log("in absolutely new call handler")
-    // console.log(_transactionObject)
-    // console.log(_func)
-    // console.log(_params.length)
-    // const transactionObject = {from: this.account, data: params}
+    //const transactionObject = {from: this.account, data: _params}
+    console.log("in absolutely new call handler", _func)
     switch (_params.length) {
       case 1:
         this._call1Params(_caller, _func, _params, _cb, _isBatch)

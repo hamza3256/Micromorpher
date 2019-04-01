@@ -15,6 +15,7 @@ class Exchanger extends React.Component {
     this.web3Handler = this.props.web3
     const contractHander = this.props.contract
     this.exchanger = contractHander.getExchanger()
+    console.log("this exchanger: ", this.exchanger)
     this.exchangeHandler = new AdminExchangeHandler()
 
     const info = AdminExchangeStrings.info
@@ -37,29 +38,33 @@ class Exchanger extends React.Component {
     const currency = _self.exchangeHandler.getCurrency()
     const rate = _self.exchangeHandler.getRate()
     const info = 'Exchange rate ' + rate + ' for Currency ' + currency + ' set. Transaction ID: ' + _result
+    console.log(info)
     _self.setState({info: info})
     _self.exchangeHandler.reset()
   }
 
   _handleCurrency (_selection) {
+    console.log("here? ", _selection)
     this.exchangeHandler.setCurrency(_selection.label)
     this.setState({currencyId: _selection.value})
   }
 
   _handleRate (_value) {
+    console.log("what about here? ", _value)
     this.exchangeHandler.setRate(_value)
   }
 
   _handleRateSet () {
+    console.log('checking setting rate')
     if (this.exchangeHandler.checkSet()) {
-      //console.log('setting rate')
+      console.log('setting rate')
       const web3 = this.web3Handler.getWeb3()
       const currency = this.exchangeHandler.getCurrency()
       const rate = this.exchangeHandler.getRate()
       const thisRate = web3.utils.toWei(rate,"ether")
-      //console.log('Currency: ' + currency + ' Rate: ' + thisRate)
+      console.log('Currency: ' + currency + ' Rate: ' + thisRate)
       const params = [currency, thisRate, this.defaultTO]
-      this.web3Handler.callParamHandler(this, this.exchanger.setRate, params, this.setRate, false)
+      this.web3Handler.callParamHandler(this, this.exchanger.methods.setRate, params, this.setRate, false)
       //console.log("Set Wei exchange rate for " + currency + " at rate " + thisRate)
     }
   }
