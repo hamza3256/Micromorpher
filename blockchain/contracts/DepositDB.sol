@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
-import "Depositor.sol";
-import "Mortal.sol";
+import "./Depositor.sol";
+import "./Mortal.sol";
 
 contract DepositDB is Depositor, Mortal {
 

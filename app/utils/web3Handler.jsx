@@ -2,46 +2,67 @@ import Web3 from 'web3'
 
 class Web3Handler {
 
+  /*
+  let ethereum = (window as any).ethereum
+  let web3 = (window as any).web3
+
+  if (ethereum) {
+    //console.log('New MetaMask!')
+    web3 = new Web3(ethereum)
+    blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
+    await ethereum.enable()
+  } else if (typeof web3 !== 'undefined') {
+    //console.log('In legacy web3 provider')
+    blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
+  } else {
+    const host = Blockchain.host
+    const port = Blockchain.port
+    const provider = host + ":" + port
+    const network = Blockchain.network
+    blockchainProvider = new ethers.providers.JsonRpcProvider(provider, network)
+  }
+  */
+
   constructor (host, port) {
-    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    if (typeof web3 !== 'undefined') {
-      console.log('MetaMask!')
-      this.web3 = new Web3(web3.currentProvider)
-    } else {
-      console.log('No web3? You should consider trying MetaMask!')
-      let host = '127.0.0.1'
-      let port = '8545'
-      this.web3 = new Web3(new Web3.providers.HttpProvider('http://' + host + ':' + port))
-    }
-    this.web3.version.getNetwork((err, netId) => {
-      switch (netId) {
-        case "1":
-          console.log('This is mainnet')
-          break
-        case "2":
-          console.log('This is the deprecated Morden test network.')
-          break
-        case "3":
-          console.log('This is the ropsten test network.')
-          break
-        case "4":
-          console.log('This is the rinkeby test network.')
-          break
-        default:
-          console.log('This is a local, unknown network.')
+    this._getWeb3(host, port)
+  }
+
+  async _getWeb3 (host, port) {
+
+    let ethereum = window.ethereum
+    this.web3 = window.web3
+
+
+    if (ethereum) {
+      this.web3 = new Web3(ethereum)
+      try {
+        console.log('Ethereum')
+        await ethereum.enable()
+      } catch (error) {
+        // User denied account access...
+        console.log("Ethereum disabled")
       }
-    })
-    this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
-    this.account = this.web3.eth.defaultAccount
-    console.log('This account ' + this.account)
+    } else if (this.web3) {
+      console.log('Legacy dapp browsers...')
+      this.web3 = new Web3(web3.currentProvider);
+    }
+    // Non-dapp browsers...
+    else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
+        let host = '127.0.0.1'
+        let port = '8545'
+        this.web3 = new Web3(new Web3.providers.HttpProvider('http://' + host + ':' + port))
+    }
+
     setInterval(this._setAccount.bind(this), 3000)
   }
 
   // metamask sets its account to web3.eth.accounts[0]
-  _setAccount () {
-    // console.log("In account")
-    if (this.web3.eth.accounts[0] !== this.account) {
-      this.account = this.web3.eth.accounts[0]
+async _setAccount () {
+    const accounts = await this.web3.eth.getAccounts()
+    if (accounts[0] !== this.account) {
+      this.account = accounts[0]
+      console.log("Setting account", this.account)
     }
   }
 

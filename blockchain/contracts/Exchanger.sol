@@ -3,11 +3,11 @@ pragma solidity ^0.5.0;
 // ForEx exchanger
 // Steve Huckle
 
-import "Exchange.sol";
-import "DepositDB.sol";
-import "ForexDB.sol";
-import "OrderDB.sol";
-import "Mortal.sol";
+import "./Exchange.sol";
+import "./DepositDB.sol";
+import "./ForexDB.sol";
+import "./OrderDB.sol";
+import "./Mortal.sol";
 
 contract Exchanger is Exchange, Mortal {
 

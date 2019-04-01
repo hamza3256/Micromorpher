@@ -3,8 +3,8 @@ pragma solidity ^0.5.0;
 // ForEx exchange rates relative to Ether
 // Steve Huckle
 
-import "Forex.sol";
-import "Mortal.sol";
+import "./Forex.sol";
+import "./Mortal.sol";
 
 contract ForexDB is Forex, Mortal {
 

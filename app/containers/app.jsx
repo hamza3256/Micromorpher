@@ -23,6 +23,7 @@ class App extends React.Component {
   constructor (props) {
     super(props)
 
+    console.log('Called from here')
     this.web3Handler = new Web3Handler()
     this.contractHandler = new ContractHandler(this.web3Handler)
   }

@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
-import "Order.sol";
-import "Mortal.sol";
+import "./Order.sol";
+import "./Mortal.sol";
 
 contract OrderDB is Order, Mortal {
 

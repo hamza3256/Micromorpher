@@ -343,16 +343,17 @@ class ContractHandler {
     }
   ]
 
-  static exchangerAddress = '0xfbbed6e0155eded1ddfcfb1b3d311ae88c46b7df'
+  static exchangerAddress = '0xE34A21132646DFD804A35faad90e74CE38B36f85'
 
   constructor (_web3Handler) {
     //console.log(_web3)
 
     this.web3Handler = _web3Handler
     const thisWeb3 = this.web3Handler.getWeb3()
+    console.log('Contract handler web3: ', thisWeb3)
 
-    const exchangerContract = thisWeb3.eth.contract(ContractHandler.exchangerAbi)
-    this.exchanger = exchangerContract.at(ContractHandler.exchangerAddress)
+    this.exchanger = new thisWeb3.eth.Contract(ContractHandler.exchangerAbi, ContractHandler.exchangerAddress)
+    //this.exchanger = exchangerContract.at(ContractHandler.exchangerAddress)
   }
 
   getExchanger () {
