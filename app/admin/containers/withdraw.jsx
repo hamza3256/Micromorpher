@@ -44,7 +44,7 @@ class Withdraw extends React.Component {
 
   setAmount (_self, _result) {
     const web3 = _self.web3Handler.getWeb3()
-    const amount = web3.fromWei(_result,"ether").toNumber()
+    const amount = web3.utils.fromWei(_result,"ether").toNumber()
     _self.withdrawHandler.setAmount(amount)
     _self.setState({amount: amount})
   }
@@ -66,7 +66,7 @@ class Withdraw extends React.Component {
       const web3 = this.web3Handler.getWeb3()
       const currency = this.withdrawHandler.getCurrency()
       const withdrawAmount = this.withdrawHandler.getWithdrawAmount()
-      const thisWithdrawAmount = web3.toWei(withdrawAmount,"ether")
+      const thisWithdrawAmount = web3.utils.toWei(withdrawAmount,"ether")
       let params = [currency, thisWithdrawAmount, this.defaultTO]
       this.web3Handler.callParamHandler(this, this.exchanger.withdraw, params, this.setWithdraw, false)
       params = [currency]

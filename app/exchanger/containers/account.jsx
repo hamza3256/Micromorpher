@@ -15,7 +15,7 @@ class AccountAdmin extends React.Component {
     const contractHander = this.props.contract
     this.exchanger = contractHander.getExchanger()
     const account = this.web3Handler.getAccount()
-    const funds = web3.fromWei(web3.eth.getBalance(account),"ether").toString()
+    const funds = web3.utils.fromWei(web3.eth.getBalance(account),"ether").toString()
 
     this.state = {
       account: account,
@@ -27,7 +27,7 @@ class AccountAdmin extends React.Component {
 
   setFunds (_self, _result) {
     const web3 = _self.web3Handler.getWeb3()
-    const funds = web3.fromWei(_result,"ether").toString()
+    const funds = web3.utils.fromWei(_result,"ether").toString()
     _self.setState({funds: funds})
   }
 
@@ -40,7 +40,7 @@ class AccountAdmin extends React.Component {
   _handleAccount(value) {
     const web3 = this.state.web3
     web3.eth.defaultAccount = value;
-    const funds = web3.fromWei(web3.eth.getBalance(value),"ether").toString()
+    const funds = web3.utils.fromWei(web3.eth.getBalance(value),"ether").toString()
     this.setState({funds: funds})
     this.setState({exchangeAccount: value})
     //console.log("Account is " + value)

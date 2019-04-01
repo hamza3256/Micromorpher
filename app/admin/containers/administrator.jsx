@@ -18,6 +18,7 @@ class Administrator extends React.Component {
     this.contractAddress = this.contractHandler.getAddress()
     this.adminHandler = new AdminHandler()
     const account = this.web3Handler.getAccount()
+    console.log('Adminsitrator get account: ', account)
 
     const info = AdminStrings.info
 
@@ -42,14 +43,15 @@ class Administrator extends React.Component {
 
   setAdminFunds (_self, _result) {
     const web3 = _self.web3Handler.getWeb3()
-    const adminFunds = web3.fromWei(_result,"ether").toString()
+    console.log('Adminsitrator: ', web3)
+    const adminFunds = web3.utils.fromWei(_result,"ether").toString()
     _self.adminHandler.setFunds(_result)
     _self.setState({adminFunds: adminFunds})
   }
 
   setContractFunds (_self, _result) {
     const web3 = _self.web3Handler.getWeb3()
-    const contractFunds = web3.fromWei(_result,"ether").toString()
+    const contractFunds = web3.utils.fromWei(_result,"ether").toString()
     _self.setState({contractFunds: contractFunds})
   }
 
@@ -78,7 +80,7 @@ class Administrator extends React.Component {
       const account = this.web3Handler.getAccount()
       this.setState({account: account})
       const funds = this.adminHandler.getNewFunds()
-      const params = [{from: account, to: this.contractAddress, value: web3.toWei(funds,"ether")}]
+      const params = [{from: account, to: this.contractAddress, value: web3.utils.toWei(funds,"ether")}]
       this.web3Handler.callParamHandler(this, web3.eth.sendTransaction, params, this.setFund, false)
     }
   }

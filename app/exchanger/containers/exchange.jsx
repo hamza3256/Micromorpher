@@ -42,7 +42,7 @@ class Exchange extends React.Component {
 
   setRate (_self, _result) {
     //console.log("Got Rate in Wei: " + _result)
-    const theRate = web3.fromWei(_result,"ether").toString()
+    const theRate = web3.utils.fromWei(_result,"ether").toString()
     _self.exchangeHandler.setRate(theRate)
     _self.setState({rate: theRate})
   }
@@ -80,7 +80,7 @@ class Exchange extends React.Component {
     this.exchangeHandler.setAmount(_value)
     const currency = this.exchangeHandler.getCurrency()
     const amount = this.exchangeHandler.getAmount()
-    const thisAmount = web3.toWei(amount,"ether")
+    const thisAmount = web3.utils.toWei(amount,"ether")
     const params = [currency, thisAmount, this.defaultTO]
     this.web3Handler.callParamHandler(this, this.exchanger.getEtherAmount, params, this.setEtherAmount, false)
   }
@@ -93,9 +93,9 @@ class Exchange extends React.Component {
     if (this.exchangeHandler.checkSet()) {
       const currency = this.exchangeHandler.getCurrency()
       const amount = this.exchangeHandler.getAmount()
-      const thisAmount = web3.toWei(amount,"ether")
+      const thisAmount = web3.utils.toWei(amount,"ether")
       const ether = this.exchangeHandler.getEtherAmount()
-      const wei = web3.toWei(ether,"ether")
+      const wei = web3.utils.toWei(ether,"ether")
       const params = [epochTime, account, currency, thisAmount, wei, this.defaultTO]
       this.web3Handler.callParamHandler(this, this.exchanger.placeOrder, params, this.setOrderPlaced, false)
     }
@@ -107,9 +107,9 @@ class Exchange extends React.Component {
       const account = this.exchangeHandler.getAccount()
       const currency = this.exchangeHandler.getCurrency()
       const amount = this.exchangeHandler.getAmount()
-      const thisAmount = web3.toWei(amount,"ether")
+      const thisAmount = web3.utils.toWei(amount,"ether")
       const ether = this.exchangeHandler.getEtherAmount()
-      const wei = web3.toWei(ether,"ether")
+      const wei = web3.utils.toWei(ether,"ether")
       const params = [orderTime, account, currency, thisAmount, wei, this.defaultTO]
       this.web3Handler.callParamHandler(this, this.exchanger.completeOrder, params, this.setCompleteOrder, false)
     }
