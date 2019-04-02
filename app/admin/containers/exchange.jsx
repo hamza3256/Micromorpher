@@ -15,7 +15,7 @@ class Exchanger extends React.Component {
     this.web3Handler = this.props.web3
     const contractHander = this.props.contract
     this.exchanger = contractHander.getExchanger()
-    console.log("this exchanger: ", this.exchanger)
+    //console.log("this exchanger: ", this.exchanger)
     this.exchangeHandler = new AdminExchangeHandler()
 
     const info = AdminExchangeStrings.info
@@ -77,7 +77,7 @@ class Exchanger extends React.Component {
           <hr />
         </div>
         <div>
-          <TextSelect parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminExchangeStrings.exchangePlaceHolder} label={AdminExchangeStrings.exchangeLabel} selections={this.state.currencies} selection={this.state.currencyId}  />
+          <TextSelect parentFunc={this._handleCurrency.bind(this)} placeHolder={AdminExchangeStrings.exchangePlaceHolder} label={AdminExchangeStrings.exchangeLabel} selections={this.state.currencies} />
           <TextInput parentFunc={this._handleRate.bind(this)} placeHolder={AdminExchangeStrings.ratePlaceHolder} label={AdminExchangeStrings.rateLabel} />
           <FormSubmit parentFunc={this._handleRateSet.bind(this)} label={AdminExchangeStrings.rateSubmitLabel} buttonLabel={AdminExchangeStrings.buttonLabel} />
         </div>

@@ -44,7 +44,7 @@ class Withdraw extends React.Component {
 
   setAmount (_self, _result) {
     const web3 = _self.web3Handler.getWeb3()
-    const amount = web3.utils.fromWei(_result,"ether").toNumber()
+    const amount = web3.utils.fromWei(_result.toString(),"ether")
     _self.withdrawHandler.setAmount(amount)
     _self.setState({amount: amount})
   }

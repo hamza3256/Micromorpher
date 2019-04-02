@@ -15,7 +15,7 @@ class AccountAdmin extends React.Component {
     const contractHander = this.props.contract
     this.exchanger = contractHander.getExchanger()
     const account = this.web3Handler.getAccount()
-    const funds = web3.utils.fromWei(web3.eth.getBalance(account).toString(),"ether")
+    const funds = web3.utils.fromWei(web3.eth.getBalance(account),"ether").toString()
 
     this.state = {
       account: account,
