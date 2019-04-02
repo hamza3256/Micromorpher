@@ -70,6 +70,7 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 
 Have a look at [future work](#1), [open issues](https://github.com/glowkeeper/Micromorpher/issues), or visit **Micromorpher's** [Kanban board](https://trello.com/b/Pv0N8POE/micromorpher) for some ideas as to how you may contribute. However, other suggestions are very welcome!
 <a name="1">&nbsp;</a>
+
 ## Future work
 
 1. Integrate with PayPal
