@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
 import App from './containers/app'
 
-console.log('hyere!')
-
 ReactDOM.render((
   <HashRouter>
     <App />

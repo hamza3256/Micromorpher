@@ -350,7 +350,7 @@ class ContractHandler {
 
     this.web3Handler = _web3Handler
     const thisWeb3 = this.web3Handler.getWeb3()
-    console.log('Contract handler web3: ', thisWeb3)
+    //console.log('Contract handler web3: ', thisWeb3)
 
     this.exchanger = new thisWeb3.eth.Contract(ContractHandler.exchangerAbi, ContractHandler.exchangerAddress)
     //this.exchanger = exchangerContract.at(ContractHandler.exchangerAddress)

@@ -18,7 +18,6 @@ class Administrator extends React.Component {
     this.contractAddress = this.contractHandler.getAddress()
     this.adminHandler = new AdminHandler()
     const account = this.web3Handler.getAccount()
-    console.log('Adminsitrator get account: ', account)
 
     const info = AdminStrings.info
 
@@ -33,55 +32,67 @@ class Administrator extends React.Component {
     this._getContractFunds()
   }
 
-  setFund (_self, _result) {
-    const info = 'Contract funded. Transaction ID: ' + _result
-    _self.setState({info: info})
-    _self.adminHandler.reset()
-    _self._getAdminFunds()
-    _self._getContractFunds()
-  }
-
-  setAdminFunds (_self, _result) {
-    const web3 = _self.web3Handler.getWeb3()
-    console.log('Adminsitrator: ', web3)
-    const adminFunds = web3.utils.fromWei(_result,"ether").toString()
-    _self.adminHandler.setFunds(_result)
-    _self.setState({adminFunds: adminFunds})
-  }
-
-  setContractFunds (_self, _result) {
-    const web3 = _self.web3Handler.getWeb3()
-    const contractFunds = web3.utils.fromWei(_result,"ether").toString()
-    _self.setState({contractFunds: contractFunds})
-  }
-
   _handleFundContract (_value) {
     // console.log(_value)
     this.adminHandler.setNewFunds(_value)
   }
 
   _getAdminFunds () {
+
+    //console.log('getting admin funds')
     const web3 = this.web3Handler.getWeb3()
-    const params = [this.state.account]
-    this.web3Handler.callParamHandler(this, web3.eth.getBalance, params, this.setAdminFunds, false)
+    const self = this
+    web3.eth.getBalance(this.state.account, function (error, wei) {
+      if (error) {
+        console.log(error)
+      } else {
+        //console.log(wei)
+        const funds = web3.utils.fromWei(wei, 'ether');
+        self.adminHandler.setFunds(funds)
+        self.setState({adminFunds: funds})
+      }
+    })
   }
 
   _getContractFunds () {
+
+    //console.log('getting contract funds')
     const web3 = this.web3Handler.getWeb3()
-    const params = [this.contractAddress]
-    this.web3Handler.callParamHandler(this, web3.eth.getBalance, params, this.setContractFunds, false)
+    const self = this
+
+    web3.eth.getBalance(this.contractAddress, function (error, wei) {
+      if (error) {
+        console.log(error)
+      } else {
+        //console.log(wei)
+        const funds = web3.utils.fromWei(wei, 'ether');
+        self.setState({contractFunds: funds})
+      }
+    })
   }
 
   _handleFund() {
     //console.log('handle funds')
     if (this.adminHandler.checkSet()) {
       //console.log('handling funds!')
+      const self = this
       const web3 = this.web3Handler.getWeb3()
       const account = this.web3Handler.getAccount()
       this.setState({account: account})
       const funds = this.adminHandler.getNewFunds()
-      const params = [{from: account, to: this.contractAddress, value: web3.utils.toWei(funds,"ether")}]
-      this.web3Handler.callParamHandler(this, web3.eth.sendTransaction, params, this.setFund, false)
+      const transactionObject = {from: account, to: this.contractAddress, gas: 300000, value: web3.utils.toWei(funds,"ether")}
+      web3.eth.sendTransaction(transactionObject, function (error, result) {
+        if (error) {
+          console.log(error)
+        } else {
+          const info = 'Contract funded. Transaction ID: ' + result
+          //console.log(info)
+          self.setState({info: info})
+          self.adminHandler.reset()
+          self._getAdminFunds()
+          self._getContractFunds()
+        }
+      })
     }
   }
 

@@ -25,7 +25,6 @@ class Exchange extends React.Component {
 
     const info = ExchangerStrings.info
 
-    this.defaultTO = {gas: 300000}
     this.state = {
       currencyId: undefined,
       currencies: countryCodeSelections,
@@ -52,8 +51,8 @@ class Exchange extends React.Component {
     _self.setState({info: info})
     const orderTime = _self.exchangeHandler.getOrderTime()
     const account = _self.exchangeHandler.getAccount()
-    const params = [orderTime, account, _self.defaultTO]
-    _self.web3Handler.callParamHandler(_self, _self.exchanger.getOrderId, params, _self.setOrderId, false)
+    const params = [orderTime, account, {from: account}]
+    _self.web3Handler.callParamHandler(_self, _self.exchanger.methods.getOrderId, params, _self.setOrderId, true)
   }
 
   setCompleteOrder (_self, _result) {
@@ -72,8 +71,9 @@ class Exchange extends React.Component {
   _handleCurrency (_selection) {
     this.exchangeHandler.setCurrency(_selection.label)
     this.setState({currencyId: _selection.value})
-    const params = [_selection.label, this.defaultTO]
-    this.web3Handler.callParamHandler(this, this.exchanger.getRate, params, this.setRate, false)
+    const account = this.web3Handler.getAccount()
+    const params = [_selection.label, {from: account}]
+    this.web3Handler.callParamHandler(this, this.exchanger.methods.getRate, params, this.setRate, true)
   }
 
   _handleAmount(_value) {
@@ -81,8 +81,9 @@ class Exchange extends React.Component {
     const currency = this.exchangeHandler.getCurrency()
     const amount = this.exchangeHandler.getAmount()
     const thisAmount = web3.utils.toWei(amount,"ether")
-    const params = [currency, thisAmount, this.defaultTO]
-    this.web3Handler.callParamHandler(this, this.exchanger.getEtherAmount, params, this.setEtherAmount, false)
+    const account = this.web3Handler.getAccount()
+    const params = [currency, thisAmount, {from: account}]
+    this.web3Handler.callParamHandler(this, this.exchanger.methods.getEtherAmount, params, this.setEtherAmount, true)
   }
 
   _handlePlaceOrder() {
@@ -96,8 +97,8 @@ class Exchange extends React.Component {
       const thisAmount = web3.utils.toWei(amount,"ether")
       const ether = this.exchangeHandler.getEtherAmount()
       const wei = web3.utils.toWei(ether,"ether")
-      const params = [epochTime, account, currency, thisAmount, wei, this.defaultTO]
-      this.web3Handler.callParamHandler(this, this.exchanger.placeOrder, params, this.setOrderPlaced, false)
+      const params = [epochTime, account, currency, thisAmount, wei, {from: account, gas: 300000}]
+      this.web3Handler.callParamHandler(this, this.exchanger.methods.placeOrder, params, this.setOrderPlaced, false)
     }
   }
 
@@ -110,8 +111,8 @@ class Exchange extends React.Component {
       const thisAmount = web3.utils.toWei(amount,"ether")
       const ether = this.exchangeHandler.getEtherAmount()
       const wei = web3.utils.toWei(ether,"ether")
-      const params = [orderTime, account, currency, thisAmount, wei, this.defaultTO]
-      this.web3Handler.callParamHandler(this, this.exchanger.completeOrder, params, this.setCompleteOrder, false)
+      const params = [orderTime, account, currency, thisAmount, wei, {from: account, gas: 300000}]
+      this.web3Handler.callParamHandler(this, this.exchanger.methods.completeOrder, params, this.setCompleteOrder, false)
     }
   }
 

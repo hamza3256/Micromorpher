@@ -52,9 +52,10 @@ class Withdraw extends React.Component {
   _handleCurrency(selection) {
     //console.log("Getting deposited amount for currency " + selection.label)
     const currency = selection.label
+    const account = this.web3Handler.getAccount()
     this.withdrawHandler.setCurrency(currency)
-    let params = [currency]
-    this.web3Handler.callParamHandler(this, this.exchanger.getDepositedAmount, params, this.setAmount, false)
+    let params = [currency, {from: account}]
+    this.web3Handler.callParamHandler(this, this.exchanger.methods.getDepositedAmount, params, this.setAmount, true)
   }
 
   _handleWithdrawAmount(value) {
@@ -64,13 +65,14 @@ class Withdraw extends React.Component {
   _handleWithdraw() {
     if (this.withdrawHandler.checkSet()) {
       const web3 = this.web3Handler.getWeb3()
+      const account = this.web3Handler.getAccount()
       const currency = this.withdrawHandler.getCurrency()
       const withdrawAmount = this.withdrawHandler.getWithdrawAmount()
       const thisWithdrawAmount = web3.utils.toWei(withdrawAmount,"ether")
-      let params = [currency, thisWithdrawAmount, this.defaultTO]
-      this.web3Handler.callParamHandler(this, this.exchanger.withdraw, params, this.setWithdraw, false)
-      params = [currency]
-      this.web3Handler.callParamHandler(this, this.exchanger.getDepositedAmount, params, this.setAmount, false)
+      let params = [currency, thisWithdrawAmount, {from: account, gas: 300000}]
+      this.web3Handler.callParamHandler(this, this.exchanger.methods.withdraw, params, this.setWithdraw, false)
+      params = [currency, {from: account}]
+      this.web3Handler.callParamHandler(this, this.exchanger.methods.getDepositedAmount, params, this.setAmount, true)
     }
   }
 

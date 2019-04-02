@@ -26,7 +26,6 @@ class Exchanger extends React.Component {
       countryCodeSelections[i] = { value: i, label: CountryCodes.codes[i] }
     }
 
-    this.defaultTO = {gas: 300000}
     this.state = {
       currencyId: undefined,
       currencies: countryCodeSelections,
@@ -44,26 +43,27 @@ class Exchanger extends React.Component {
   }
 
   _handleCurrency (_selection) {
-    console.log("here? ", _selection)
+    //console.log("here? ", _selection)
     this.exchangeHandler.setCurrency(_selection.label)
     this.setState({currencyId: _selection.value})
   }
 
   _handleRate (_value) {
-    console.log("what about here? ", _value)
+    //console.log("what about here? ", _value)
     this.exchangeHandler.setRate(_value)
   }
 
   _handleRateSet () {
-    console.log('checking setting rate')
+    //console.log('checking setting rate')
     if (this.exchangeHandler.checkSet()) {
-      console.log('setting rate')
+      //console.log('setting rate')
       const web3 = this.web3Handler.getWeb3()
       const currency = this.exchangeHandler.getCurrency()
       const rate = this.exchangeHandler.getRate()
       const thisRate = web3.utils.toWei(rate,"ether")
       console.log('Currency: ' + currency + ' Rate: ' + thisRate)
-      const params = [currency, thisRate, this.defaultTO]
+      const account = this.web3Handler.getAccount()
+      const params = [currency, thisRate, {from: account, gas: 300000}]
       this.web3Handler.callParamHandler(this, this.exchanger.methods.setRate, params, this.setRate, false)
       //console.log("Set Wei exchange rate for " + currency + " at rate " + thisRate)
     }
