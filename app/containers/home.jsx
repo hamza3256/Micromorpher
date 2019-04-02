@@ -1,6 +1,7 @@
 import React from 'react'
 import {HomeStrings} from '../utils/outputStrings'
 import {Heading, TextOutput} from '../components/form'
+import Markdown from 'react-markdown'
 
 class Home extends React.Component {
 
@@ -12,7 +13,7 @@ class Home extends React.Component {
     return (
       <div>
         <Heading heading={HomeStrings.heading} />
-        <TextOutput text={HomeStrings.info} />
+        <Markdown escapeHtml={false} source={HomeStrings.info} />
         <hr />
       </div>
     )

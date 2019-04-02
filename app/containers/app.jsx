@@ -8,6 +8,7 @@ import Home from './home'
 import About from './about'
 import Overview from './overview'
 import Help from './help'
+import Future from './future'
 import Admin from './admin'
 import Exchanger from './exchanger'
 
@@ -39,6 +40,7 @@ class App extends React.Component {
               <Link className={rTComponents.linkPrimary} href="#/about">{AppStrings.about}</Link>
               <Link className={rTComponents.linkPrimary} href="#/overview">{AppStrings.overview}</Link>
               <Link className={rTComponents.linkPrimary} href="#/help">{AppStrings.help}</Link>
+              <Link className={rTComponents.linkPrimary} href="#/future">{AppStrings.future}</Link>
             </Navigation>
           </AppBar>
 
@@ -48,6 +50,7 @@ class App extends React.Component {
           <Route path="/about" component={About} />
           <Route path="/overview" component={Overview} />
           <Route path="/help" component={Help} />
+          <Route path="/future" component={Future} />
           <Route path="/admin" render={() => <Admin contract={this.contractHandler} web3={this.web3Handler} />} />
           <Route path="/exchanger" render={() => <Exchanger contract={this.contractHandler} web3={this.web3Handler} />} />
         </div>

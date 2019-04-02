@@ -2,6 +2,8 @@ import React from 'react'
 import {HelpStrings} from '../utils/outputStrings'
 import {Heading, TextOutput} from '../components/form'
 
+import Markdown from 'react-markdown'
+
 class Help extends React.Component {
 
   constructor (props) {
@@ -12,7 +14,7 @@ class Help extends React.Component {
     return (
       <div>
         <Heading heading={HelpStrings.heading} />
-        <TextOutput text={HelpStrings.info} />
+        <Markdown escapeHtml={false} source={HelpStrings.info} />
         <hr />
       </div>
     )
