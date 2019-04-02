@@ -37,7 +37,7 @@ class Exchanger extends React.Component {
     const currency = _self.exchangeHandler.getCurrency()
     const rate = _self.exchangeHandler.getRate()
     const info = 'Exchange rate ' + rate + ' for Currency ' + currency + ' set. Transaction ID: ' + _result
-    console.log(info)
+    //console.log(info)
     _self.setState({info: info})
     _self.exchangeHandler.reset()
   }
@@ -61,7 +61,7 @@ class Exchanger extends React.Component {
       const currency = this.exchangeHandler.getCurrency()
       const rate = this.exchangeHandler.getRate()
       const thisRate = web3.utils.toWei(rate,"ether")
-      console.log('Currency: ' + currency + ' Rate: ' + thisRate)
+      //console.log('Currency: ' + currency + ' Rate: ' + thisRate)
       const account = this.web3Handler.getAccount()
       const params = [currency, thisRate, {from: account, gas: 300000}]
       this.web3Handler.callParamHandler(this, this.exchanger.methods.setRate, params, this.setRate, false)
