@@ -41,7 +41,8 @@ class Exchange extends React.Component {
 
   setRate (_self, _result) {
     //console.log("Got Rate in Wei: " + _result)
-    const theRate = web3.utils.fromWei(_result,"ether").toString()
+    const web3 = _self.web3Handler.getWeb3()
+    const theRate = web3.utils.fromWei(_result.toString(),"ether")
     _self.exchangeHandler.setRate(theRate)
     _self.setState({rate: theRate})
   }
@@ -77,6 +78,7 @@ class Exchange extends React.Component {
   }
 
   _handleAmount(_value) {
+    const web3 = this.web3Handler.getWeb3()
     this.exchangeHandler.setAmount(_value)
     const currency = this.exchangeHandler.getCurrency()
     const amount = this.exchangeHandler.getAmount()
@@ -92,6 +94,7 @@ class Exchange extends React.Component {
     const account = this.web3Handler.getAccount()
     this.exchangeHandler.setAccount(account)
     if (this.exchangeHandler.checkSet()) {
+      const web3 = this.web3Handler.getWeb3()
       const currency = this.exchangeHandler.getCurrency()
       const amount = this.exchangeHandler.getAmount()
       const thisAmount = web3.utils.toWei(amount,"ether")
@@ -104,6 +107,7 @@ class Exchange extends React.Component {
 
   _handleExchange() {
     if (this.exchangeHandler.checkSet()) {
+      const web3 = this.web3Handler.getWeb3()
       const orderTime = this.exchangeHandler.getOrderTime()
       const account = this.exchangeHandler.getAccount()
       const currency = this.exchangeHandler.getCurrency()
@@ -124,7 +128,7 @@ class Exchange extends React.Component {
           <hr />
         </div>
         <div>
-          <TextSelect parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} selection={this.state.currencyId} />
+          <TextSelect parentFunc={this._handleCurrency.bind(this)} placeHolder={ExchangerStrings.exchangeCurrencyPlaceholder} label={ExchangerStrings.exchangeCurrencyLabel} selections={this.state.currencies} />
           <TextOutput label={ExchangerStrings.rateLabel} result={this.state.rate}/>
           <TextInput parentFunc={this._handleAmount.bind(this)} placeHolder={ExchangerStrings.amountPlaceHolder} label={ExchangerStrings.amountLabel} />
           <TextOutput label={ExchangerStrings.etherLabel} result={this.state.etherAmount}/>
