@@ -38,7 +38,7 @@ class HelpStrings {
 
   static heading = 'Help'
 
-  static info = ''
+  static info = '**Micromorpher** is a prototype distributed application (dApp) that demonstrates the possibility of converting small amounts of £s (or other FIAT currencies) into Ether, using blockchain smart contracts.<br /><br />Have a read of the [Overview](#/overview), which gives some background about the app\'. <br /><br />The [Admin](#/admin) menu lets you perform adminstrative tasks, including [funding the smart contract](#/admin/user) so that FIAT currencies can be exchanged for Ether, [setting exchange rates](#/admin/rates) and [withdrawing deposited FIAT currencies](#/admin/withdraw). The [Exchange](#/exchanger) menu lets you [exchange FIAT currencies for Ether](#/exchanger/exchange).<br /><br />This app\' relies on [MetaMask](https://metamask.io/).'
 
 }
 
