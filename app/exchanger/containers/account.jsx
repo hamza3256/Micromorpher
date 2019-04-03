@@ -13,6 +13,7 @@ class AccountAdmin extends React.Component {
 
     this.web3Handler = this.props.web3
     const web3 = this.web3Handler.getWeb3()
+    //console.log('Account info: ', web3.eth.getAccounts())
     const contractHander = this.props.contract
     this.exchanger = contractHander.getExchanger()
     const account = this.web3Handler.getAccount()

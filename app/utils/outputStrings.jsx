@@ -46,7 +46,7 @@ class FutureStrings {
 
   static heading = 'Future Work'
 
-  static info = '1) Integrate with PayPal<br /> 2) Implement anti-money laundering (AML) and know your customer (KYC) regulations (see [bitcoin forum](https://bitcointalk.org/index.php?topic=454795.0) on AML/KYC)<br />3) Get exchange rates via a public api, such as [coinbase](https://developers.coinbase.com/api/v2)<br />4) Do a live exchange!<br />5) Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin<br />6) See [open issues](https://github.com/glowkeeper/Micromorpher/issues)<br />7) All other ideas welcome ;)'
+  static info = '1) Integrate with PayPal<br /> 2) Implement anti-money laundering (AML) and know your customer (KYC) regulations (see [bitcoin forum](https://bitcointalk.org/index.php?topic=454795.0) on AML/KYC)<br />3) Get exchange rates via a public api, such as [coinbase](https://developers.coinbase.com/api/v2)<br />4) Do a live exchange!<br />5) Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin<br />6) Geek stuff for robustness, e.g. Formik, Redux, Typescript<br />7) See [open issues](https://github.com/glowkeeper/Micromorpher/issues)<br />8) All other ideas welcome ;)'
 }
 
 class ExchangerAppStrings {
