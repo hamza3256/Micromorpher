@@ -23,7 +23,7 @@ class Exchanger extends React.Component {
   render () {
     return (
       <div>
-        <AppBar title={ExchangerAppStrings.heading}>
+        <AppBar className={rTLayout.exchange} title={ExchangerAppStrings.heading}>
           <Navigation type='horizontal'>
             <Link className={rTComponents.linkPrimary} href="#/exchanger">{ExchangerAppStrings.home}</Link>
             <Link className={rTComponents.linkPrimary} href="#/exchanger/admin">{ExchangerAppStrings.account}</Link>

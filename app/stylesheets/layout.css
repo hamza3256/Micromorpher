@@ -1,4 +1,4 @@
-@value fontFamily, appPadding, appBackgroundColour from "./variables.css";
+@value fontFamily, appPadding, appBackgroundColour, adminBackgroundColour, exchangeBackgroundColour from "./variables.css";
 
 html, body {
   position: relative;
@@ -10,4 +10,12 @@ html, body {
 .app {
   padding: appPadding;
   background: appBackgroundColour;
+}
+
+.admin {
+  background: adminBackgroundColour;
+}
+
+.exchange {
+  background: exchangeBackgroundColour;
 }

@@ -25,7 +25,7 @@ class Admin extends React.Component {
   render () {
     return (
       <div>
-        <AppBar title={AdminAppStrings.heading}>
+        <AppBar className={rTLayout.admin} title={AdminAppStrings.heading}>
           <Navigation type='horizontal'>
             <Link className={rTComponents.linkPrimary} href="#/admin">{AdminAppStrings.home}</Link>
             <Link className={rTComponents.linkPrimary} href="#/admin/user">{AdminAppStrings.admin}</Link>

@@ -1,10 +1,12 @@
-@value buttonPrimaryColor: #FFFFFF;
-@value buttonPrimaryBackgroundColor: #303F9F;
-@value buttonPrimaryDisabledBackgroundColor: #cccccc;
+@value buttonPrimaryColor: #3f51b5;
+@value buttonPrimaryBackgroundColor: #3949ab;
+@value buttonPrimaryDisabledBackgroundColor: #5c6bc0;
 
 @value linkPrimaryColour: #FFFFFF;
 
 @value appPadding: 10px;
-@value appBackgroundColour: #cfe1e1;
+@value appBackgroundColour: #c5cae9;
+@value adminBackgroundColour: #1a237e;
+@value exchangeBackgroundColour: #536dfe;
 
 @value fontFamily: 'Roboto', sans-serif;
