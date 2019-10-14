@@ -4,19 +4,11 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](/docs/prs.md)
 [![License LGPL-3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
 
-This is the repository for **Micromorpher**, which is a prototype distributed application (dApp) that has the intention of converting small amounts of £s into Ether, using blockchain smart contracts.
+This is the repository for **Micromorpher**, a demo' of an early prototype distributed application (dApp) for converting small amounts of £s into Ether, using blockchain smart contracts.
 
-The original test **Micromorpher** application was the result of the academic paper called, [Towards a post-cash society: An application to convert fiat money into a cryptocurrency](http://dx.doi.org/10.5210/fm.v22i3.7410), by Steve Huckle, Martin White and Rituparna Bhattacharya, of the [University of Sussex Informatics Department](http://www.sussex.ac.uk/informatics/).
+**Micromorpher** is the result of the academic paper called, [Towards a post-cash society: An application to convert fiat money into a cryptocurrency](http://dx.doi.org/10.5210/fm.v22i3.7410), by Steve Huckle, Martin White and Rituparna Bhattacharya, of the [University of Sussex Informatics Department](http://www.sussex.ac.uk/informatics/).
 
-The dApp discussed in the paper was just a demo - the intention now is to move it into production (however, beforehand, that means progressing through PayPal's developer test api and Ethereum's test network [rinkeby](https://www.rinkeby.io)).  
-
-If you would like to contribute (perhaps by helping with [future work](#1), or by working on some of the [open issues](https://github.com/glowkeeper/Micromorpher/issues)), then please email s dot huckle at sussex dot ac dot uk.
-
-## Demo
-
-(coming soon)
-
-## Installing **Micromorpher** Locally
+## Installing Locally
 
 The instruction below enable you to run **Micromorpher** on a local, private, Ethereum test network (via [Ganache](https://github.com/trufflesuite/ganache)).
 
@@ -65,21 +57,6 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 - [Ganache](https://github.com/trufflesuite/ganache)
 - [Truffle](https://github.com/trufflesuite/truffle)
 - [REACT](https://reactjs.org/)
-
-## Contributing
-
-Have a look at [future work](#1), [open issues](https://github.com/glowkeeper/Micromorpher/issues), or visit **Micromorpher's** [Kanban board](https://trello.com/b/Pv0N8POE/micromorpher) for some ideas as to how you may contribute. However, other suggestions are very welcome!
-<a name="1">&nbsp;</a>
-
-## Future work
-
-1. Integrate with PayPal
-2. Implement anti-money laundering (AML) and know your customer (KYC) regulations (see [bitcoin forum](https://bitcointalk.org/index.php?topic=454795.0) on AML/KYC)
-3. Get exchange rates via a public api, such as [coinbase](https://developers.coinbase.com/api/v2)
-4. Do exchange
-5. Lock certain functionality based on account type - i.e. only show admin menu if the account type is an admin
-6. ...see [open issues](https://github.com/glowkeeper/Micromorpher/issues))
-7. other ideas welcome ;)
 
 ## Credits
 
