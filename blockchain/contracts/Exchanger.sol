@@ -36,17 +36,19 @@ contract Exchanger is Exchange, Mortal {
     emit Funded(msg.sender, msg.value);
   }
 
-  function placeOrder(uint256 _epochTime, address payable _creator, string memory _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
+  function placeOrder(uint256 _epochTime, address payable _creator,
+  string memory _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
   	orderDB.placeOrder(_epochTime,_creator,_offerCurrency,_offerAmount,_etherValue);
   	emit OrderPlaced(_epochTime, _creator);
   }
 
-  function completeOrder(uint256 _epochTime, address payable _creator, string memory _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
+  function completeOrder(uint256 _epochTime, address payable _creator,
+  string memory _offerCurrency, uint256 _offerAmount, uint256 _etherValue) public onlyOwner {
 		//var sent = _creator.send(_etherValue);
     if ( orderDB.isOpen(_epochTime,_creator) ) {
 			orderDB.completeOrder(_epochTime,_creator);
 			depositDB.deposit(_offerCurrency,_offerAmount);
-			if (_creator.send(_etherValue)) {
+			if (_creator.send(_etherValue) ) {
     		emit OrderCompleted(_epochTime,_creator);
         emit Deposited(_offerCurrency,_offerAmount);
 			} else {
