@@ -1,10 +1,6 @@
 # Micromorpher
 
-[![Travis build](	https://img.shields.io/travis/glowkeeper/Micromorpher.svg?style=flat-square)](https://travis-ci.org/glowkeeper/Micromorpher)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](/docs/prs.md)
-[![License LGPL-3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
-
-This is the repository for **Micromorpher**, a demo' of an early prototype distributed application (dApp) for converting small amounts of £s into Ether, using blockchain smart contracts.
+This is the repository for **Micromorpher**, a demo of an early prototype distributed application (dApp) for converting small amounts of fit currency (GBP) into Ether, using blockchain smart contracts.
 
 **Micromorpher** is the result of the academic paper called, [Towards a post-cash society: An application to convert fiat money into a cryptocurrency](http://dx.doi.org/10.5210/fm.v22i3.7410), by Steve Huckle, Martin White and Rituparna Bhattacharya, of the [University of Sussex Informatics Department](http://www.sussex.ac.uk/informatics/).
 
@@ -57,13 +53,3 @@ Then fire up a browser and go to the URL [http://localhost:8081](http://localhos
 - [Ganache](https://github.com/trufflesuite/ganache)
 - [Truffle](https://github.com/trufflesuite/truffle)
 - [REACT](https://reactjs.org/)
-
-## Credits
-
-Original author: Steve Huckle, s dot huckle at sussex dot ac dot uk.
-
-## Licensing
-
-GNU General Public License v3.0
-
-See [COPYING](/docs/COPYING.txt) to see the full text.
